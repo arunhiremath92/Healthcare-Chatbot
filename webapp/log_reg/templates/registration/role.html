@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+
+{% block title %}Your role{% endblock %}
+
+{% block content %}
+
+<header>
+  <div class="header-top">
+    <div class="container">
+      <div class="left">
+        <div class="left1">
+          <i class="bi bi-telephone">
+          </i>
+          <span class="span1">
+           Tel: +1 (xxx)-xxx-xxxx
+          </span>
+        </div>
+
+        <div class="left1">
+          <i class="bi bi-envelope">
+          </i>
+          <span class="span1">
+           Email: healthcarebot-cmpe295-group@sjsu.edu
+         </span>
+        </div>
+
+        <div class="left1">
+          <i class="bi bi-pin-map">
+          </i>
+          <span class="span1">
+           Loc: San Jose State University
+         </span>
+        </div>
+      </div>
+      <div class="right">
+        <a href="#"><i class="bi bi-github">
+        </i></a>
+        <a href="#"><i class="bi bi-youtube">
+        </i></a>
+        <a href="#"><i class="bi bi-facebook">
+        </i></a>
+        <a href="#"><i class="bi bi-apple">
+        </i></a>
+        <a href="#"><i class="bi bi-whatsapp">
+        </i></a>
+      </div>
+    </div>
+  </div>
+
+<div class="header-bot">
+<center>
+  <nav>
+    <div class="label">
+        <span>Medical Review <i class="bi bi-arrow-down-circle-fill"></i> </span>
+        &nbsp;
+          <div class="dropdown">
+              <h6><a href="#">Medicine Review</a></h6>
+              <h6><a href="{% url 'aboutUs' %}">Our Team</a></h6>
+              <h6><a href="{% url 'contact' %}">Contact us</a></h6>
+          </div>
+    </div>
+    <div class="label">
+      <span>Doctors & Advisors <i class="bi bi-arrow-down-circle-fill"></i></span>
+      &nbsp;
+      <div class="dropdown">
+              <h6><a href="#">Doctors</a></h6>
+              <h6><a href="#">
+                Doctors Details
+              </a></h6>
+          </div>
+    </div>
+    <div class="label">
+      <span>Our Pages <i class="bi bi-arrow-down-circle-fill"></i></span>
+      &nbsp;
+      <div class="dropdown">
+              <h6><a href="{% url 'home' %}">Home</a></h6>
+              <h6><a href="{% url 'appointment' %}">Appointment</a></h6>
+              <h6><a href="{% url 'register' %}">Register</a></h6>
+      </div>
+    </div>
+</nav>
+</center>
+</div>
+</header>
+<div class="login">
+	<div class="homepage2-partleft-top">
+		<h1>Home > Select Your Role</h1>
+		<form method="post">
+			<a href="{% url 'user_signup' %}">
+				<button type="button">General User Registration</button>
+			</a>
+			<br>
+			<br>
+			<a href="{% url 'prof_signup' %}">
+				<button type="button">Medical Professional Registration</button>
+			</a>
+			<br>
+			<br>
+			<a href="adminsignup.html">
+				<button type="button">Admin Registration (In progress)</button>
+			</a>
+			<br>
+			<br>
+
+		</form>
+	</div>
+	<a href="{% url 'home' %}"> Back to home page </a>
+
+
+</div>
+<hr>
+    <article>
+    <center>
+      <div id = "about-us">
+        <h3>Technologies & Functions</h3>
+        <div class="nlptechnology">
+         <a href="#">Natural Language Processing</a>
+        </div>
+        <div class="chatbot">
+        <a href="#">Chatbot</a>
+        </div>
+      </div>
+
+      <div id = "about-us">
+        <h3>Our Team</h3>
+        <div class="contact-us">
+         <a href="{% url 'contact' %}">Contact us</a>
+        </div>
+        <div class="about-us">
+        <a href="{% url 'aboutUs' %}">About us</a>
+        </div>
+      </div>
+
+      <div id = "about-us">
+        <h3>Member Support</h3>
+        <div class="usrlogin">
+         <a href="{% url 'login' %}">User Login</a>
+        </div>
+      </div>
+
+      <div id = "about-us">
+        <h3>Legal Notices</h3>
+          <div class="our-policy">
+            <a href="#">Our Policy</a>
+          </div>
+          <div class="privacy">
+            <a href="#">Privacy</a>
+          </div>
+      </div>
+
+    </center>
+
+    <footer>
+      <center>
+       <br>
+        <br>
+        &copy; Fall 2021 - Spring 2022 CMPE295 Team (NLP Web-based Healthcare System)<br>
+        <div class="footer-term">
+        <a href="#">Term of Service</a>
+        </div>
+      </center>
+    </footer>
+  </article>
+
+{% endblock %}

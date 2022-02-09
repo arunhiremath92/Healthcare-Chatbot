@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Doctor Sign up{% endblock %}
+
+{% block content %}
+<center>
+		<h1>Welcome! Doctor, Please Enter Your Details</h1>
+		<form method ="post" action ="successsignup.html">
+			<label for="fullname">Your fullname:</label>
+			<input type = "text" id="fullname" placeholder = "Enter your fullname">
+			<br>
+			<label for="username">Your username:</label>
+			<input type = "text" id="username" placeholder = "Enter your username">
+			<br>
+			<label for="Company">Your current company:</label>
+			<input type = "text" id="Company" placeholder = "Enter your company">
+			<br>
+			<label for="Position">Your current position:</label>
+			<input type = "text" id="Position" placeholder = "Enter your Position">
+			<br>
+			<label for="WorkingYears">Working years:</label>
+			<select>
+				<option value = "Select Your Working Years" selected = "selected">Select Your Working Years</option>
+				<option value = "0">0</option>
+				<option value = "1">1</option>
+				<option value = "2">2</option>
+				<option value = "3">3</option>
+				<option value = "4">4</option>
+				<option value = "5">5</option>
+				<option value = "6">6</option>
+				<option value = "7">7</option>
+				<option value = "8">8</option>
+				<option value = "9">9</option>
+				<option value = "10">10</option>
+				<option value = "10+">10+</option>
+				<option value = "20+">20+</option>
+				<option value = "30+">30+</option>
+				<option value = "40+">40+</option>
+				<option value = "50+">50+</option>
+			</select>
+			<br>
+			<label for="email">Your email:</label>
+			<input type = "email" id="email" placeholder = "Enter your email">
+			<br>
+			<label for="pword">Enter your password:</label>
+			<input type = "password" id="pword" placeholder = "Enter your password">
+			<br>
+			<label for="repword">Confirm your password:</label>
+			<input type = "password" id="repword" placeholder = "Confirm your password">
+			<br>
+			<label for="DoctorID">Enter your Doctor ID:</label>
+			<input type = "password" id="DoctorID" placeholder = "Enter your Doctor ID">
+			<br>
+			<label for="phone">Your phone number</label>
+			<input type = "number" id="phone" placeholder = "Enter your phone number">
+			<br>
+			<input type="Submit" value = "submit" name = "submit">
+			<input type="Reset" value = "reset" name = "reset">
+			<br>
+		</form>
+		<a href = "role.html"> Back to previous page </a>
+		&nbsp;&nbsp;
+		<a href="{% url 'home' %}"> Back to home page </a>
+		<hr>
+	</center>
+
+	{% endblock %}

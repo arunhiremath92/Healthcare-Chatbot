@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<header>
+  <div class="header-top">
+    <div class="container">
+      <div class="left">
+        <div class="left1">
+          <i class="bi bi-telephone">
+          </i>
+          <span class="span1">
+           Tel: +1 (xxx)-xxx-xxxx
+          </span>
+        </div>
+
+        <div class="left1">
+          <i class="bi bi-envelope">
+          </i>
+          <span class="span1">
+           Email: healthcarebot-cmpe295-group@sjsu.edu
+         </span>
+        </div>
+
+        <div class="left1">
+          <i class="bi bi-pin-map">
+          </i>
+          <span class="span1">
+           Loc: San Jose State University
+         </span>
+        </div>
+      </div>
+      <div class="right">
+        <a href="#"><i class="bi bi-github">
+        </i></a>
+        <a href="#"><i class="bi bi-youtube">
+        </i></a>
+        <a href="#"><i class="bi bi-facebook">
+        </i></a>
+        <a href="#"><i class="bi bi-apple">
+        </i></a>
+        <a href="#"><i class="bi bi-whatsapp">
+        </i></a>
+      </div>
+    </div>
+  </div>
+
+<div class="header-bot">
+<center>
+  <nav>
+    <div class="label">
+        <span>Medical Review <i class="bi bi-arrow-down-circle-fill"></i> </span>
+        &nbsp;
+          <div class="dropdown">
+              <h6><a href="#">Medicine Review</a></h6>
+              <h6><a href="{% url 'aboutUs' %}">Our Team</a></h6>
+              <h6><a href="{% url 'contact' %}">Contact us</a></h6>
+          </div>
+    </div>
+    <div class="label">
+      <span>Doctors & Advisors <i class="bi bi-arrow-down-circle-fill"></i></span>
+      &nbsp;
+      <div class="dropdown">
+              <h6><a href="#">Doctors</a></h6>
+              <h6><a href="#">
+                Doctors Details
+              </a></h6>
+          </div>
+    </div>
+    <div class="label">
+      <span>Our Pages <i class="bi bi-arrow-down-circle-fill"></i></span>
+      &nbsp;
+      <div class="dropdown">
+              <h6><a href="{% url 'home' %}">Home</a></h6>
+              <h6><a href="{% url 'appointment' %}">Appointment</a></h6>
+              <h6><a href="{% url 'register' %}">Register</a></h6>
+      </div>
+    </div>
+</nav>
+</center>
+</div>
+</header>
+
+
+	<div class="login">
+		<div class="homepage2-partleft-top">
+			<h1>Member list and Creative team members</h1>
+			<center>
+			<table border="1" bgcolor="lightblue">
+				<br>
+				<tr>
+					<th>Name</th>
+					<th>Gender</th>
+					<th>Role</th>
+					<th>Email</th>
+				</tr>
+				<tr>
+					<td>Arun Hiremath</td>
+					<td>Male</td>
+					<td>NLP Technology Engineer</td>
+					<td>arungangayya.hiremath@sjsu.edu</td>
+				</tr>
+				<tr>
+					<td>Yi Hu</td>
+					<td>Female</td>
+					<td>NLP Technology Engineer</td>
+					<td>yi.hu@sjsu.edu</td>
+				</tr>
+				<tr>
+					<td>Yunzhe Yu</td>
+					<td>Male</td>
+					<td>Frontend Engineer</td>
+					<td>yunzhe.yu@sjsu.edu</td>
+				</tr>
+				<tr>
+					<td>Karan Singh</td>
+					<td>Male</td>
+					<td>Backend Engineer</td>
+					<td>karandeep.singh@sjsu.edu</td>
+				</tr>
+				<tr>
+					<td>Dan Harkey</td>
+					<td>Male</td>
+					<td>Team Advisor & Supervisor</td>
+					<td>dan.harkey@sjsu.edu</td>
+				</tr>
+			</table>
+		</center>
+			<br>
+			<a href="{% url 'home' %}">
+				<button>Back</button>
+			</a>
+		</div>
+	</div>
+
+	<hr>
+    <article>
+    <center>
+      <div id = "about-us">
+        <h3>Technologies & Functions</h3>
+        <div class="nlptechnology">
+         <a href="#">Natural Language Processing</a>
+        </div>
+        <div class="chatbot">
+        <a href="#">Chatbot</a>
+        </div>
+      </div>
+
+      <div id = "about-us">
+        <h3>Our Team</h3>
+        <div class="contact-us">
+         <a href="{% url 'contact' %}">Contact us</a>
+        </div>
+        <div class="about-us">
+        <a href="{% url 'aboutUs' %}">About us</a>
+        </div>
+      </div>
+
+      <div id = "about-us">
+        <h3>Member Support</h3>
+        <div class="usrlogin">
+         <a href="{% url 'login' %}">User Login</a>
+        </div>
+      </div>
+
+      <div id = "about-us">
+        <h3>Legal Notices</h3>
+          <div class="our-policy">
+            <a href="#">Our Policy</a>
+          </div>
+          <div class="privacy">
+            <a href="#">Privacy</a>
+          </div>
+      </div>
+
+    </center>
+
+    <footer>
+      <center>
+       <br>
+        <br>
+        &copy; Fall 2021 - Spring 2022 CMPE295 Team (NLP Web-based Healthcare System)<br>
+        <div class="footer-term">
+        <a href="#">Term of Service</a>
+        </div>
+      </center>
+    </footer>
+  </article>
+
+
+ {% endblock %}

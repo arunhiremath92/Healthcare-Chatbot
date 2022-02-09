@@ -1,0 +1,564 @@
+
+{% extends 'base.html' %}
+
+{% block title %}HomePage{% endblock %}
+
+{% block content %}
+
+
+{% if user.is_authenticated %}
+
+
+<header>
+  <div class="header-top">
+    <div class="container">
+      <div class="left">
+        <div class="left1">
+          <i class="bi bi-telephone">
+          </i>
+          <span class="span1">
+           Tel: +1 (xxx)-xxx-xxxx
+          </span>
+        </div>
+
+        <div class="left1">
+          <i class="bi bi-envelope">
+          </i>
+          <span class="span1">
+           Email: healthcarebot-cmpe295-group@sjsu.edu
+         </span>
+        </div>
+
+        <div class="left1">
+          <i class="bi bi-pin-map">
+          </i>
+          <span class="span1">
+           Loc: San Jose State University
+         </span>
+        </div>
+      </div>
+      <div class="right">
+        <a href="#"><i class="bi bi-github">
+        </i></a>
+        <a href="#"><i class="bi bi-youtube">
+        </i></a>
+        <a href="#"><i class="bi bi-facebook">
+        </i></a>
+        <a href="#"><i class="bi bi-apple">
+        </i></a>
+        <a href="#"><i class="bi bi-whatsapp">
+        </i></a>
+      </div>
+    </div>
+  </div>
+
+<div class="header-bot">
+<center>
+  <nav>
+    <div class="label">
+        <span>Medical Review <i class="bi bi-arrow-down-circle-fill"></i></span>
+        &nbsp;
+          <div class="dropdown">
+              <h6><a href="#">Medicine Review</a></h6>
+              <h6><a href="{% url 'aboutUs' %}">Our Team</a></h6>
+              <h6><a href="{% url 'contact' %}">Contact us</a></h6>
+          </div>
+    </div>
+    <div class="label">
+      <span>Appointment Schedule <i class="bi bi-arrow-down-circle-fill"></i></span>
+      &nbsp;
+      <div class="dropdown">
+              <h6><a href="#">Check My Appointment</a></h6>
+              <h6><a href="{% url 'appointment' %}">
+                Make an Appointment
+              </a></h6>
+          </div>
+    </div>
+    <div class="label">
+      <span>User Login <i class="bi bi-arrow-down-circle-fill"></i></span>
+      &nbsp;
+      <div class="dropdown">
+              <h6><a href="{% url 'login' %}">User Login</a></h6>
+              <h6><a href="{% url 'register' %}">Register</a></h6>
+      </div>
+    </div>
+</nav>
+</center>
+</div>
+</header>
+
+<div class = "userlogin" style="text-align:right">
+Welcome <div class="userlogin-name">{{ user.username }}!</div>
+
+
+<button type="button">
+  <a href="{% url 'logout' %}">Log Out</a>
+</button>
+</div>
+
+<div class="userProfile">
+  <div class="userProfile-container">
+    <div class="userProfile-container-left">
+      <div class="userProfile-container-left-top">
+        <h1>Photo</h1>
+      </div>
+      <div class="userProfile-container-left-bot">
+        <div class="userloginleftname">
+          <div class="userlogin-name"> Dear {{ user.username }}!</div>
+        </div>
+      </div>
+    </div>
+    <div class="userProfile-container-right">
+      <div class="userProfile-container-right-top">
+        <ul>
+          <h3>My Appointments</h3>
+          <li>
+            My Appointments 1
+          </li>
+          <li>
+            My Appointments 2
+          </li>
+          <li>
+            My Appointments 3
+          </li>
+        </ul>
+      </div>
+      <div class="userProfile-container-right-bot">
+        Need to be decided
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr>
+  <article>
+    <center>
+      <div id = "about-us">
+        <h3>Technologies & Functions</h3>
+        <div class="nlptechnology">
+         <a href="#">Natural Language Processing</a>
+        </div>
+        <div class="chatbot">
+        <a href="#">Chatbot</a>
+        </div>
+      </div>
+
+      <div id = "about-us">
+        <h3>Our Team</h3>
+        <div class="contact-us">
+         <a href="{% url 'contact' %}">Contact us</a>
+        </div>
+        <div class="about-us">
+        <a href="{% url 'aboutUs' %}">About us</a>
+        </div>
+      </div>
+
+      <div id = "about-us">
+        <h3>Member Support</h3>
+        <div class="usrlogin">
+         <a href="{% url 'login' %}">User Login</a>
+        </div>
+      </div>
+
+      <div id = "about-us">
+        <h3>Legal Notices</h3>
+          <div class="our-policy">
+            <a href="#">Our Policy</a>
+          </div>
+          <div class="privacy">
+            <a href="#">Privacy</a>
+          </div>
+      </div>
+
+    </center>
+
+    <footer>
+      <center>
+       <br>
+        <br>
+        &copy; Fall 2021 - Spring 2022 CMPE295 Team (NLP Web-based Healthcare System)<br>
+        <div class="footer-term">
+        <a href="#">Term of Service</a>
+        </div>
+      </center>
+    </footer>
+  </article>
+
+{% else %}
+
+<header>
+  <div class="header-top">
+    <div class="container">
+      <div class="left">
+        <div class="left1">
+          <i class="bi bi-telephone">
+          </i>
+          <span class="span1">
+           Tel: +1 (xxx)-xxx-xxxx
+          </span>
+        </div>
+
+        <div class="left1">
+          <i class="bi bi-envelope">
+          </i>
+          <span class="span1">
+           Email: healthcarebot-cmpe295-group@sjsu.edu
+         </span>
+        </div>
+
+        <div class="left1">
+          <i class="bi bi-pin-map">
+          </i>
+          <span class="span1">
+           Loc: San Jose State University
+         </span>
+        </div>
+      </div>
+      <div class="right">
+        <a href="#"><i class="bi bi-github">
+        </i></a>
+        <a href="#"><i class="bi bi-youtube">
+        </i></a>
+        <a href="#"><i class="bi bi-facebook">
+        </i></a>
+        <a href="#"><i class="bi bi-apple">
+        </i></a>
+        <a href="#"><i class="bi bi-whatsapp">
+        </i></a>
+      </div>
+    </div>
+  </div>
+
+<div class="header-bot">
+<center>
+  <nav>
+    <div class="label">
+        <span>Medical Review <i class="bi bi-arrow-down-circle-fill"></i></span>
+        &nbsp;
+          <div class="dropdown">
+              <h6><a href="#">Medicine Review</a></h6>
+              <h6><a href="{% url 'aboutUs' %}">Our Team</a></h6>
+              <h6><a href="{% url 'contact' %}">Contact us</a></h6>
+          </div>
+    </div>
+    <div class="label">
+      <span>Appointment Schedule <i class="bi bi-arrow-down-circle-fill"></i></span>
+      &nbsp;
+      <div class="dropdown">
+              <h6><a href="#">Check My Appointment</a></h6>
+              <h6><a href="{% url 'appointment' %}">
+                Make an Appointment
+              </a></h6>
+          </div>
+    </div>
+    <div class="label">
+      <span>User Login <i class="bi bi-arrow-down-circle-fill"></i></span>
+      &nbsp;
+      <div class="dropdown">
+              <h6><a href="{% url 'login' %}">User Login</a></h6>
+              <h6><a href="{% url 'register' %}">Register</a></h6>
+      </div>
+    </div>
+</nav>
+</center>
+</div>
+</header>
+
+<aside>
+  <nav>
+    <ul>
+      <div class="asidebar" style="text-align: center; border: none; font-weight: 700;">
+        <li>Aside Bar</li>
+      </div>
+      <div class="asidebar">
+        <li><a href="#mainPage">Main Page</a></li>
+      </div>
+      <div class="asidebar">
+        <li><a href="#aboutNLP">About NLP</a></li>
+      </div>
+      <div class="asidebar">
+        <li><a href="#appointmentSec">Make an appointment</a></li>
+      </div>
+      <div class="asidebar">
+        <li><a href="#ProfTeam">Professional Team</a></li>
+      </div>
+      <div class="asidebar"> 
+        <li><a href="#subscribeUs">Subscribe Us</a></li>
+      </div>
+    </ul>
+  </nav>
+</aside>
+
+  <section>
+    <div class="main" id="mainPage">
+      <center>
+        <div class="title1">
+        <h1>NLP Web Based Healthcare System</h1>
+        </div>
+        <div class="version">
+          <h6>Version: 1.0(2022-01-20)</h6>
+        </div>
+      </center>
+    </div>
+  </section>
+
+
+
+  <section id="aboutNLP">
+    <div class="homepage1">
+      <div class="container">
+        <div class="homepage1-partleft">
+          <p>Background Pic</p>
+        </div>
+        <div class="homepage1-partright">
+          <div class="homepage2-partleft-top">
+            <h5>||About it</h5>
+            <h1>A More SIMPLE, CONVENIENT, and EFFICIENT Way to Seek  Medical Advice! </h1>
+          </div>
+          <div class="homepage2-partleft-bot">
+            <div class="homepage2-partleft-bot-btn">
+              <a href="https://healthitanalytics.com/features/what-is-the-role-of-natural-language-processing-in-healthcare">
+                Read More!
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="appointmentSec">
+    <div class="homepage2">
+      <div class="container">
+        <div class="homepage2-partleft">
+          <div class="homepage2-partleft-top">
+            <h5>||Booking an Appointment</h5>
+            <h1>Make an Appointment now!</h1>
+          </div>
+          <div class="homepage2-partleft-bot">
+            <div class="homepage2-partleft-bot-btn">
+              <a href="{% url 'appointment' %}">
+                Make an Appointment
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="homepage2-partright">
+          <p>background pic</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="ProfTeam">
+    <div class="homepage3">
+      <div class="container">
+        <div class="homepage1-partleft">
+          <p>Background Pic</p>
+        </div>
+        <div class="homepage1-partright">
+          <div class="homepage3-partleft-top">
+            <h5>||EXPERT TEAM</h5>
+            <h1>Adept Service Provider Team </h1>
+          </div>
+          <div class="homepage3-partleft-bot">
+            <div class="homepage3-partleft-bot-container">
+              
+                <div class="teamblock">
+                  <div class="doc-photo">
+                  </div>
+                  <div class="doc-prof">
+                    <div class="doc-prof-name">
+                      <h3>Michael</h3>
+                    </div>
+                    <div class="doc-prof-role">
+                      <h5>Home health aide</h5>
+                    </div>
+                    <div>
+                      <i class="bi bi-telephone">
+                      </i>
+                      <i class="bi bi-envelope"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="teamblock">
+                  <div class="doc-photo">
+                  </div>
+                  <div class="doc-prof">
+                    <div class="doc-prof-name">
+                      <h3>James</h3>
+                    </div>
+                    <div class="doc-prof-role">
+                      <h5>Medical director</h5>
+                    </div>
+                    <div>
+                      <i class="bi bi-telephone">
+                      </i>
+                      <i class="bi bi-envelope"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="teamblock">
+                  <div class="doc-photo">
+                  </div>
+                  <div class="doc-prof">
+                    <div class="doc-prof-name">
+                      <h3>Jason</h3>
+                    </div>
+                    <div class="doc-prof-role">
+                      <h5>Doctor</h5>
+                    </div>
+                    <div>
+                      <i class="bi bi-telephone">
+                      </i>
+                      <i class="bi bi-envelope"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="teamblock">
+                  <div class="doc-photo">
+                  </div>
+                  <div class="doc-prof">
+                    <div class="doc-prof-name">
+                      <h3>Charlie</h3>
+                    </div>
+                    <div class="doc-prof-role">
+                      <h5>Manager</h5>
+                    </div>
+                    <div>
+                      <i class="bi bi-telephone">
+                      </i>
+                      <i class="bi bi-envelope"></i>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+            <div class="homepage2-partleft-bot-btn">
+              <a href="#">Find your own advisor!</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+    <section>
+    <div class="homepage2">
+      <div class="container">
+        <div class="homepage2-partleft">
+          <div class="homepage2-partleft-top">
+            <h5>||Always Available</h5>
+            <h1>We are always ready to help you!</h1>
+          </div>
+          <div>
+            <div class="available-txt">
+              <h3>We offer 24/7 internet access! Please feel free to contact us! Click the orange button and start your search. Go ahead and Try it!</h3>
+            </div>
+          </div>
+        </div>
+        <div class="homepage2-partright">
+          <p>background pic</p>
+        </div>
+      </div>
+    </div>
+  </section>
+<!--
+<section>
+  <div>
+    <hr>
+    <h6>CMPE295 NLP Web Based Chatbot Healthcare Team</h6>
+    <h6>Advisor: Dan Harkey</h6>
+  </div>
+</section>
+-->
+  <section class="subscribe" id="subscribeUs">
+    <div class="subscribe-container">
+      <div class="subscribe-container-title">
+          <h1>Newsletter Subscribe</h1>
+      </div>
+      <div class="subscribe-container-button">
+        <div class="subscribe-container-button-email">
+          <form action="#">
+              <input type="Email" name="Email" placeholder="Your Email Address..">
+            </form>
+
+        </div>  
+        <div class="subscribe-container-button-button">
+          <button>SUBSCRIBE NOW</button>
+          
+        </div>
+      </div>
+      
+    </div>
+
+  </section>
+
+
+<hr>
+  <article>
+    <center>
+      <div id = "about-us">
+        <h3>Technologies & Functions</h3>
+        <div class="nlptechnology">
+         <a href="#">Natural Language Processing</a>
+        </div>
+        <div class="chatbot">
+        <a href="#">Chatbot</a>
+        </div>
+      </div>
+
+      <div id = "about-us">
+        <h3>Our Team</h3>
+        <div class="contact-us">
+         <a href="{% url 'contact' %}">Contact us</a>
+        </div>
+        <div class="about-us">
+        <a href="{% url 'aboutUs' %}">About us</a>
+        </div>
+      </div>
+
+      <div id = "about-us">
+        <h3>Member Support</h3>
+        <div class="usrlogin">
+         <a href="{% url 'login' %}">User Login</a>
+        </div>
+        <div class="usrlogin">
+         <a href="{% url 'register' %}">Register</a>
+        </div>
+      </div>
+
+      <div id = "about-us">
+        <h3>Legal Notices</h3>
+          <div class="our-policy">
+            <a href="#">Our Policy</a>
+          </div>
+          <div class="privacy">
+            <a href="#">Privacy</a>
+          </div>
+      </div>
+
+    </center>
+
+    <footer>
+      <center>
+       <br>
+        <br>
+        &copy; Fall 2021 - Spring 2022 CMPE295 Team (NLP Web-based Healthcare System)<br>
+        <div class="footer-term">
+        <a href="#">Term of Service</a>
+        </div>
+      </center>
+    </footer>
+  </article>
+
+
+
+
+{% endif %}
+{% endblock %}
