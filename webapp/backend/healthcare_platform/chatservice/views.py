@@ -10,18 +10,7 @@ def chatservice_list(request):
     """
     List all code snippets, or create a new snippet.
     """
-    if request.method == 'GET':
-        snippets = Chatservice.objects.all()
-        serializer = ChatseriviceSerializer(snippets, many=True)
-        return JsonResponse(serializer.data, safe=False)
-
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        serializer = SnippetSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
+    return JsonResponse({'foo':'bar'})
 
 @csrf_exempt
 def chatservice_detail(request, pk):
