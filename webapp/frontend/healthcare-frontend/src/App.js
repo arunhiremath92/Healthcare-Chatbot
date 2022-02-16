@@ -1,9 +1,7 @@
 import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
 import Dashboard from './Dashboard';
 import TopNavigationBar from './TopNavigationBar';
-import Container from '@mui/material/Container';
-import { BrowserRouter as Router, Routes, Route, } from "react-router-dom";
+import { Routes, Route, } from "react-router-dom";
 import MedicalPrescription from './MedicalPrescription';
 import ProvidersView from './ProvidersView';
 
@@ -12,9 +10,15 @@ function App() {
 
     <React.Fragment>
       <TopNavigationBar></TopNavigationBar>
-      <Dashboard></Dashboard>
-    
-
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/prescription-refill" element={<MedicalPrescription />}>
+          <Route path="" element={<Dashboard />} />
+        </Route>
+        <Route path="/provider-search" element={<ProvidersView />}>
+          <Route path="" element={<Dashboard />} />
+        </Route>
+      </Routes>
     </React.Fragment>
   );
 }

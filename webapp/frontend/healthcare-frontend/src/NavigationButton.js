@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import Typography from '@mui/material/Typography';
-import {  Navigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 
 const images = [
   {
@@ -91,13 +91,13 @@ const ImageMarked = styled('span')(({ theme }) => ({
 }));
 
 export default function NavigationButton() {
-    
+  let navigate = useNavigate();
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
       {images.map((image) => (
         <ImageButton
           focusRipple
-          
+          onClick={() => { navigate(image.section) }}
           key={image.title}
           style={{
             width: image.width,

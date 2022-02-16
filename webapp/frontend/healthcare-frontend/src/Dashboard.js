@@ -2,15 +2,15 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Autocomplete from '@mui/material/Autocomplete';
 import Grid from '@mui/material/Grid';
 import NavigationButton from './NavigationButton';
-import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import ZohoSalesIQ from './ZohoSalesIQ';
 import MediaCard from './MediaCard';
+
+
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,
@@ -21,16 +21,9 @@ const useStyles = makeStyles({
     marginTop: 40,
   }
 });
-const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-  height: 60,
-  lineHeight: '60px',
-}));
 
 const topQuestions = [
-  { title: 'Can I get Professional Conculation on your Website?' },
+  { title: 'Can I get Professional consultation on your Website?' },
 ];
 
 
@@ -39,6 +32,7 @@ export default function Dashboard() {
 
   const classes = useStyles();
   return (
+    <React.Fragment>
     <Container maxWidth="lg" className={classes.root}>
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
@@ -86,5 +80,6 @@ export default function Dashboard() {
         <ZohoSalesIQ></ZohoSalesIQ>
       </Box>
     </Container >
+    </React.Fragment>
   );
 }

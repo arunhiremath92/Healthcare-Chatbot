@@ -21,6 +21,7 @@ const rows = [
 
 export default function MedicalPrescription() {
   return (
+    <React.Fragment>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
@@ -50,5 +51,6 @@ export default function MedicalPrescription() {
         </TableBody>
       </Table>
     </TableContainer>
+    </React.Fragment>
   );
 }
