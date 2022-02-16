@@ -7,11 +7,10 @@ import ProvidersView from './ProvidersView';
 
 import PatientSignup from './PatientSignup';
 import ZohoSalesIQ from './ZohoSalesIQ';
-import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+
 import { makeStyles } from '@material-ui/core/styles';
 import DoctorSignup from './DoctorSignup';
+import UserDashboard from './UserDashboard';
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,
@@ -42,6 +41,10 @@ function App() {
         <Route path="/doctor-signup" element={<DoctorSignup />}>
           <Route path="" element={<Dashboard />} />
         </Route>
+        <Route path="/user-dashboard" element={<UserDashboard />}>
+          <Route path="" element={<Dashboard />} />
+        </Route>
+        
       </Routes>
       <ZohoSalesIQ></ZohoSalesIQ>
     </React.Fragment>

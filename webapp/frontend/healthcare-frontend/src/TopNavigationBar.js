@@ -34,6 +34,10 @@ export default function TopNavigationBar() {
   const handleClose = () => {
     setOpen(false);
   };
+  const handleSignin = () => {
+    setOpen(false);
+    navigate('/user-dashboard')
+  };
   
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -54,7 +58,7 @@ export default function TopNavigationBar() {
           <Typography variant="h6" className={classes.title}>
           <Button color="inherit" onClick={() => { navigate('/')}}>Digital Healthcare</Button>
           </Typography>
-          <Button color="inherit" onClick={() => { navigate('doctor-signup') }}>Become a partner</Button>
+          <Button color="inherit" onClick={() => { navigate('/doctor-signup') }}>Become a partner</Button>
           <Button color="inherit" onClick={() => { setOpen(!open) }}>Login</Button>
         </Toolbar>
         <Modal
@@ -115,6 +119,7 @@ export default function TopNavigationBar() {
               <Button
                 type="submit"
                 fullWidth
+                onClick={handleSignin}
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
