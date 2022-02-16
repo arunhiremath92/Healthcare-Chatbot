@@ -6,25 +6,30 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-export default function MediaCard() {
+const styles = {
+  media: {
+    height: 0,
+    paddingTop: '56.25%', // 16:9,
+    marginTop:'30'
+  }
+};
+
+export default function MediaCard({title, imageSrc, description}) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
-        height="140"
-        src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Star_of_life2.svg"
+        src={imageSrc}
+        height='150'
+        objectFit='trim'
         alt="emergency medical services"
+        
       />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-        Rod of Asclepius
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-        The Rod of Asclepius is the dominant symbol for professional healthcare associations in the United States. One survey found that 62% of professional healthcare associations used the rod of Asclepius as their symbol 
-        </Typography>
+       <CardContent>
+        <Typography gutterBottom variant="h5" component="div"> {title}</Typography>
+        <Typography variant="body2" color="text.secondary"> {description} </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
         <Button size="small">Learn More</Button>
       </CardActions>
     </Card>

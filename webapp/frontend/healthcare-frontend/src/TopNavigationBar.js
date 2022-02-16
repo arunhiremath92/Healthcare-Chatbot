@@ -14,6 +14,7 @@ import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Avatar from '@mui/material/Avatar';
+import {  useNavigate } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -26,9 +27,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
-
 export default function TopNavigationBar() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -36,7 +34,7 @@ export default function TopNavigationBar() {
   const handleClose = () => {
     setOpen(false);
   };
-
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -46,7 +44,7 @@ export default function TopNavigationBar() {
       password: data.get('password'),
     });
   };
-
+  let navigate = useNavigate();
   return (
     <div className={classes.root}>
       <AppBar position="static" >
@@ -54,11 +52,11 @@ export default function TopNavigationBar() {
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Digital Healthcare
+          <Button color="inherit" onClick={() => { navigate('/')}}>Digital Healthcare</Button>
           </Typography>
+          <Button color="inherit" onClick={() => { navigate('doctor-signup') }}>Become a partner</Button>
           <Button color="inherit" onClick={() => { setOpen(!open) }}>Login</Button>
         </Toolbar>
-
         <Modal
           open={open}
           onClose={handleClose}
@@ -129,7 +127,7 @@ export default function TopNavigationBar() {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link href="/signup" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
@@ -139,8 +137,6 @@ export default function TopNavigationBar() {
 
         </Modal>
       </AppBar>
-
-
     </div>
   );
 }
