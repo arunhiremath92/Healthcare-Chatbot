@@ -65,7 +65,29 @@ export default function UserDashboard() {
                         </Grid>
                         <Grid item xs={12} >
                             <Typography variant="h6" gutterBottom component="div">
-                                Your Prescription Orders
+                            Your Prescription Orders:
+                            </Typography>
+
+                        </Grid>
+                        <Grid item xs={12} >
+                            <Typography variant="h6" gutterBottom component="div">
+                                {/* Your Prescription Orders */}
+                                <Box
+                                sx={{
+                                    display: 'flex',
+                                    '& > :not(style)': {
+                                        m: 1,
+                                        width: 128,
+                                        height: 128,
+                                    },
+                                }}>
+                                <Paper elevation={3} />
+                                <Paper elevation={3} />
+                                <Paper elevation={3} />
+                                <Paper elevation={3} />
+                                <Paper elevation={3} />
+                                <Paper elevation={3} />
+                            </Box>
                             </Typography>
 
                         </Grid>

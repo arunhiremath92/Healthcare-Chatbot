@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Dashboard from './Dashboard';
 import TopNavigationBar from './TopNavigationBar';
+import StickyFooter from './StickyFooter';
 import { Routes, Route, } from "react-router-dom";
 import MedicalPrescription from './MedicalPrescription';
 import ProvidersView from './ProvidersView';
@@ -11,6 +12,8 @@ import ZohoSalesIQ from './ZohoSalesIQ';
 import { makeStyles } from '@material-ui/core/styles';
 import DoctorSignup from './DoctorSignup';
 import UserDashboard from './UserDashboard';
+import Contact from './Contact'
+import About from './About'
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,
@@ -44,9 +47,16 @@ function App() {
         <Route path="/user-dashboard" element={<UserDashboard />}>
           <Route path="" element={<Dashboard />} />
         </Route>
+        <Route path="/contact" element={<Contact />}>
+          <Route path="" element={<Dashboard />} />
+        </Route>
+        <Route path="/about" element={<About />}>
+          <Route path="" element={<Dashboard />} />
+        </Route>
         
       </Routes>
       <ZohoSalesIQ></ZohoSalesIQ>
+      <StickyFooter></StickyFooter>
     </React.Fragment>
   );
 }
