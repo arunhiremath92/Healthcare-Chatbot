@@ -1,19 +1,25 @@
 import * as React from 'react';
+import { useState,useRef,useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
-
+import axios from 'axios';
 
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select'
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import NavigationButton from './NavigationButton'
+import Button from '@mui/material/Button';
+import queryString from 'query-string'
 
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import ResultList from './resultList';
+import FetchData from './FetchData'
+
 const names = [
   'Addiction Medicine (addictionmedicine)',
   'Allergists (allergist)',
@@ -74,9 +80,51 @@ function getStyles(name, personName, theme) {
 }
 
 const theme = createTheme();
+const API_BASE_URL = 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3'
+const BEARER_TOKEN = 'd2XtHxl5upksITGq6-Z-quIyBDQWAdMi1U0SH5QaZCDFDb3P1WA_Xp9ZsZXShsDib_W_EIiv6V6jN7XJaR1k-cHPsegN-sOOQlDC7lM0FWYeuC0cQqqfrgnZ7ysPYnYx'
+
+function Show(){
+
+}
+
+
+const location = 'hospitals'
 export default function ProvidersView() {
+
   const classes = useStyles();
   const [profession, setProfession] = React.useState([]);
+
+   //const [search,setSearch] = useState('')
+   const myRef = React.useRef()
+   const [search,setSearch] = useState('')
+  //#Version 3 (Work)
+   const [businessList, setBusinessList] = useState([])
+
+
+  function Show(){
+    console.log('@@',myRef.current.value)
+    
+     setSearch(()=>{
+       return myRef.current.value
+     })
+
+     axios.get('https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search', {
+       headers: {
+         Authorization: `Bearer d2XtHxl5upksITGq6-Z-quIyBDQWAdMi1U0SH5QaZCDFDb3P1WA_Xp9ZsZXShsDib_W_EIiv6V6jN7XJaR1k-cHPsegN-sOOQlDC7lM0FWYeuC0cQqqfrgnZ7ysPYnYx`
+      },
+       params:{
+         categories: 'hospitals',
+         location: myRef.current.value,
+      },
+     }).then(response=>{
+       setBusinessList(response.data.businesses)
+       console.log('@',response.data.businesses)
+     }).catch(error=>{
+       console.log('Data not returned',error)
+     })
+  }
+  
+
   const handleChange = (event) => {
       const {
         target: { value },
@@ -86,6 +134,11 @@ export default function ProvidersView() {
         typeof value === 'string' ? value.split(',') : value,
       );
     };
+    // //create a function to get the result
+    // function handleSearch(e){
+    //   console.log(e.target.value)
+    //   setSearch(e.target.value)
+    // }
   return (
     <React.Fragment>
       <Container maxWidth="lg" className={classes.root}>
@@ -101,7 +154,10 @@ export default function ProvidersView() {
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={2}>
             <Grid item xs={8}>
-              <TextField id="location" fullwidth label="City/Pincode/Area" variant="outlined" />
+              {/* <TextField id="location" fullwidth label="City/Pincode/Area" variant="outlined" inputRef={myRef} /> */}
+              <TextField id="location" fullwidth label="City/Pincode/Area" variant="outlined" inputRef={myRef} />
+              &nbsp;
+              <Button variant="contained" onClick={Show} >Click Me to Search</Button>
             </Grid>
             <Grid item xs={4}>
               <FormControl fullWidth={true}>
@@ -127,7 +183,10 @@ export default function ProvidersView() {
                 </Select>
               </FormControl>
             </Grid>
+            <h3>There are some results near: {search}</h3>
+              
           </Grid>
+          <ResultList {...businessList}/>
         </Box>
       </Container>
     </React.Fragment>
