@@ -1,18 +1,22 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
+import Toolbar from '@mui/material/Toolbar';
 
+import TopNavigationBarLoggedIn from '../../components/Navigation/TopNavigationBarLoggedIn';
+import TopNavigationBar from '../../components/Navigation/TopNavigationBar';
 import MediaCard from '../../components/MediaCard';
 import NavigationButton from '../../components/Navigation/NavigationButton'
 
 const useStyles = makeStyles({
     root: {
         flexGrow: 1,
-        margin: 20
+        margin: 40
     },
     textbox: {
         margin: 10,
@@ -20,19 +24,20 @@ const useStyles = makeStyles({
     }
 });
 
+const mdTheme = createTheme();
 
-export default function UserDashboard() {
-
+function UserDashboardMain() {
 
     const classes = useStyles();
-    
+
     return (
-        <React.Fragment>
+        <>
+        <Container maxWidth="lg" className={classes.root}>
             <Container maxWidth="lg" className={classes.root}>
                 <Box sx={{ flexGrow: 1 }}>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
-                            <NavigationButton></NavigationButton>
+                            <NavigationButton />
                         </Grid>
                     </Grid>
                 </Box>
@@ -95,6 +100,34 @@ export default function UserDashboard() {
                     </Grid>
                 </Box>
             </Container >
-        </React.Fragment >
+        </Container>
+        </>
     );
+}
+
+export default function UserDashboard() {
+
+    return (
+        <>
+        {localStorage.getItem("user") ?
+            <>
+                <ThemeProvider theme={mdTheme}>
+                <Box>
+                    <Container maxWidth="full" sx={{ mt: 3, mb: 4 }}>
+                        <Grid container spacing={3}>
+                            <TopNavigationBarLoggedIn />
+                            <UserDashboardMain />
+                        </Grid>
+                    </Container>
+                </Box>
+                </ThemeProvider>
+            </>
+            :
+            <>
+                <TopNavigationBar />
+                <UserDashboardMain />
+            </>
+        }
+        </>
+    )
 }

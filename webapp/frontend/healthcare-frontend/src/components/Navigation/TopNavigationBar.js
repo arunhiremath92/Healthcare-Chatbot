@@ -14,7 +14,7 @@ import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Avatar from '@mui/material/Avatar';
-import {  useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,6 +37,7 @@ export default function TopNavigationBar() {
   };
   const handleSignin = () => {
     setOpen(false);
+    localStorage.setItem("user", "temp");
     navigate('/user-dashboard')
   };
   
@@ -48,7 +49,11 @@ export default function TopNavigationBar() {
       email: data.get('email'),
       password: data.get('password'),
     });
+    // TODO: backend API
+    
+    
   };
+
   let navigate = useNavigate();
   return (
     <div className={classes.root}>
