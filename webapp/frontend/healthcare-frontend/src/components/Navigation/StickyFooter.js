@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
+import { useNavigate } from 'react-router-dom';
 
 function Copyright() {
   return (
@@ -19,6 +20,9 @@ function Copyright() {
 }
 
 export default function StickyFooter() {
+
+  let navigate = useNavigate();
+
   return (
     <Box
       sx={{
@@ -58,9 +62,9 @@ export default function StickyFooter() {
           &nbsp;&nbsp;&nbsp;
           <a href='#'><span>Term</span></a>
           &nbsp;&nbsp;&nbsp;
-          <a href='http://localhost:3000/contact'><span>Contact</span></a>
+          <a onClick={() => { navigate('/contact')}}><span>Contact</span></a>
           &nbsp;&nbsp;&nbsp;
-          <a href='http://localhost:3000/about'><span>About</span></a>
+          <a onClick={() => { navigate('/about')}}><span>About</span></a>
           &nbsp;&nbsp;&nbsp;
           <a href='#'><span>More</span></a>
         </Container>

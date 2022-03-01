@@ -8,7 +8,8 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select'
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import NavigationButton from './NavigationButton'
+import NavigationButton from '../../components/Navigation/NavigationButton';
+
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,

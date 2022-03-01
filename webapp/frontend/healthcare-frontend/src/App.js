@@ -1,19 +1,20 @@
 import * as React from 'react';
-import Dashboard from './Dashboard';
-import TopNavigationBar from './TopNavigationBar';
-import StickyFooter from './StickyFooter';
 import { Routes, Route, } from "react-router-dom";
-import MedicalPrescription from './MedicalPrescription';
-import ProvidersView from './ProvidersView';
-
-import PatientSignup from './PatientSignup';
-import ZohoSalesIQ from './ZohoSalesIQ';
-
 import { makeStyles } from '@material-ui/core/styles';
-import DoctorSignup from './DoctorSignup';
-import UserDashboard from './UserDashboard';
-import Contact from './Contact'
-import About from './About'
+// pages
+import PatientSignup from './pages/Signup/PatientSignup';
+import DoctorSignup from './pages/Signup/DoctorSignup';
+import Dashboard from './pages/Dashboard/Dashboard';
+import UserDashboard from './pages/Dashboard/UserDashboard';
+import MedicalPrescription from './pages/MedicalPrescription/MedicalPrescription';
+import ProvidersView from './pages/ProviderView/ProvidersView';
+import Contact from './pages/Contact/Contact';
+import About from './pages/About/About';
+// components
+import TopNavigationBar from './components/Navigation/TopNavigationBar';
+import StickyFooter from './components/Navigation/StickyFooter';
+import ZohoSalesIQ from './components/Chatbot/ZohoSalesIQ';
+
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,
@@ -24,8 +25,10 @@ const useStyles = makeStyles({
     marginTop: 40,
   }
 });
+
 function App() {
   const classes = useStyles();
+
   return (
     <React.Fragment>
       <TopNavigationBar></TopNavigationBar>

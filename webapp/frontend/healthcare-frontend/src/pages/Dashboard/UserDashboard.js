@@ -4,10 +4,11 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-
-import MediaCard from './MediaCard';
-import NavigationButton from './NavigationButton'
 import Paper from '@mui/material/Paper';
+
+import MediaCard from '../../components/MediaCard';
+import NavigationButton from '../../components/Navigation/NavigationButton'
+
 const useStyles = makeStyles({
     root: {
         flexGrow: 1,

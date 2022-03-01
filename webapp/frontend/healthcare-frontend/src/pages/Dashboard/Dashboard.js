@@ -6,8 +6,9 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
-import MediaCard from './MediaCard';
-import NavigationButton from './NavigationButton'
+
+import MediaCard from '../../components/MediaCard';
+import NavigationButton from '../../components/Navigation/NavigationButton';
 
 const useStyles = makeStyles({
   root: {
@@ -50,7 +51,6 @@ const services = [
 
 export default function Dashboard() {
 
- 
   const classes = useStyles();
   var indents = [];
   for (var i = 0; i < services.length; i++) {
@@ -59,6 +59,7 @@ export default function Dashboard() {
     </Grid>
     );
   }
+
   return (
     <React.Fragment>
       <Container maxWidth="lg" className={classes.root}>

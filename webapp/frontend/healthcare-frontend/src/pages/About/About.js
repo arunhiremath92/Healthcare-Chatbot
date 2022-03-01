@@ -1,5 +1,5 @@
 import React from 'react'
-import DataTable from './DataGrid'
+import DataTable from '../../components/DataGrid';
 
 export default function About() {
   return (
