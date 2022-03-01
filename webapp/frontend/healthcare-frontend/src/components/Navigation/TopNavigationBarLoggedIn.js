@@ -2,7 +2,6 @@ import React from 'react'
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
-import Box from '@mui/material/Box';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
@@ -10,10 +9,6 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
@@ -21,6 +16,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate } from 'react-router-dom';
 
 import ListItemsUser from './ListItemsUser.js';
+import ListItemsDoctor from './ListItemsDoctor.js';
+import ListItemsAdmin from './ListItemsAdmin.js';
 
 const drawerWidth = 240;
 const mdTheme = createTheme();
@@ -76,9 +73,14 @@ export default function TopNavigationBarLoggedIn() {
     const toggleDrawer = () => {
         setOpen(!open);
     };
+
     const logOut = () => {
         localStorage.clear();
         navigate('/');
+    }
+
+    const notification = () => {
+        navigate('/notifications');
     }
 
     return (
@@ -111,10 +113,10 @@ export default function TopNavigationBarLoggedIn() {
                 noWrap
                 sx={{ flexGrow: 1 }}
                 >
-                Dashboard
+                Digital Healthcare
             </Typography>
-            <IconButton color="inherit">
-                <Badge badgeContent={2} color="secondary">
+            <IconButton color="inherit" onClick={notification}>
+                <Badge badgeContent={0} color="secondary">
                     <NotificationsIcon />
                 </Badge>
             </IconButton>
@@ -139,8 +141,9 @@ export default function TopNavigationBarLoggedIn() {
             </Toolbar>
             <Divider />
             <List component="nav">
-                <ListItemsUser />
-                
+                {(localStorage.getItem("role")=="user") ? <ListItemsUser /> 
+                : (localStorage.getItem("role")=="doctor") ? <ListItemsDoctor />
+                : <ListItemsAdmin />}
             </List>
         </Drawer>
 

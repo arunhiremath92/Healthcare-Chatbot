@@ -13,6 +13,7 @@ import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import MedicationIcon from '@mui/icons-material/Medication';
 import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
+import ScheduleIcon from '@mui/icons-material/Schedule';
 import Divider from '@mui/material/Divider';
 
 export default function ListItemsUser() {
@@ -61,6 +62,12 @@ export default function ListItemsUser() {
             <ListSubheader component="div" inset>
                 User & Settings
             </ListSubheader>
+            <ListItemButton onClick={() => { navigate('/user-appointment')}}>
+                <ListItemIcon>
+                    <ScheduleIcon />
+                </ListItemIcon>
+                <ListItemText primary="Appointment" />
+            </ListItemButton>
             <ListItemButton onClick={() => { navigate('/myhealth')}}>
                 <ListItemIcon>
                     <BarChartIcon />

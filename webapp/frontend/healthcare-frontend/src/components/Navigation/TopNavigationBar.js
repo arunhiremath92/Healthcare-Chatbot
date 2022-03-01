@@ -38,6 +38,7 @@ export default function TopNavigationBar() {
   const handleSignin = () => {
     setOpen(false);
     localStorage.setItem("user", "temp");
+    localStorage.setItem("role", "user");
     navigate('/user-dashboard')
   };
   
