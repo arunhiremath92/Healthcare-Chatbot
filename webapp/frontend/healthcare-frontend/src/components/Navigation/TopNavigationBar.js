@@ -62,7 +62,7 @@ export default function TopNavigationBar() {
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-          <Button color="inherit" onClick={() => { navigate('/')}}>Digital Healthcare</Button>
+          <Button color="inherit" onClick={() => { navigate('/dashboard')}}>Digital Healthcare</Button>
           </Typography>
           <Button color="inherit" onClick={() => { navigate('/doctor-signup') }}>Become a partner</Button>
           <Button color="inherit" onClick={() => { setOpen(!open) }}>Login</Button>

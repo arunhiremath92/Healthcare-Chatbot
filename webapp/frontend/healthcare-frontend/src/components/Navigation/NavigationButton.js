@@ -16,7 +16,7 @@ const images = [
         url: 'https://telehealth.hhs.gov/assets/img/hero.svg',
         title: 'Telehealth',
         width: '30%',
-        section: "/",
+        section: "/dashboard",
     },
     {
         url: 'https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/alt-5ae892611bf1a-5168-68b2575aab38f2c97ce8846381d07044@1x.jpg',

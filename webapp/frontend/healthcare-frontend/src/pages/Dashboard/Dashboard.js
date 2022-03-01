@@ -7,7 +7,6 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
-import Toolbar from '@mui/material/Toolbar';
 
 import TopNavigationBar from '../../components/Navigation/TopNavigationBar';
 import TopNavigationBarLoggedIn from '../../components/Navigation/TopNavigationBarLoggedIn';

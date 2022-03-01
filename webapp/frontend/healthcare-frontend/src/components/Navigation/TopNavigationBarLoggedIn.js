@@ -20,7 +20,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate } from 'react-router-dom';
 
-import { mainListItems, secondaryListItems } from './ListItems';
+import ListItemsUser from './ListItemsUser.js';
 
 const drawerWidth = 240;
 const mdTheme = createTheme();
@@ -82,7 +82,7 @@ export default function TopNavigationBarLoggedIn() {
     }
 
     return (
-
+        <>
         <ThemeProvider theme={mdTheme}>
         <CssBaseline />
 
@@ -139,13 +139,12 @@ export default function TopNavigationBarLoggedIn() {
             </Toolbar>
             <Divider />
             <List component="nav">
-                {mainListItems}
-                <Divider sx={{ my: 1 }} />
-                {secondaryListItems}
+                <ListItemsUser />
+                
             </List>
         </Drawer>
 
         </ThemeProvider>
+        </>
     )
-
 }

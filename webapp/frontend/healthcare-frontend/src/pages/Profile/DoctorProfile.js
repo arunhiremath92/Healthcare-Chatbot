@@ -16,7 +16,7 @@ const useStyles = makeStyles({
 
 const mdTheme = createTheme();
 
-export default function DoctorDashboard() {
+export default function DoctorProfile() {
 
     let redirectVar = null;
     if(!localStorage.getItem("user")){
@@ -31,8 +31,8 @@ export default function DoctorDashboard() {
             <Container maxWidth="full" sx={{ mt: 3, mb: 4 }}>
                 <Grid container spacing={3}>
                     <TopNavigationBarLoggedIn />
-                    {/* DoctorDashboard Main */}
-                    <h1>DoctorDashboard</h1>
+                    {/* DoctorProfile Main */}
+                    <h1>DoctorProfile</h1>
                 </Grid>
             </Container>
         </Box>
