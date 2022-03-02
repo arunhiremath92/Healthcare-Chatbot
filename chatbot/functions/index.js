@@ -1,7 +1,7 @@
 // The Cloud Functions for Firebase SDK to create Cloud Functions and setup triggers.
 const functions = require('firebase-functions');
 const axios = require('axios');
-
+const cors = require('cors')({ origin: true });
 
 
 exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, response) => {
@@ -142,7 +142,9 @@ function requestDiagnosis(request, response) {
 
   const data = {
     "sex": person_details.parameters.gender,
-    "age": person_details.parameters.age[0].amount,
+    "age": {
+      "value": person_details.parameters.age[0].amount,
+    },
     "evidence": [
       {
         "id": queryParams.symptom_1,
@@ -156,14 +158,12 @@ function requestDiagnosis(request, response) {
     ]
   }
   console.log(data)
-  axios.post('https://api.infermedica.com/v2/diagnosis', data, { headers })
+  axios.post('https://api.infermedica.com/v3/diagnosis', data, { headers })
       .then((externalResponse) => {
         symptomResponse = externalResponse.data
         console.log(symptomResponse)
         if(symptomResponse.hasOwnProperty('conditions')){
-            
           let condition = symptomResponse.conditions[0]
-          
           response.json({
               followupEventInput: {
                 name: 'symptom-diagnosis-completion',
@@ -174,7 +174,6 @@ function requestDiagnosis(request, response) {
             });  
   
         }
-
         else if (symptomResponse.question.type != "group_single"){
           response.json({
             fulfillmentText: "currently this diagnosis is not supported, try again later"
