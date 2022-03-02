@@ -28,7 +28,7 @@ const useStyles = makeStyles({
 const mdTheme = createTheme();
 
 const topQuestions = [
-    { title: 'Can I get Professional consultation on your Website?' },
+    { title: 'Can I get Professional consultation on your Website?' ,},
 ];
 
 const services = [
@@ -81,7 +81,7 @@ function DashboardMain() {
             <Container maxWidth="lg" className={classes.root}>
                 <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={2}>
-                    <Grid item xs={12} >
+                    {/* <Grid item xs={12} >
                         <Autocomplete
                             freeSolo
                             id="free-solo-2-demo"
@@ -98,7 +98,7 @@ function DashboardMain() {
                             />
                             )}
                         />
-                    </Grid>
+                    </Grid> */}
                     <Grid item xs={12}>
                         <Typography variant="h5" display="block" gutterBottom>
                             Our Services
