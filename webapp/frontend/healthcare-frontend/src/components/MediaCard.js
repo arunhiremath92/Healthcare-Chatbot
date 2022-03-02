@@ -16,7 +16,7 @@ const styles = {
 
 export default function MediaCard({title, imageSrc, description}) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, marginBottom: 10 }}>
       <CardMedia
         component="img"
         src={imageSrc}

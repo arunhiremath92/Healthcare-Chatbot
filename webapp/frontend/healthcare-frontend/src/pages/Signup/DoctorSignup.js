@@ -15,6 +15,10 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
+
+import TopNavigationBar from '../../components/Navigation/TopNavigationBar';
+
 const names = [
 'Addiction Medicine (addictionmedicine)',
 'Allergists (allergist)',
@@ -45,6 +49,7 @@ const names = [
 'Oncologist (oncologist)',
 'Ophthalmologists (opthamalogists)',
 ];
+
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -55,6 +60,7 @@ const MenuProps = {
         },
     },
 };
+
 function getStyles(name, personName, theme) {
     return {
       fontWeight:
@@ -62,13 +68,13 @@ function getStyles(name, personName, theme) {
           ? theme.typography.fontWeightRegular
           : theme.typography.fontWeightMedium,
     };
-  }
-  
-
+}
 
 const theme = createTheme();
 
 export default function DoctorSignup() {
+    let navigate = useNavigate();
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -77,7 +83,11 @@ export default function DoctorSignup() {
             email: data.get('email'),
             password: data.get('password'),
         });
+        // TODO: backend API
+        localStorage.setItem("user", "temp");
+        navigate('/doctor-dashboard');
     };
+
     const [profession, setProfession] = React.useState([]);
     const handleChange = (event) => {
         const {
@@ -87,9 +97,11 @@ export default function DoctorSignup() {
           // On autofill we get a stringified value.
           typeof value === 'string' ? value.split(',') : value,
         );
-      };
+    };
+
     return (
         <ThemeProvider theme={theme}>
+            <TopNavigationBar />
             <Grid container component="main" sx={{ height: '100vh' }}>
                 <CssBaseline />
                 <Grid
@@ -198,17 +210,17 @@ export default function DoctorSignup() {
                                         </Select>
                                     </FormControl>
                                 </Grid>
-                            </Grid>
-                            <Grid item xs={12}>
+                                <Grid item xs={12}>
                                     <TextField
                                         required
                                         fullWidth
-                                        id="practise_naem"
+                                        id="practise_name"
                                         label="Practice Name (Optional)"
                                         name="practice_name"
                                     />
-
                                 </Grid>
+                            </Grid>
+                                
                             <Button
                                 type="submit"
                                 fullWidth

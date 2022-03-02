@@ -14,7 +14,8 @@ import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Avatar from '@mui/material/Avatar';
-import {  useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -36,6 +37,8 @@ export default function TopNavigationBar() {
   };
   const handleSignin = () => {
     setOpen(false);
+    localStorage.setItem("user", "temp");
+    localStorage.setItem("role", "user");
     navigate('/user-dashboard')
   };
   
@@ -47,7 +50,11 @@ export default function TopNavigationBar() {
       email: data.get('email'),
       password: data.get('password'),
     });
+    // TODO: backend API
+    
+    
   };
+
   let navigate = useNavigate();
   return (
     <div className={classes.root}>
@@ -56,7 +63,7 @@ export default function TopNavigationBar() {
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-          <Button color="inherit" onClick={() => { navigate('/')}}>Digital Healthcare</Button>
+          <Button color="inherit" onClick={() => { navigate('/dashboard')}}>Digital Healthcare</Button>
           </Typography>
           <Button color="inherit" onClick={() => { navigate('/doctor-signup') }}>Become a partner</Button>
           <Button color="inherit" onClick={() => { setOpen(!open) }}>Login</Button>
