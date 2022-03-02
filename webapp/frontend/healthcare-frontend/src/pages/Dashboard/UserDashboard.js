@@ -72,12 +72,7 @@ export default function UserDashboard() {
                                                     height: 128,
                                                 },
                                             }}>
-                                            <Paper elevation={3} />
-                                            <Paper elevation={3} />
-                                            <Paper elevation={3} />
-                                            <Paper elevation={3} />
-                                            <Paper elevation={3} />
-                                            <Paper elevation={3} />
+    
                                         </Box>
                                     </Grid>
                                     <Grid item xs={12} >
@@ -98,12 +93,7 @@ export default function UserDashboard() {
                                                     height: 128,
                                                 },
                                             }}>
-                                            <Paper elevation={3} />
-                                            <Paper elevation={3} />
-                                            <Paper elevation={3} />
-                                            <Paper elevation={3} />
-                                            <Paper elevation={3} />
-                                            <Paper elevation={3} />
+                           
                                         </Box>
                                         </Typography>
 
