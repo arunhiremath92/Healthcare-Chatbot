@@ -11,6 +11,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import axios from 'axios';
 import Input from '@mui/material/Input';
+import Button from '@mui/material/Button';
 
 import TopNavigationBarLoggedIn from '../../components/Navigation/TopNavigationBarLoggedIn';
 
@@ -43,9 +44,12 @@ export default function ChatHistory() {
 
     const handleAmountChange = (event) => {
         setAmount(event.target.value);
-        axios.get('https://salesiq.zoho.com/api/v1/sjsu/chats', {
+    }
+
+    function renderAllChats(){
+        axios.get('https://cors-anywhere.herokuapp.com/https://salesiq.zoho.com/api/v1/sjsu/chats', {
             headers: {
-                Authorization: `Zoho-oauthtoken 1000.b6dd9bf14deaca9046db4c4dcf0f63d6.6efc3ca8c626cc617d3d3f5f3403b6da`
+                Authorization: `Zoho-oauthtoken 1000.5062f7c51414e390e1a828a8d77509ac.5b7562fd36d93ff0d5da71dfdf36e282`
             },
             params:{
                 limit: amount
@@ -77,7 +81,7 @@ export default function ChatHistory() {
                     </Grid>
                 );
             }
-            alert(JSON.stringify(response.data));
+            alert(JSON.stringify(response.data, null, 4));
             console.log(response.data);
             console.log(chatHistoryArray);
             console.log(chatHistory);
@@ -88,35 +92,39 @@ export default function ChatHistory() {
 
     const handlechatIdInfoChange = (event) => {
         setchatIdInfo(event.target.value);
-        axios.get(`https://salesiq.zoho.com/api/v1/sjsu/chats/${chatIdInfo}`, {
+    }
+
+    function renderChatInfo() {
+        axios.get(`https://cors-anywhere.herokuapp.com/https://salesiq.zoho.com/api/v1/sjsu/chats/${chatIdInfo}`, {
             headers: {
-                Authorization: `Zoho-oauthtoken 1000.b6dd9bf14deaca9046db4c4dcf0f63d6.6efc3ca8c626cc617d3d3f5f3403b6da`
+                Authorization: `Zoho-oauthtoken 1000.5062f7c51414e390e1a828a8d77509ac.5b7562fd36d93ff0d5da71dfdf36e282`
             }
         }).then(response => {
             let chatInfo = [];
+            let output = response.data;
             chatInfo.push(
                 <Grid item xs={3}>
-                    <p>chat_initiated_url: {response.data.chat_initiated_url}</p>
-                    <p>question: {response.data.question}</p>
-                    <p>department_id: {response.data.department_id}</p>
-                    <p>department_name: {response.data.department_name}</p>
-                    <p>waited_duration: {response.data.waited_duration}</p>
-                    <p>end_time: {response.data.end_time}</p>
-                    <p>embed_name: {response.data.embed_name}</p>
-                    <p>attender_name: {response.data.attender_name}</p>
-                    <p>notes_available: {response.data.notes_available}</p>
-                    <p>visitor_name: {response.data.visitor_name}</p>
-                    <p>attender_id: {response.data.attender_id}</p>
-                    <p>chat_id: {response.data.chat_id}</p>
-                    <p>country_code: {response.data.country_code}</p>
-                    <p>chat_duration: {response.data.chat_duration}</p>
-                    <p>embed_id: {response.data.embed_id}</p>
-                    <p>chatinitiated_time: {response.data.chatinitiated_time}</p>
-                    <p>pickup_time: {response.data.pickup_time}</p>
-                    <p>visitor_ip: {response.data.visitor_ip}</p>
+                    <p>chat_initiated_url: {output.chat_initiated_url}</p>
+                    <p>question: {output.question}</p>
+                    <p>department_id: {output.department_id}</p>
+                    <p>department_name: {output.department_name}</p>
+                    <p>waited_duration: {output.waited_duration}</p>
+                    <p>end_time: {output.end_time}</p>
+                    <p>embed_name: {output.embed_name}</p>
+                    <p>attender_name: {output.attender_name}</p>
+                    <p>notes_available: {output.notes_available}</p>
+                    <p>visitor_name: {output.visitor_name}</p>
+                    <p>attender_id: {output.attender_id}</p>
+                    <p>chat_id: {output.chat_id}</p>
+                    <p>country_code: {output.country_code}</p>
+                    <p>chat_duration: {output.chat_duration}</p>
+                    <p>embed_id: {output.embed_id}</p>
+                    <p>chatinitiated_time: {output.chatinitiated_time}</p>
+                    <p>pickup_time: {output.pickup_time}</p>
+                    <p>visitor_ip: {output.visitor_ip}</p>
                 </Grid>
             );
-            alert(JSON.stringify(response.data));
+            alert(JSON.stringify(output, null, 4));
             console.log(response.data);
             console.log(chatInfo);
         }).catch(error => {
@@ -126,13 +134,16 @@ export default function ChatHistory() {
 
     const handlechatIdTranscriptChange = (event) => {
         setchatIdTranscript(event.target.value);
-        axios.get(`https://salesiq.zoho.com/api/v1/sjsu/chats/${chatIdTranscript}/transcript`, {
+    }
+
+    function renderChatTranscript() {
+        axios.get(`https://cors-anywhere.herokuapp.com/https://salesiq.zoho.com/api/v1/sjsu/chats/${chatIdTranscript}/transcript`, {
             headers: {
-                Authorization: `Zoho-oauthtoken 1000.08efb737a138f708bdcd3fedc4eca92a.e2d4fafd03855298fa1ae6aef9db7f4e`
+                Authorization: `Zoho-oauthtoken 1000.5dfc0f907db7b0c81302ad21e1a859c7.656bbdcf94c772fa8baa450d234536a4`
             }
         }).then(response => {
             let chatTranscript = response.data;
-            alert(JSON.stringify(chatTranscript));
+            alert(JSON.stringify(chatTranscript, null, 4));
             console.log(response.data);
             console.log(chatTranscript);
         }).catch(error => {
@@ -168,34 +179,11 @@ export default function ChatHistory() {
                                     <MenuItem value={50}>Fifty</MenuItem>
                                     </Select>
                                 </FormControl>
+                                <Button variant="outlined" onClick={renderAllChats}>Apply</Button>
                             </Box>
                             <Grid container spacing={2}>
                                 {chatHistory}
                             </Grid>
-                            {/* {chatHistory.map((chat) => {
-                                return (
-                                    <div>
-                                        <p>{chat.chat_initiated_url}</p>
-                                        <p>{chat.question}</p>
-                                        <p>{chat.department_id}</p>
-                                        <p>{chat.department_name}</p>
-                                        <p>{chat.waited_duration}</p>
-                                        <p>{chat.end_time}</p>
-                                        <p>{chat.embed_name}</p>
-                                        <p>{chat.attender_name}</p>
-                                        <p>{chat.notes_available}</p>
-                                        <p>{chat.visitor_name}</p>
-                                        <p>{chat.attender_id}</p>
-                                        <p>{chat.chat_id}</p>
-                                        <p>{chat.country_code}</p>
-                                        <p>{chat.chat_duration}</p>
-                                        <p>{chat.embed_id}</p>
-                                        <p>{chat.chatinitiated_time}</p>
-                                        <p>{chat.pickup_time}</p>
-                                        <p>{chat.visitor_ip}</p>
-                                    </div>
-                                )
-                            })} */}
                         </Container>
                         <Container maxWidth="lg" className={classes.root}>
                             <h2>Get One Chat Information</h2>
@@ -209,6 +197,7 @@ export default function ChatHistory() {
                                 >
                                 <Input value={chatIdInfo} label="chatId" onChange={handlechatIdInfoChange}
                                     placeholder="Chat ID" inputProps={ariaLabel} />
+                                <Button variant="outlined" onClick={renderChatInfo}>Search</Button>
                             </Box>
                             {chatInfo}
                         </Container>
@@ -224,6 +213,7 @@ export default function ChatHistory() {
                                 >
                                 <Input value={chatIdTranscript} label="chatId" onChange={handlechatIdTranscriptChange}
                                     placeholder="Chat ID" inputProps={ariaLabel} />
+                                <Button variant="outlined" onClick={renderChatTranscript}>Search</Button>
                             </Box>
                             {chatTranscript}
                         </Container>
