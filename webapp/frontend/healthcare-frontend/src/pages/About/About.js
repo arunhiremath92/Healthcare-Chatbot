@@ -30,11 +30,9 @@ function AboutMain() {
     const classes = useStyles();
     return (
         <>
-        <h3 className={classes.form}>Team Members</h3>
         <Container maxWidth="lg" className={classes.root}>
-            <div className={classes.form}>
-                <DataTable />
-            </div>
+            <h3 className={classes.form}>Team Members</h3>
+            <DataTable />
         </Container>
         </>
     )

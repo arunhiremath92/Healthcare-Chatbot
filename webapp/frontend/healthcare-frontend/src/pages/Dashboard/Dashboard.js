@@ -12,6 +12,7 @@ import TopNavigationBar from '../../components/Navigation/TopNavigationBar';
 import TopNavigationBarLoggedIn from '../../components/Navigation/TopNavigationBarLoggedIn';
 import MediaCard from '../../components/MediaCard';
 import NavigationButton from '../../components/Navigation/NavigationButton';
+import BottomNavigationBar from '../../components/Navigation/BottomNavigationBar';
 
 const useStyles = makeStyles({
     root: {
@@ -20,7 +21,7 @@ const useStyles = makeStyles({
     },
     textbox: {
         margin: 10,
-        marginTop: 40,
+        marginTop: 20,
     }
 });
 
@@ -80,30 +81,28 @@ function DashboardMain() {
             <Container maxWidth="lg" className={classes.root}>
                 <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={2}>
-
                     <Grid item xs={12} >
-                    <Autocomplete
-                        freeSolo
-                        id="free-solo-2-demo"
-                        disableClearable
-                        options={topQuestions.map((option) => option.title)}
-                        renderInput={(params) => (
-                        <TextField className={classes.textbox}
-                            {...params}
-                            label="Your Query"
-                            InputProps={{
-                            ...params.InputProps,
-                            type: 'search',
-                            }}
+                        <Autocomplete
+                            freeSolo
+                            id="free-solo-2-demo"
+                            disableClearable
+                            options={topQuestions.map((option) => option.title)}
+                            renderInput={(params) => (
+                            <TextField className={classes.textbox}
+                                {...params}
+                                label="Your Query"
+                                InputProps={{
+                                ...params.InputProps,
+                                type: 'search',
+                                }}
+                            />
+                            )}
                         />
-                        )}
-                    />
                     </Grid>
                     <Grid item xs={12}>
-                    <Typography variant="h3" display="block" gutterBottom>
-                        Our Services
-                    </Typography>
-
+                        <Typography variant="h5" display="block" gutterBottom>
+                            Our Services
+                        </Typography>
                     </Grid>
                     {indents}
 
@@ -111,6 +110,15 @@ function DashboardMain() {
                 </Box>
             </Container >
         </Container >
+        <div style={{
+            position: "fixed",
+            left: 0,
+            bottom: 0,
+            right: 0,
+            backgroundColor: "green"
+            }}>
+            <BottomNavigationBar />
+        </div>
         </>
     );
 }
