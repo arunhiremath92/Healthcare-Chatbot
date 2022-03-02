@@ -49,7 +49,7 @@ export default function ChatHistory() {
     function renderAllChats(){
         axios.get('https://cors-anywhere.herokuapp.com/https://salesiq.zoho.com/api/v1/sjsu/chats', {
             headers: {
-                Authorization: `Zoho-oauthtoken 1000.5062f7c51414e390e1a828a8d77509ac.5b7562fd36d93ff0d5da71dfdf36e282`
+                Authorization: `Zoho-oauthtoken 1000.0196b21798a259757c993b33a8fe9e9f.8001e990280a18145736b8c21d3d0a58`
             },
             params:{
                 limit: amount
@@ -82,6 +82,7 @@ export default function ChatHistory() {
                 );
             }
             alert(JSON.stringify(response.data, null, 4));
+            document.getElementById("json1").textContent = JSON.stringify(response.data, null, 4);
             console.log(response.data);
             console.log(chatHistoryArray);
             console.log(chatHistory);
@@ -97,7 +98,7 @@ export default function ChatHistory() {
     function renderChatInfo() {
         axios.get(`https://cors-anywhere.herokuapp.com/https://salesiq.zoho.com/api/v1/sjsu/chats/${chatIdInfo}`, {
             headers: {
-                Authorization: `Zoho-oauthtoken 1000.5062f7c51414e390e1a828a8d77509ac.5b7562fd36d93ff0d5da71dfdf36e282`
+                Authorization: `Zoho-oauthtoken 1000.0196b21798a259757c993b33a8fe9e9f.8001e990280a18145736b8c21d3d0a58`
             }
         }).then(response => {
             let chatInfo = [];
@@ -125,6 +126,7 @@ export default function ChatHistory() {
                 </Grid>
             );
             alert(JSON.stringify(output, null, 4));
+            document.getElementById("json2").textContent = JSON.stringify(output, null, 4);
             console.log(response.data);
             console.log(chatInfo);
         }).catch(error => {
@@ -139,11 +141,12 @@ export default function ChatHistory() {
     function renderChatTranscript() {
         axios.get(`https://cors-anywhere.herokuapp.com/https://salesiq.zoho.com/api/v1/sjsu/chats/${chatIdTranscript}/transcript`, {
             headers: {
-                Authorization: `Zoho-oauthtoken 1000.5dfc0f907db7b0c81302ad21e1a859c7.656bbdcf94c772fa8baa450d234536a4`
+                Authorization: `Zoho-oauthtoken 1000.f520346c2a27cd08db0965b0d7d5171c.b23d368d3c41f7de34625a5e344c533e`
             }
         }).then(response => {
             let chatTranscript = response.data;
             alert(JSON.stringify(chatTranscript, null, 4));
+            document.getElementById("json3").textContent = JSON.stringify(chatTranscript, null, 4);
             console.log(response.data);
             console.log(chatTranscript);
         }).catch(error => {
@@ -181,6 +184,7 @@ export default function ChatHistory() {
                                 </FormControl>
                                 <Button variant="outlined" onClick={renderAllChats}>Apply</Button>
                             </Box>
+                            <pre id="json1"></pre>
                             <Grid container spacing={2}>
                                 {chatHistory}
                             </Grid>
@@ -199,6 +203,7 @@ export default function ChatHistory() {
                                     placeholder="Chat ID" inputProps={ariaLabel} />
                                 <Button variant="outlined" onClick={renderChatInfo}>Search</Button>
                             </Box>
+                            <pre id="json2"></pre>
                             {chatInfo}
                         </Container>
                         <Container maxWidth="lg" className={classes.root}>
@@ -215,6 +220,7 @@ export default function ChatHistory() {
                                     placeholder="Chat ID" inputProps={ariaLabel} />
                                 <Button variant="outlined" onClick={renderChatTranscript}>Search</Button>
                             </Box>
+                            <pre id="json3"></pre>
                             {chatTranscript}
                         </Container>
                     </Container>
