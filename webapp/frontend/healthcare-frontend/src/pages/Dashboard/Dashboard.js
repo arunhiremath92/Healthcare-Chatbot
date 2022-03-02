@@ -10,9 +10,9 @@ import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 
 import TopNavigationBar from '../../components/Navigation/TopNavigationBar';
 import TopNavigationBarLoggedIn from '../../components/Navigation/TopNavigationBarLoggedIn';
-import MediaCard from '../../components/MediaCard';
 import NavigationButton from '../../components/Navigation/NavigationButton';
 import BottomNavigationBar from '../../components/Navigation/BottomNavigationBar';
+import MediaCard from '../../components/MediaCard';
 
 const useStyles = makeStyles({
     root: {
@@ -54,14 +54,15 @@ const services = [
     },
 ];
 
-
 function DashboardMain() {
 
     const classes = useStyles();
     var indents = [];
     for (var i = 0; i < services.length; i++) {
-        indents.push(<Grid item xs={3}>
-        <MediaCard title={services[i].title} imageSrc={services[i].imageSrc} description={services[i].description}></MediaCard>
+        indents.push(
+        <Grid item xs={3}>
+            <MediaCard title={services[i].title} imageSrc={services[i].imageSrc} description={services[i].description}>
+            </MediaCard>
         </Grid>
         );
     }
@@ -105,7 +106,6 @@ function DashboardMain() {
                         </Typography>
                     </Grid>
                     {indents}
-
                 </Grid>
                 </Box>
             </Container >
