@@ -17,6 +17,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Toolbar from '@mui/material/Toolbar';
 
 import NavigationButton from '../../components/Navigation/NavigationButton';
+import BottomNavigationBar from '../../components/Navigation/BottomNavigationBar';
 import TopNavigationBar from '../../components/Navigation/TopNavigationBar';
 import TopNavigationBarLoggedIn from '../../components/Navigation/TopNavigationBarLoggedIn';
 import ResultList from './resultList';
@@ -259,6 +260,15 @@ function SearchProviders() {
                 <ResultList {...businessList}/>
                 </Box>
             </Container>
+            <div style={{
+                position: "fixed",
+                left: 0,
+                bottom: 0,
+                right: 0,
+                backgroundColor: "green"
+                }}>
+                <BottomNavigationBar />
+            </div>
         </Container>
         </>
     );
