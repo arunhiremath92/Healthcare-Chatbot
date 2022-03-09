@@ -36,7 +36,7 @@ export default function ListItemsUser() {
                 <ListItemIcon>
                     <SmartToyIcon />
                 </ListItemIcon>
-                <ListItemText primary="Chatbot" />
+                <ListItemText primary="Chat History" />
             </ListItemButton>
             <ListItemButton onClick={() => { navigate('/user-consultation')}}>
                 <ListItemIcon>
