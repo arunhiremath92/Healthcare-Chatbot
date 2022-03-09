@@ -5,18 +5,22 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import { Navigate } from 'react-router-dom';
+import Typography from '@mui/material/Typography';
 
 import TopNavigationBarLoggedIn from '../../components/Navigation/TopNavigationBarLoggedIn';
 
 const useStyles = makeStyles({
     root: {
-        flexGrow: 1
+        flexGrow: 1,
+        margin: 40
     }
 });
 
 const mdTheme = createTheme();
 
 export default function AdminStatistics() {
+
+    const classes = useStyles();
 
     let redirectVar = null;
     if(!localStorage.getItem("user")){
@@ -32,7 +36,13 @@ export default function AdminStatistics() {
                 <Grid container spacing={3}>
                     <TopNavigationBarLoggedIn />
                     {/* AdminStatistics Main */}
-                    <h1>AdminStatistics</h1>
+                    <Container maxWidth="lg" className={classes.root}>
+                        <Container maxWidth="lg" className={classes.root}>
+                            <Typography component="h1" variant="h4" color="primary" gutterBottom>
+                                Analyze
+                            </Typography>
+                        </Container>
+                    </Container>  
                 </Grid>
             </Container>
         </Box>

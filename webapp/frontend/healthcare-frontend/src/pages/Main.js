@@ -12,6 +12,7 @@ import DoctorProfile from './Profile/DoctorProfile';
 import Order from './Order/Order';
 import MyHealth from './MyHealth/MyHealth';
 import ChatHistory from './Chatbot/ChatHistory';
+import AdminChatHistory from './Chatbot/AdminChatHistory';
 import Consultation from './Consultation/Consultation';
 import UserAppointment from './Appointment/UserAppointment';
 import DoctorAppointment from './Appointment/DoctorAppointment';
@@ -47,6 +48,7 @@ function Main() {
                 <Route path="/mycart" element={<Order />}/>
                 <Route path="/myhealth" element={<MyHealth />}/>
                 <Route path="/chathistory" element={<ChatHistory />}/>
+                <Route path="/admin-chathistory" element={<AdminChatHistory />}/>
                 <Route path="/user-consultation" element={<Consultation />}/>
                 <Route path="/doctor-consultation" element={<ConsultationDoctorView />}/>
                 <Route path="/user-appointment" element={<UserAppointment />}/>

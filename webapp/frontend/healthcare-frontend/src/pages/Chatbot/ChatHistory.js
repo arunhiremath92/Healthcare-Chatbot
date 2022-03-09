@@ -14,6 +14,7 @@ import Input from '@mui/material/Input';
 import Button from '@mui/material/Button';
 
 import TopNavigationBarLoggedIn from '../../components/Navigation/TopNavigationBarLoggedIn';
+import {ACCESS_TOKEN_TRANSCRIPT, ACCESS_TOKEN_CHAT} from '../../configureApi';
 
 const useStyles = makeStyles({
     root: {
@@ -49,7 +50,7 @@ export default function ChatHistory() {
     function renderAllChats(){
         axios.get('https://cors-anywhere.herokuapp.com/https://salesiq.zoho.com/api/v1/sjsu/chats', {
             headers: {
-                Authorization: `Zoho-oauthtoken 1000.0196b21798a259757c993b33a8fe9e9f.8001e990280a18145736b8c21d3d0a58`
+                Authorization: ACCESS_TOKEN_CHAT
             },
             params:{
                 limit: amount
@@ -98,7 +99,7 @@ export default function ChatHistory() {
     function renderChatInfo() {
         axios.get(`https://cors-anywhere.herokuapp.com/https://salesiq.zoho.com/api/v1/sjsu/chats/${chatIdInfo}`, {
             headers: {
-                Authorization: `Zoho-oauthtoken 1000.0196b21798a259757c993b33a8fe9e9f.8001e990280a18145736b8c21d3d0a58`
+                Authorization: ACCESS_TOKEN_CHAT
             }
         }).then(response => {
             let chatInfo = [];
@@ -141,7 +142,7 @@ export default function ChatHistory() {
     function renderChatTranscript() {
         axios.get(`https://cors-anywhere.herokuapp.com/https://salesiq.zoho.com/api/v1/sjsu/chats/${chatIdTranscript}/transcript`, {
             headers: {
-                Authorization: `Zoho-oauthtoken 1000.f520346c2a27cd08db0965b0d7d5171c.b23d368d3c41f7de34625a5e344c533e`
+                Authorization: ACCESS_TOKEN_TRANSCRIPT
             }
         }).then(response => {
             let chatTranscript = response.data;

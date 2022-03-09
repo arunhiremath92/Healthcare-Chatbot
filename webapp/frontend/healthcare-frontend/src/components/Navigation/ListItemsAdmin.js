@@ -9,6 +9,7 @@ import Divider from '@mui/material/Divider';
 import AutoGraphIcon from '@mui/icons-material/AutoGraph';
 import FeedbackIcon from '@mui/icons-material/Feedback';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import SmartToyIcon from '@mui/icons-material/SmartToy';
 
 export default function ListItemsAdmin() {
 
@@ -31,6 +32,12 @@ export default function ListItemsAdmin() {
                     <AutoGraphIcon />
                 </ListItemIcon>
                 <ListItemText primary="Statistics" />
+            </ListItemButton>
+            <ListItemButton onClick={() => { navigate('/admin-chathistory')}}>
+                <ListItemIcon>
+                    <SmartToyIcon />
+                </ListItemIcon>
+                <ListItemText primary="Chat History" />
             </ListItemButton>
             <ListItemButton onClick={() => { navigate('/feedback')}}>
                 <ListItemIcon>
