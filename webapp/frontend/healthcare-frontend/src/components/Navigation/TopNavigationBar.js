@@ -39,7 +39,7 @@ export default function TopNavigationBar() {
     setOpen(false);
     localStorage.setItem("user", "temp");
     localStorage.setItem("role", "user");
-    navigate('/user-dashboard')
+    //navigate('/user-dashboard')
   };
   
   const handleSubmit = (event) => {
@@ -51,7 +51,56 @@ export default function TopNavigationBar() {
       password: data.get('password'),
     });
     // TODO: backend API
+    const url = 'http://localhost:3000'
+    var email_s = data.get('email');
+    var password_s = data.get('password');
+    //post data to backend server and check
+    //use FormData() = data
+    fetch(url,{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/x-www-form-urlencoded'
+      },
+      body:data,
+    }).then((response)=>{
+      response.json(()=>{
+        console.log('response-json')
+      }).then((response)=>{
+        //Success
+        navigate('/user-dashboard')
+
+      }).catch((error)=>{
+        //Fail
+        console.error('error', error)
+      })
+    })
+
+
+
+
+
+    // const msg = {
+    //   email: data.get('email'),
+    //   password: data.get('password'),
+    // }
     
+    // //post it
+    // fetch(url,{
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type':'application/json'
+    //   },
+    //   body: JSON.stringify(msg),
+    // }).then(responsee => responsee.json()).then(
+    //   msg =>{
+    //     console.log('Success: ',msg)
+    //     navigate('/user-dashboard')
+
+    //   }
+    // ).catch(error=>{
+    //   console.log('Error:' ,error)
+    // })
+
     
   };
 

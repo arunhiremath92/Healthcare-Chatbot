@@ -32,6 +32,22 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function PatientSignup() {
+    function isEmail(str){
+        var string = str.replace(/\s|&nbsp;/g, '') //先去除用户输入的无效字符
+        var reg = /^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
+        if (reg.test(string)) {
+          return true;
+        } else {
+          return false;
+        }
+    }
+    function isPass(str){
+        if(str.length>=6 && str.length<=16){
+            return true;
+        }else{
+            return false;
+        }
+    }
     let navigate = useNavigate();
 
     const handleSubmit = (event) => {
@@ -42,9 +58,67 @@ export default function PatientSignup() {
             email: data.get('email'),
             password: data.get('password'),
         });
+        var email_s = data.get('email')
+        var password_s = data.get('password')
+        if(!isEmail(email_s)){
+            alert('Please Enter a Valid Email!')
+        }else if(!isPass(password_s)){
+            alert('Please Enter a password between 6 and 16')
+        }else{
+            alert('Sign up Success!');
+            //add fetch function to post data
+            const url = 'http://localhost:3000'
+            var msg = {
+                email: data.get('email'),
+                password: data.get('password'),
+            }
+
+            fetch(url,{
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/x-www-form-urlencoded'
+                },
+                body:JSON.stringify(msg),
+            }).then((res)=>{
+                res.json(()=>{
+
+                }).then((res)=>{
+                    console.log(res)
+                }).catch((error)=>{
+                    console.error('ERROR',error)
+                })
+            })
+            // let request = new Request(url + '/signup' ,{
+            //     method: 'post',
+            //     headers: {
+            //         'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+            //     },
+            //     body: {
+            //         email: data.get('email'),
+            //         password: data.get('password'),
+            //     },
+            // })
+
+            // fetch(request).then(response=>{
+            //     let result = response.text()
+            //     //let result = response.json()
+
+            //     result.then(res=>{
+            //         console.log(res)
+            //     }).catch(err=>{
+            //         console.log(err)
+            //     })
+            // })
+
+
+
+            //navigate('/user-dashboard');
+        }
+
         // TODO: backend API
         localStorage.setItem("user", "temp");
-        navigate('/user-dashboard');
+        
+        //navigate('/user-dashboard');
     };
 
     return (

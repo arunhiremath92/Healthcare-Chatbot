@@ -73,6 +73,41 @@ function getStyles(name, personName, theme) {
 const theme = createTheme();
 
 export default function DoctorSignup() {
+    function isEmail(str){
+        var string = str.replace(/\s|&nbsp;/g, '') //先去除用户输入的无效字符
+        var reg = /^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
+        if (reg.test(string)) {
+          return true;
+        } else {
+          return false;
+        }
+    }
+
+    function isPass(str){
+        if(str.length>=6 && str.length<=16){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    function isPhone(str){
+        if(str.length===10){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    function isNull(str){
+        if(str.length === 0){
+            return true
+        }else{
+            return false
+        }
+    }
+
+
     let navigate = useNavigate();
 
     const handleSubmit = (event) => {
@@ -80,12 +115,45 @@ export default function DoctorSignup() {
         const data = new FormData(event.currentTarget);
         // eslint-disable-next-line no-console
         console.log({
+            firstName: data.get('firstName'),
+            lastName: data.get('lastName'),
             email: data.get('email'),
             password: data.get('password'),
+            phone: data.get('number'),
+            zip: data.get('zipcode'),
+
         });
+
+        var firstName_s = data.get('firstName')
+        var lastName_s = data.get('lastName')
+        var email_s = data.get('email')
+        var password_s = data.get('password')
+
+        
+        if(isNull(firstName_s)){
+            alert('Please Enter Your FirstName!')
+        }else if(isNull(lastName_s)){
+            alert('Please Enter Your LastName!')
+        }else if(!isEmail(email_s)){
+            alert('Please Enter a Valid Email!')
+        }else if(!isPass(password_s)){
+            alert('Please Enter a password between 6 and 16')
+        }else{
+            alert('Sign up Success!');
+            //add fetch function to post data
+            navigate('/doctor-dashboard');
+        }
+
+        // if(!isPhone(data.get('number'))){
+        //     alert('Please Enter a valid 10-digital phone number')
+        // }else{
+        //     alert('success!')
+        // }
+
+
         // TODO: backend API
         localStorage.setItem("user", "temp");
-        navigate('/doctor-dashboard');
+        //navigate('/doctor-dashboard');
     };
 
     const [profession, setProfession] = React.useState([]);
@@ -171,7 +239,18 @@ export default function DoctorSignup() {
                                     <TextField
                                         required
                                         fullWidth
-                                        id="email"
+                                        id="password"
+                                        label="Password"
+                                        name="password"
+                                        type="password"
+                                        autoComplete="password"
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        required
+                                        fullWidth
+                                        id="phone"
                                         label="Contact Phone Number"
                                         name="number"
                                     />
@@ -182,7 +261,7 @@ export default function DoctorSignup() {
                                         fullWidth
                                         id="zipcode"
                                         label="Zip Code"
-                                        name="number"
+                                        name="zipcode"
                                     />
 
                                 </Grid>
