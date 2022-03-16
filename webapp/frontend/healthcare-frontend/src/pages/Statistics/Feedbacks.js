@@ -88,11 +88,11 @@ class Feedbacks extends Component {
             { field: 'id', headerName: 'ID', width: 70 },
             { field: 'Timestamp', headerName: 'Time', width: 150 },
             { field: 'Name', headerName: 'Name', width: 100 },
-            { field: 'Email', headerName: 'Email', width: 150 },
+            { field: 'Email', headerName: 'Email', width: 180 },
             { field: 'Do you have a good experience using the website?', headerName: 'Rating', width: 100 },
             { field: 'Feedback Type', headerName: 'Feedback Type', width: 150 },
-            { field: 'Feedback', headerName: 'Feedback', width: 150 },
-            { field: 'Suggestions for improvement', headerName: 'Suggestions', width: 180 }
+            { field: 'Feedback', headerName: 'Feedback', width: 200 },
+            { field: 'Suggestions for improvement', headerName: 'Suggestions', width: 250 }
         ];
         //console.log(this.state)
         var options_column = {
@@ -162,7 +162,7 @@ class Feedbacks extends Component {
                                     rows={this.state.googleSheetData}
                                     columns={columns}
                                     pageSize={5}
-                                    rowsPerPageOptions={[5]}
+                                    rowsPerPageOptions={[5,10,20,50]}
                                 />
                                 <br/>
                                 <Grid container spacing={3}>

@@ -23,6 +23,7 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Backdrop from '@mui/material/Backdrop';
 import $ from 'jquery';
+import { DataGrid } from '@mui/x-data-grid';
 
 import TopNavigationBarLoggedIn from '../../components/Navigation/TopNavigationBarLoggedIn';
 import {ACCESS_TOKEN_TRANSCRIPT, ACCESS_TOKEN_CHAT} from '../../configureApi';
@@ -292,7 +293,16 @@ class AdminChatHistory extends Component {
     render(){
         //console.log(this.state)
         const { classes } = this.props;
-
+        // const columns = [
+        //     { field: 'chat_id', headerName: 'Chat ID', width: 70 },
+        //     { field: 'visitor_name', headerName: 'Visitor Name', width: 150 },
+        //     { field: 'visitor_email', headerName: 'Visitor Email', width: 100 },
+        //     { field: 'country_code', headerName: 'Country Code', width: 150 },
+        //     { field: 'attender_name', headerName: 'Attended By', width: 100 },
+        //     { field: 'chatinitiated_time', headerName: 'Start Time', width: 150 },
+        //     { field: 'chat_duration', headerName: 'Chat Duration', width: 150 },
+        //     { field: 'question', headerName: 'Initiated Question', width: 180 }
+        // ];
         let redirectVar = null;
         if(!localStorage.getItem("user")){
             redirectVar = <Navigate to= "/"/>
@@ -363,6 +373,14 @@ class AdminChatHistory extends Component {
                                     </FormControl>
                                 </Box>
                                 <hr/>
+                                {/* <DataGrid
+                                    style={{height: '100%', width: '100%'}} autoHeight
+                                    getRowId={(row) => row.id}
+                                    rows={this.state.chatlist}
+                                    columns={columns}
+                                    pageSize={10}
+                                    rowsPerPageOptions={[10]}
+                                /> */}
                                 <Table size="small">
                                     <TableHead>
                                         <TableRow>
