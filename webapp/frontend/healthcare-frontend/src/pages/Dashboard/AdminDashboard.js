@@ -157,8 +157,18 @@ class AdminDashboard extends Component {
                                             Till: {this.state.currentTime}
                                         </Typography>
                                         <div>
-                                            <Link color="primary" href="/admin-chathistory">
-                                                View chat details
+                                            <Link color="primary" href="https://analytics.zoho.com/open-view/2541981000000003029" target="_blank">
+                                                View Chat Details
+                                            </Link>
+                                        </div>
+                                        <div>
+                                            <Link color="primary" href="https://analytics.zoho.com/open-view/2541981000000003030" target="_blank">
+                                                View Visit Details
+                                            </Link>
+                                        </div>
+                                        <div>
+                                            <Link color="primary" href="https://analytics.zoho.com/open-view/2541981000000003031" target="_blank">
+                                                View Event Logs
                                             </Link>
                                         </div>
                                         </Paper>
@@ -184,7 +194,7 @@ class AdminDashboard extends Component {
                                         </Typography>
                                         <div>
                                             <Link color="primary" href="/admin-chathistory">
-                                                View chat details
+                                                View Chat Details
                                             </Link>
                                         </div>
                                         </Paper>
@@ -223,8 +233,8 @@ class AdminDashboard extends Component {
                                         <Typography color="text.secondary" sx={{ flex: 1 }}>
                                         </Typography>
                                         <div>
-                                            <Link color="primary" href="/management">
-                                                User Management
+                                            <Link color="primary" href="https://analytics.zoho.com/open-view/2541981000000003027" target="_blank">
+                                                View Visitors Details
                                             </Link>
                                         </div>
                                         </Paper>
@@ -279,8 +289,8 @@ class AdminDashboard extends Component {
                                         <Typography color="text.secondary" sx={{ flex: 1 }}>
                                         </Typography>
                                         <div>
-                                            <Link color="primary" href="/management">
-                                                User Management
+                                            <Link color="primary" href="https://analytics.zoho.com/open-view/2541981000000003026" target="_blank">
+                                                View Operators Details
                                             </Link>
                                         </div>
                                         </Paper>
