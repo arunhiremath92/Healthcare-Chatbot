@@ -9,9 +9,16 @@ import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import { DataGrid } from '@mui/x-data-grid';
 import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 import TopNavigationBarLoggedIn from '../../components/Navigation/TopNavigationBarLoggedIn';
 import CanvasJSReact from '../../components/CanvasChart/canvasjs.react';
+import {ACCESS_TOKEN_FEEDBACK, ACCESS_TOKEN_OPERATOR} from '../../configureApi';
 
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
@@ -41,9 +48,39 @@ class Feedbacks extends Component {
             feedbackType2 : 0,//questions
             feedbackType3 : 0,//bug reports
             feedbackType4 : 0,//feature request
+            //zoho api
+            chatFeedbackList : [],
+            //operatorIDList : [],
+            operatorID : '',
+            fromTime : '',
+            toTime : '',
+            limit : '', //default
+            rating : ''
         }
+        this.handleAmountChange = this.handleAmountChange.bind(this);
+        this.handlefromTimeChange = this.handlefromTimeChange.bind(this);
+        this.handletoTimeChange = this.handletoTimeChange.bind(this);
+        this.handleRatingChange = this.handleRatingChange.bind(this);
+        this.handleOperatorIDChange = this.handleOperatorIDChange.bind(this);
+        this.filterFeedbacks = this.filterFeedbacks.bind(this);
     }  
     
+    handleAmountChange = (e) => {
+        this.setState({ limit : e.target.value })
+    };
+    handlefromTimeChange = (e) => {
+        this.setState({ fromTime : e.target.value })
+    };
+    handletoTimeChange = (e) => {
+        this.setState({ toTime : e.target.value })
+    };
+    handleRatingChange = (e) => {
+        this.setState({rating : e.target.value});
+    };
+    handleOperatorIDChange = (e) => {
+        this.setState({operatorID : e.target.value});
+    };
+
     componentDidMount(){
         axios.get('https://cors-anywhere.herokuapp.com/https://sheetdb.io/api/v1/j4wedxfdmaw27')
         .then(response => {
@@ -80,8 +117,73 @@ class Feedbacks extends Component {
         }).catch(error => {
             console.log('Data not returned', error)
         })
+
+        axios.get('https://cors-anywhere.herokuapp.com/https://salesiq.zoho.com/api/v2/sjsu/feedbacks', {
+            headers: {
+                Authorization: ACCESS_TOKEN_FEEDBACK
+            }
+        }).then(response => {
+            let feedbackArray = response.data.data;
+            console.log(feedbackArray)
+            feedbackArray.map((listing) => {
+                // convert milisenconds to date and time
+                var end_time = Number(listing.end_time);
+                var d = new Date(end_time);
+                listing.end_time = d.toLocaleString(); 
+                var start_time = Number(listing.start_time);
+                var d = new Date(start_time);
+                listing.start_time = d.toLocaleString();
+                //extract object
+                listing.attender_name = listing.attender.display_name;
+                listing.rating_value = listing.rating.value;
+                listing.visitor_name = listing.visitor.name;
+            })
+            this.setState({chatFeedbackList : feedbackArray});
+        }).catch(error => {
+            console.log('Data not returned', error)
+        })
     }
     
+    filterFeedbacks = (event) => {
+        event.preventDefault();//stop refresh
+        //convert time into miliseconds
+        var from_time = new Date(this.state.fromTime);
+        var fromTime = from_time.getTime();
+        var to_time = new Date(this.state.toTime);
+        var toTime = to_time.getTime();
+        axios.get('https://cors-anywhere.herokuapp.com/https://salesiq.zoho.com/api/v2/sjsu/feedbacks', {
+            headers: {
+                Authorization: ACCESS_TOKEN_FEEDBACK
+            },
+            params:{
+                limit: this.state.limit,
+                ratings: this.state.rating,
+                start_time: fromTime || "",
+                end_time: toTime || "",
+                operator_ids: this.state.operatorID
+            },
+        }).then(response => {
+            let feedbackArray = response.data.data;
+            console.log(feedbackArray)
+            feedbackArray.map((listing) => {
+                // convert milisenconds to date and time
+                var end_time = Number(listing.end_time);
+                var d = new Date(end_time);
+                listing.end_time = d.toLocaleString(); 
+                var start_time = Number(listing.start_time);
+                var d = new Date(start_time);
+                listing.start_time = d.toLocaleString();
+                //extract object
+                listing.attender_name = listing.attender.display_name;
+                listing.rating_value = listing.rating.value;
+                listing.visitor_name = listing.visitor.name;
+            })
+            this.setState({chatFeedbackList : feedbackArray});
+        }).catch(error => {
+            console.log('Data not returned', error)
+        })
+    }
+
     render(){
         const { classes } = this.props;
         const columns = [
@@ -139,6 +241,16 @@ class Feedbacks extends Component {
 			}]
 		}
 
+        const columns_feedbackfromchatbot = [
+            { field: 'reference_id', headerName: 'ID', width: 70 },
+            { field: 'attender_name', headerName: 'Operator', width: 190 },
+            { field: 'rating_value', headerName: 'Rating', width: 100 },
+            { field: 'feedback', headerName: 'Feedback', width: 190 },
+            { field: 'visitor_name', headerName: 'Visitor', width: 110 },
+            { field: 'start_time', headerName: 'Start Time', width: 160 },
+            { field: 'end_time', headerName: 'End Time', width: 160 }
+        ];
+
         let redirectVar = null;
         if(!localStorage.getItem("user")){
             redirectVar = <Navigate to= "/"/>
@@ -155,7 +267,7 @@ class Feedbacks extends Component {
                         <Container maxWidth="lg" className={classes.root}>
                             <Container maxWidth="lg" className={classes.root}>
                                 <Typography component="h1" variant="h4" color="primary" gutterBottom>
-                                    Feedbacks
+                                    Feedbacks from Form
                                 </Typography> 
                                 <DataGrid style={{height: '100%', width: '100%'}} autoHeight
                                     getRowId={(row) => row.id}
@@ -199,6 +311,104 @@ class Feedbacks extends Component {
                                         </Paper>
                                     </Grid>
                                 </Grid>
+                                <br/><br/>
+                                {/* Feedbacks from Chatbot */}
+                                <Typography component="h1" variant="h4" color="primary" gutterBottom>
+                                    Feedbacks from Chatbot
+                                </Typography>
+                                <Box sx={{ minWidth: 120 }}>
+                                    <Grid container spacing={3}>
+                                        <Grid item xs={12} md={4} lg={3}>
+                                        <FormControl fullWidth>
+                                            <InputLabel id="demo-simple-select-label">Latest #</InputLabel>
+                                            <Select
+                                                labelId="demo-simple-select-label"
+                                                id="demo-simple-select"
+                                                value={this.state.limit}
+                                                sx={{ width: 250 }}
+                                                label="Amount"
+                                                onChange={this.handleAmountChange}
+                                            >
+                                            <MenuItem value={5}>5 feedbacks</MenuItem>
+                                            <MenuItem value={10}>10 feedbacks</MenuItem>
+                                            <MenuItem value={20}>20 feedbacks</MenuItem>
+                                            <MenuItem value={50}>50 feedbacks</MenuItem>
+                                            <MenuItem value={50}>100 feedbacks</MenuItem>
+                                            </Select>
+                                        </FormControl>
+                                        </Grid>
+                                        <Grid item xs={12} md={4} lg={3}>
+                                            <TextField
+                                                id="datetime-local"
+                                                label="From time"
+                                                type="datetime-local"
+                                                value={this.state.fromTime}
+                                                onChange={this.handlefromTimeChange}
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
+                                            />
+                                        </Grid>
+                                        <Grid item xs={12} md={4} lg={3}>
+                                            <TextField
+                                                id="datetime-local"
+                                                label="To time"
+                                                type="datetime-local"
+                                                value={this.state.toTime}
+                                                onChange={this.handletoTimeChange}
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
+                                            />
+                                        </Grid>
+                                        <Grid item xs={12} md={4} lg={3}>
+                                        <FormControl fullWidth>
+                                            <InputLabel id="demo-simple-select-label">Operator ID</InputLabel>
+                                            <Select
+                                                labelId="demo-simple-select-label"
+                                                id="demo-simple-select"
+                                                value={this.state.operatorID}
+                                                sx={{ width: 250 }}
+                                                label="Operator ID"
+                                                onChange={this.handleOperatorIDChange}
+                                            >
+                                            <MenuItem value={"702428000000002002"}>702428000000002002</MenuItem>
+                                            <MenuItem value={"702428000000002138"}>702428000000002138</MenuItem>
+                                            <MenuItem value={""}>All Operators</MenuItem>
+                                            </Select>
+                                        </FormControl>
+                                        </Grid>
+                                        <Grid item xs={12} md={4} lg={3}>
+                                        <FormControl fullWidth>
+                                            <InputLabel id="demo-simple-select-label">Rating</InputLabel>
+                                            <Select
+                                                labelId="demo-simple-select-label"
+                                                id="demo-simple-select"
+                                                value={this.state.rating}
+                                                sx={{ width: 250 }}
+                                                label="Rating"
+                                                onChange={this.handleRatingChange}
+                                            >
+                                            <MenuItem value={"happy"}>happy</MenuItem>
+                                            <MenuItem value={"neutral"}>neutral</MenuItem>
+                                            <MenuItem value={"sad"}>sad</MenuItem>
+                                            <MenuItem value={""}>All Ratings</MenuItem>
+                                            </Select>
+                                        </FormControl>
+                                        </Grid>
+                                        <Grid item xs={12} md={4} lg={3}>
+                                            <Button size="large" variant="outlined" onClick={this.filterFeedbacks}>Filter</Button>
+                                        </Grid>
+                                    </Grid>
+                                    <br/>
+                                    <DataGrid style={{height: '100%', width: '100%'}} autoHeight
+                                        getRowId={(row) => row.reference_id}
+                                        rows={this.state.chatFeedbackList}
+                                        columns={columns_feedbackfromchatbot}
+                                        pageSize={10}
+                                        rowsPerPageOptions={[5,10,20,50]}
+                                    />
+                                </Box>
                             </Container>
                         </Container> 
                     </Grid>
