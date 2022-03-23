@@ -28,3 +28,4 @@ class MedicalProfessionalProfile(models.Model):
         User, on_delete=models.CASCADE, related_name='hr_profile')
     credentials = models.CharField(max_length=100, blank=True)
     degree = models.CharField(max_length=100, blank=True)
+    is_logged = models.BooleanField(default=False)
