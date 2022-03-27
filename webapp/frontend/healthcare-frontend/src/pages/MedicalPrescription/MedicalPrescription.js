@@ -85,7 +85,43 @@ function PrescriptionBody(){
         setProvider(event.target.value);
     };
 
-  
+    function getRefil(){
+        console.log('Get Refill!')
+        axios.post(`https://cors-anywhere.herokuapp.com/https://services-qa.walgreens.com/api/util/mweb5url`, {
+                "apiKey":"qUIVGVw6jaf8SIziRpKjg6qdkhVONM0p",
+                "affId":"rxapi",
+                "transaction":"refillByScan",
+                "act":"mweb5Url",
+                "view":"mweb5UrlJSON"
+            
+            }).then(response=>{
+                    // console.log('@',response.data.allRelatedGroup.conceptGroup)
+                    // console.log(response.data)
+
+                    axios.post(`${response.data.landingUrl}`, {
+                        "affId":"rxapi",
+                        "token":`${response.data.token}`,
+                        "appID":"refillByScan",
+                        "act":"chkExpRx",
+                        "rxNo":"0459772-59382"
+                        }).then(res=>{
+                            console.log('Get Data Success')
+                            console.log(res.data)
+
+                            var newPage = window.open("about:blank",'_blank')
+                            newPage.document.write(res.data)
+
+                        }).catch(error=>{
+                            console.log('Failed!!!',error)
+                        
+                        })
+
+
+
+                }).catch(error=>{
+                    console.error(error)
+                })
+    }
 
     
     return (
@@ -107,6 +143,7 @@ function PrescriptionBody(){
                     <TextField id="prescription-number" label="RxCUI Number" variant="outlined" inputRef ={myRef} />
                     &nbsp;
                     <Button  variant="contained" onClick = {Show}>Click Me to Search</Button>
+                    <button onClick={getRefil}>Walgreen Test Button</button>
                     </Grid>
                     <Grid item xs={4}>
                     <FormControl fullWidth>
