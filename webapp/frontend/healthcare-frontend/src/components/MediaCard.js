@@ -21,7 +21,7 @@ export default function MediaCard({title, imageSrc, description}) {
             component="img"
             src={imageSrc}
             height='150'
-            objectFit='trim'
+            objectfit='trim'
             alt="emergency medical services"
 
         />

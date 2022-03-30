@@ -18,40 +18,12 @@ import Toolbar from '@mui/material/Toolbar';
 
 import NavigationButton from '../../components/Navigation/NavigationButton';
 import TopNavigationBar from '../../components/Navigation/TopNavigationBar';
-import TopNavigationBarLoggedIn from '../../components/Navigation/TopNavigationBarLoggedIn';
 import ResultList from './resultList';
 import FetchData from './FetchData';
-//import { API_BASE_URL, BEARER_TOKEN } from '../../configureApi';
+
 
 const names = [
-  // 'Addiction Medicine (addictionmedicine)',
-  // 'Allergists (allergist)',
-  // 'Anesthesiologists (anesthesiologists)',
-  // 'Audiologist (audiologist)',
-  // 'Cardiologists (cardiology)',
-  // 'Cosmetic Surgeons (cosmeticsurgeons)',
-  // 'Dermatologists (dermatology)',
-  // 'Ear Nose & Throat (earnosethroat)',
-  // 'Emergency Medicine (emergencymedicine)',
-  // 'Endocrinologists (endocrinologists)',
-  // 'Family Practice (familydr)',
-  // 'Fertility (fertility)',
-  // 'Gastroenterologist (gastroenterologist)',
-  // 'Geneticists (geneticists)',
-  // 'Gerontologists (gerontologist)',
-  // 'Hepatologists (hepatologists)',
-  // 'Hospitalists (hospitalists)',
-  // 'Immunodermatologists (immunodermatologists)',
-  // 'Infectious Disease Specialists (infectiousdisease)',
-  // 'Internal Medicine (internalmed)',
-  // 'Naturopathic/Holistic (naturopathic)',
-  // 'Nephrologists (nephrologists)',
-  // 'Neurologist (neurologist)',
-  // 'Neuropathologists (neuropathologists)',
-  // 'Neurotologists (neurotologists)',
-  // 'Obstetricians & Gynecologists (obgyn)',
-  // 'Oncologist (oncologist)',
-  // 'Ophthalmologists (opthamalogists)',
+
   'Addiction Medicine',
   'Allergists',
   'Anesthesiologists',
@@ -181,16 +153,6 @@ function SearchProviders() {
         })
     }
 
-  // const handleChange = (event) => {
-  //     const {
-  //       target: { value },
-  //     } = event;
-  //     console.log(value)
-  //     setProfession(
-  //       // On autofill we get a stringified value.
-  //       typeof value === 'string' ? value.split(',') : value,
-  //     );
-  //   };
 
     function hasResult(){
         if(businessList.length>0){
@@ -274,7 +236,7 @@ export default function ProvidersView() {
                 <Box>
                     <Container maxWidth="full" sx={{ mt: 3, mb: 4 }}>
                         <Grid container spacing={3}>
-                            <TopNavigationBarLoggedIn />
+                           
                             <SearchProviders />
                         </Grid>
                     </Container>

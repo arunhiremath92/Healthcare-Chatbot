@@ -9,7 +9,6 @@ import TextField from '@mui/material/TextField';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 
 import TopNavigationBar from '../../components/Navigation/TopNavigationBar';
-import TopNavigationBarLoggedIn from '../../components/Navigation/TopNavigationBarLoggedIn';
 import NavigationButton from '../../components/Navigation/NavigationButton';
 import BottomNavigationBar from '../../components/Navigation/BottomNavigationBar';
 import MediaCard from '../../components/MediaCard';
@@ -54,98 +53,53 @@ const services = [
     },
 ];
 
-function DashboardMain() {
+export default function Dashboard() {
 
     const classes = useStyles();
     var indents = [];
     for (var i = 0; i < services.length; i++) {
         indents.push(
-        <Grid item xs={3}>
-            <MediaCard title={services[i].title} imageSrc={services[i].imageSrc} description={services[i].description}>
-            </MediaCard>
-        </Grid>
+            <Grid item xs={3}>
+                <MediaCard title={services[i].title} imageSrc={services[i].imageSrc} description={services[i].description} key={i}>
+                </MediaCard>
+            </Grid>
         );
     }
 
     return (
-        <>
         <Container maxWidth="lg" className={classes.root}>
             <Container maxWidth="lg" className={classes.root}>
                 <Box sx={{ flexGrow: 1 }}>
-                <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                    <NavigationButton/>
-                    </Grid>
-                </Grid>
-                </Box>
-            </Container>
-            <Container maxWidth="lg" className={classes.root}>
-                <Box sx={{ flexGrow: 1 }}>
-                <Grid container spacing={2}>
-                    <Grid item xs={12} >
-                        <Autocomplete
-                            freeSolo
-                            id="free-solo-2-demo"
-                            disableClearable
-                            options={topQuestions.map((option) => option.title)}
-                            renderInput={(params) => (
-                            <TextField className={classes.textbox}
-                                {...params}
-                                label="Your Query"
-                                InputProps={{
-                                ...params.InputProps,
-                                type: 'search',
-                                }}
+                    <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <Typography variant="h5" display="block" gutterBottom>
+                                Our Services
+                            </Typography>
+                        </Grid>
+                        {indents}
+                        <Grid item xs={12} >
+                            <Autocomplete
+                                freeSolo
+                                id="free-solo-2-demo"
+                                disableClearable
+                                options={topQuestions.map((option) => option.title)}
+                                renderInput={(params) => (
+                                    <TextField className={classes.textbox}
+                                        {...params}
+                                        label="Your Query"
+                                        InputProps={{
+                                            ...params.InputProps,
+                                            type: 'search',
+                                        }}
+                                    />
+                                )}
                             />
-                            )}
-                        />
+                        </Grid>
+
                     </Grid>
-                    <Grid item xs={12}>
-                        <Typography variant="h5" display="block" gutterBottom>
-                            Our Services
-                        </Typography>
-                    </Grid>
-                    {indents}
-                </Grid>
                 </Box>
             </Container >
-        </Container >
-        <div style={{
-            position: "fixed",
-            left: 0,
-            bottom: 0,
-            right: 0,
-            backgroundColor: "green"
-            }}>
             <BottomNavigationBar />
-        </div>
-        </>
+        </Container >
     );
-}
-
-export default function Dashboard() {
-
-    return (
-        <>
-        {localStorage.getItem("user") ?
-            <>
-                <ThemeProvider theme={mdTheme}>
-                <Box>
-                    <Container maxWidth="full" sx={{ mt: 3, mb: 4 }}>
-                        <Grid container spacing={3}>
-                            <TopNavigationBarLoggedIn />
-                            <DashboardMain />
-                        </Grid>
-                    </Container>
-                </Box>
-                </ThemeProvider>
-            </>
-            :
-            <>
-                <TopNavigationBar />
-                <DashboardMain />
-            </>
-        }
-        </>
-    )
 }

@@ -49,10 +49,7 @@ export default function TopNavigationBar() {
     console.log({
       email: data.get('email'),
       password: data.get('password'),
-    });
-    // TODO: backend API
-    
-    
+    });  
   };
 
   let navigate = useNavigate();

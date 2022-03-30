@@ -6,7 +6,6 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import { Navigate } from 'react-router-dom';
 
-import TopNavigationBarLoggedIn from '../../components/Navigation/TopNavigationBarLoggedIn';
 
 const useStyles = makeStyles({
     root: {
@@ -30,7 +29,7 @@ export default function UserProfile() {
         <Box>
             <Container maxWidth="full" sx={{ mt: 3, mb: 4 }}>
                 <Grid container spacing={3}>
-                    <TopNavigationBarLoggedIn />
+                   
                     {/* UserProfile Main */}
                     <h1>UserProfile</h1>
                 </Grid>

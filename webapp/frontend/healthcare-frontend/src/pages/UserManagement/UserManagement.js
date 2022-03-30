@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
+import {  createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
@@ -9,7 +9,6 @@ import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import { DataGrid } from '@mui/x-data-grid';
 
-import TopNavigationBarLoggedIn from '../../components/Navigation/TopNavigationBarLoggedIn';
 import {ACCESS_TOKEN_VISITOR, ACCESS_TOKEN_OPERATOR} from '../../configureApi';
 
 const useStyles = (theme) => ({
@@ -45,7 +44,7 @@ class UserManagement extends Component {
                 var d = new Date(visitor_since);
                 listing.visitor_since = d.toLocaleString(); 
                 var lastvisit_time = Number(listing.lastvisit_time);
-                var d = new Date(lastvisit_time);
+                d = new Date(lastvisit_time);
                 listing.lastvisit_time = d.toLocaleString(); 
                 // convert miliseconds duration to mins+seconds.
                 var total_timespent = Number(listing.total_timespent);
@@ -61,6 +60,7 @@ class UserManagement extends Component {
                 var hrs = (total_timespent - mins) / 60;
                 var duration_in_min = pad(hrs) + ':' + pad(mins) + ':' + pad(secs);
                 listing.total_timespent = duration_in_min; 
+                return null
             })
             this.setState({visitorList : visitorArray});
         }).catch(error => {
@@ -80,8 +80,9 @@ class UserManagement extends Component {
                 var d = new Date(modified_time);
                 listing.modified_time = d.toLocaleString(); 
                 var created_time = Number(listing.created_time);
-                var d = new Date(created_time);
+                d = new Date(created_time);
                 listing.created_time = d.toLocaleString();
+                return null
             })
             this.setState({operatorList : operatorArray});
         }).catch(error => {
@@ -125,7 +126,7 @@ class UserManagement extends Component {
             <Box>
                 <Container maxWidth="full" sx={{ mt: 3, mb: 4 }}>
                     <Grid container spacing={3}>
-                        <TopNavigationBarLoggedIn />
+                       
                         {/* UserManagement Main */}
                         <Container maxWidth="lg" className={classes.root}>
                             <Container maxWidth="lg" className={classes.root}>
