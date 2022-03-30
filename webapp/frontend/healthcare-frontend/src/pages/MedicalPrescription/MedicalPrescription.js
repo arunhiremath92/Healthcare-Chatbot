@@ -98,18 +98,20 @@ function PrescriptionBody(){
                     // console.log('@',response.data.allRelatedGroup.conceptGroup)
                     // console.log(response.data)
 
-                    axios.post(`${response.data.landingUrl}`, {
+                    axios.post(response.data.landingUrl, {
                         "affId":"rxapi",
                         "token":`${response.data.token}`,
                         "appID":"refillByScan",
                         "act":"chkExpRx",
-                        "rxNo":"0459772-59382"
+                        "rxNo":"0425215-59107",
+                        "appver":"1.0"
                         }).then(res=>{
-                            console.log('Get Data Success')
+                            console.log('Data received')
                             console.log(res.data)
+                            
 
-                            var newPage = window.open("about:blank",'_blank')
-                            newPage.document.write(res.data)
+                             var newPage = window.open("about:blank",'_blank')
+                             newPage.document.write(res.data)
 
                         }).catch(error=>{
                             console.log('Failed!!!',error)

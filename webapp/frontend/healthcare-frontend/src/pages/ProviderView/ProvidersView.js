@@ -53,34 +53,34 @@ const names = [
   // 'Obstetricians & Gynecologists (obgyn)',
   // 'Oncologist (oncologist)',
   // 'Ophthalmologists (opthamalogists)',
-  'Addiction Medicine',
-  'Allergists',
-  'Anesthesiologists',
-  'Audiologist',
-  'Cardiologists',
-  'Cosmetic Surgeons',
-  'Dermatologists',
-  'Ear Nose & Throat',
-  'Emergency Medicine',
-  'Endocrinologists',
-  'Family Practice',
-  'Fertility',
-  'Gastroenterologist',
-  'Geneticists',
-  'Gerontologists',
-  'Hepatologists',
-  'Hospitalists',
-  'Immunodermatologists',
-  'Infectious Disease Specialists',
-  'Internal Medicine',
-  'Naturopathic/Holistic',
-  'Nephrologists',
-  'Neurologist',
-  'Neuropathologists',
-  'Neurotologists',
-  'Obstetricians & Gynecologists',
+  'Addiction Medicine ',
+  'Allergists ',
+  'Anesthesiologists ',
+  'Audiologist ',
+  'Cardiologists ',
+  'Cosmetic Surgeons ',
+  'Dermatologists ',
+  'Ear Nose & Throat ',
+  'Emergency Medicine ',
+  'Endocrinologists ',
+  'Family Practice ',
+  'Fertility ',
+  'Gastroenterologist ',
+  'Geneticists ',
+  'Gerontologists ',
+  'Hepatologists ',
+  'Hospitalists ',
+  'Immunodermatologists ',
+  'Infectious Disease Specialists ',
+  'Internal Medicine ',
+  'Naturopathic/Holistic ',
+  'Nephrologists ',
+  'Neurologist ',
+  'Neuropathologists ',
+  'Neurotologists ',
+  'Obstetricians & Gynecologists ',
   'Oncologist ',
-  'Ophthalmologists',
+  'Ophthalmologists ',
 ];
 
 const useStyles = makeStyles({
@@ -219,8 +219,8 @@ function SearchProviders() {
                     <Grid item xs={8}>
                     {/* <TextField id="location" fullwidth label="City/Pincode/Area" variant="outlined" inputRef={myRef} /> */}
                     <TextField id="location" fullwidth label="City/Pincode/Area" variant="outlined" inputRef={myRef} />
-                    &nbsp;
-                    <Button variant="contained" onClick={Show} >Click Me to Search</Button>
+                    &nbsp;&nbsp;&nbsp;
+                    <Button variant="contained" onClick={Show} sx={{marginTop:'10px'}}>Click Me to Search</Button>
                     </Grid>
                     <Grid item xs={4}>
                     <FormControl fullWidth={true}>
@@ -246,14 +246,18 @@ function SearchProviders() {
                         </Select>
                     </FormControl>
                     </Grid>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
                     {
-                    search.length > 0 && <h3>There are {hasResult ? `${businessList.length}` :'no'} results near: <b>{search}</b>. </h3>
+                    search.length > 0 && <h3 style={{color:'darkblue'}}>There are {hasResult ? `${businessList.length}` :'no'} results near: <b>{search}</b>. </h3>
                     }
-                    &nbsp;
-                    {/* <h3>There are some results near: {search}</h3> */}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
                     
                     {
-                    profession.length > 0 && <h5>Categories: {profession}</h5>
+                    profession.length > 0 && <h5 style={{color:'darkblue'}}>Categories: {profession}</h5>
                     }
         
                 </Grid>
