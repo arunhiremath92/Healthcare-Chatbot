@@ -16,6 +16,7 @@ import Whoops404 from './Whoops404';
 import ZohoSalesIQ from '../components/Chatbot/ZohoSalesIQ';
 import TopNavigationBar from '../components/Navigation/TopNavigationBar';
 import BottomNavigationBar from '../components/Navigation/BottomNavigationBar';
+import Consultation from './Consultation/Consultation';
 
 function Main() {
     
@@ -26,22 +27,21 @@ function Main() {
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/signup" element={<PatientSignup />}/>
+
                 {/* after authentication navbar different*/}
                 <Route path="/user-dashboard" element={<UserDashboard />}/>
                 <Route path="/user-profile" element={<UserProfile />}/>
-                <Route path="/chathistory" element={<ChatHistory />}/>
-
+                <Route path="/telehealth" element={<Consultation />}/>
                 <Route path="/prescription-refill" element={<MedicalPrescription />} />
                 <Route path="/provider-search" element={<ProvidersView />}/>
- 
-                {/* <Route path="/feedback" element={<Feedbacks />}/> */}
-                <Route path="/management" element={<UserManagement />}/>
+                 
                 <Route path="/contact" element={<Contact />}/>
                 <Route path="/about" element={<About />}/>
                 <Route path="*" element={<Whoops404 />}/>
             </Routes>
-            <ZohoSalesIQ />
+            
             <BottomNavigationBar></BottomNavigationBar>
+            <ZohoSalesIQ />
         </>
         
     );

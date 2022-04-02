@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
 export default function TopNavigationBar() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [loggedIn, setIsLoggedIn] = React.useState(false);
 
   const handleClose = () => {
     setOpen(false);
@@ -40,8 +41,10 @@ export default function TopNavigationBar() {
     localStorage.setItem("user", "temp");
     localStorage.setItem("role", "user");
     navigate('/user-dashboard')
+    localStorage.setItem('isloggedIn', 'true');
+    setIsLoggedIn(true)
   };
-  
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -49,21 +52,30 @@ export default function TopNavigationBar() {
     console.log({
       email: data.get('email'),
       password: data.get('password'),
-    });  
+    });
+    localStorage.setItem('isloggedIn', 'true');
+    setIsLoggedIn(true)
   };
 
   let navigate = useNavigate();
+
   return (
     <div className={classes.root}>
       <AppBar position="static" >
         <Toolbar>
+
+
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-          <Button color="inherit" onClick={() => { navigate('/dashboard')}}>Digital Healthcare</Button>
+            <Button color="inherit" onClick={() => { navigate('/user-dashboard') }}>Digital Healthcare</Button>
           </Typography>
-          <Button color="inherit" onClick={() => { navigate('/doctor-signup') }}>Become a partner</Button>
-          <Button color="inherit" onClick={() => { setOpen(!open) }}>Login</Button>
+
+          {!loggedIn && <Button color="inherit" onClick={() => { navigate('/doctor-signup') }}>Become a partner</Button>}
+          {!loggedIn && <Button color="inherit" onClick={() => { setOpen(!open) }}>Login</Button>}
+
+          {loggedIn && <Button color="inherit" onClick={() => { navigate('/user-profile') }}>My Account</Button>}
+
         </Toolbar>
         <Modal
           open={open}

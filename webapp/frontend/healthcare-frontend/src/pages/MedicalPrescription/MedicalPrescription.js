@@ -34,7 +34,7 @@ function PrescriptionBody() {
     };
 
     return (
-        <>
+      
             <Container maxWidth="lg" className={classes.root}>
                 <Container maxWidth="lg" className={classes.root}>
                     <Box sx={{ flexGrow: 1 }}>
@@ -70,7 +70,7 @@ function PrescriptionBody() {
                     </Box>
                 </Container>
             </Container>
-        </>
+       
     )
 }
 

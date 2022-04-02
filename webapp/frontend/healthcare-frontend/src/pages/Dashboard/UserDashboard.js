@@ -5,7 +5,6 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Navigate } from 'react-router-dom';
-import BottomNavigationBar from '../../components/Navigation/BottomNavigationBar';
 import NavigationButton from '../../components/Navigation/NavigationButton'
 import ChatHistory from '../Chatbot/ChatHistory';
 
@@ -52,7 +51,6 @@ export default function UserDashboard() {
                             </Container>
                         </Grid>
                     </Container>
-                    <BottomNavigationBar />
                 </Box>
             </ThemeProvider>
     )
