@@ -16,12 +16,15 @@ from rest_framework import routers
 
 urlpatterns = [
     # path('api/', include(router.urls)),
-    path('get/all_users', views.user_list),  # working
-    path('get/users/<int:pk>', views.user_detail),  # working
+    path('all_users', views.get_user_list_view),  # working
+    path('users/<int:pk>', views.user_detail),  # working
+    path('users/<username>', views.user_detail_username),  # working
     path('login', views.login_view),  # working
-    path('register', views.Register_Users),  # working
-    path('api/users/doctors', views.doctor_list),  # not working
-    path('api/users/userprofile', views.user_profile),  # not working
+    path('register/user', views.register_user_view),  # working
+    path('register/doctor', views.register_doctor_view),  # working
+    path('doctors', views.doctor_list),  # not working
+    # path('doctors', views.doctor_list),  # not working
+    path('users/profile', views.user_profile_view),  # not working
     path('users/<user_id>/profile', ProfileAPI.as_view()),  # not working
 
 ]
