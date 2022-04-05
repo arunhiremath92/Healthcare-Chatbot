@@ -41,24 +41,9 @@ export default function About() {
 
     return (
         <>
-            {localStorage.getItem("user") ?
-                <>
-                    <ThemeProvider theme={mdTheme}>
-                        <Box>
-                            <Container maxWidth="full" sx={{ mt: 3, mb: 4 }}>
-                                <Grid container spacing={3}>
-                                    <AboutMain />
-                                </Grid>
-                            </Container>
-                        </Box>
-                    </ThemeProvider>
-                </>
-                :
-                <>
-                    <TopNavigationBar />
-                    <AboutMain />
-                </>
-            }
+            <Grid container spacing={3}>
+                <AboutMain />
+            </Grid>
         </>
     )
 }

@@ -11,7 +11,7 @@ import ChatHistory from '../Chatbot/ChatHistory';
 const useStyles = makeStyles({
     root: {
         flexGrow: 1,
-        margin: 40
+        margin: 20
     },
     textbox: {
         margin: 10,
@@ -31,27 +31,18 @@ export default function UserDashboard() {
     }
 
     return (
-            <ThemeProvider theme={mdTheme}>
-                <Box>
-                    <Container maxWidth="full" sx={{ mt: 3, mb: 4 }}>
-                        <Grid container spacing={3}>
-                            <Container maxWidth="lg" className={classes.root}>
-                                <Container maxWidth="lg" className={classes.root}>
-                                    <Box sx={{ flexGrow: 1 }}>
-                                        <Grid container spacing={2}>
-                                            <Grid item xs={12}>
-                                                <NavigationButton />
-                                            </Grid>
-                                        </Grid>
-                                    </Box>
-                                </Container>
-                                <Container maxWidth="lg" className={classes.root}>
-                                    <ChatHistory></ChatHistory>
-                                </Container >
-                            </Container>
-                        </Grid>
-                    </Container>
-                </Box>
-            </ThemeProvider>
+        <>
+            <Box sx={{ flexGrow: 1 }}>
+                <Grid alignItems="center" justifyContent="center" container spacing={1} className={classes.root}>
+                    <Grid item xs={12}>
+                        <NavigationButton />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <ChatHistory></ChatHistory>
+                    </Grid>
+                </Grid>
+            </Box>
+        </>
+
     )
 }

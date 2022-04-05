@@ -219,93 +219,55 @@ export default function Consultation() {
 
 
   return (
-
-
-    <ThemeProvider theme={mdTheme}>
-      <Box>
-
-        <Container maxWidth="full" sx={{ mt: 3, mb: 4 }}>
-          <Container maxWidth="lg" className={classes.root}>
-            <Container maxWidth="Flg" className={classes.root}>
-              <Box sx={{ flexGrow: 1 }}>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <NavigationButton />
-                  </Grid>
-                </Grid>
-              </Box>
-            </Container>
-            <Container maxWidth="lg" className={classes.root}>
-              <Grid container spacing={2}>
-                <Grid item xs={12}>
-                  <FormControl fullWidth={true}>
-                    <InputLabel id="demo-multiple-name-label">Select a Healthcare Provider For</InputLabel>
-                    <Select
-                      labelId="demo-multiple-name-label"
-                      id="demo-multiple-name"
-                      value={selectedProfession}
-                      onChange={handleDoctorSelection}
-                      input={<OutlinedInput label="Primary Speciality" />}
-                      MenuProps={MenuProps}
-                    >
-                      {names.map((name) => (
-                        <MenuItem
-                          key={name}
-                          value={name}
-                          style={getStyles(name, profession, mdTheme)}
-                        >
-                          {name}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12}>
-                  <Stack direction="row" spacing={2}>
-                    {professionalsList}
-                  </Stack>
-                </Grid>
-
-              </Grid>
-            </Container>
-            <Container maxWidth="lg" className={classes.root}>
-              <Container maxWidth="lg" className={classes.root}>
-                <Box sx={{ flexGrow: 1, visibility: { show } }}>
-                  <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                      <Paper style={{ maxHeight: 400, overflow: 'auto' }}>
-                        <div style={{ height: 400, width: '100%' }}>
-                          <div style={{ height: 350, width: '100%' }}>
-                            {myArray}
-                          </div>
-                        </div>
-                      </Paper>
-                    </Grid>
-                  </Grid>
-                </Box>
-              </Container>
-              <Container maxWidth="lg" className={classes.root}>
-                <Box sx={{ flexGrow: 1, visibility: { show } }}>
-                  <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                      <TextField fullWidth label="Reply" id="fullWidth"
-                        onChange={handleTextFieldChange}
-                        onKeyPress={(e) => {
-                          if (e.key === 'Enter' || e.keyCode === 13) {
-                            handleChange()
-                          }
-                        }}
-                        value={userReply} />
-                    </Grid>
-                  </Grid>
-                </Box>
-              </Container>
-            </Container >
-          </Container>
-        </Container>
-      </Box >
-    </ThemeProvider >
-
+    <>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <NavigationButton />
+        </Grid>
+        <Grid item xs={12}>
+          <FormControl fullWidth={true}>
+            <InputLabel id="demo-multiple-name-label">Select a Healthcare Provider For</InputLabel>
+            <Select
+              labelId="demo-multiple-name-label"
+              id="demo-multiple-name"
+              value={selectedProfession}
+              onChange={handleDoctorSelection}
+              input={<OutlinedInput label="Primary Speciality" />}
+              MenuProps={MenuProps}
+            >
+              {names.map((name) => (
+                <MenuItem
+                  key={name}
+                  value={name}
+                  style={getStyles(name, profession, mdTheme)}
+                >
+                  {name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item xs={12}>
+          <Paper style={{ maxHeight: 400, overflow: 'auto' }}>
+            <div style={{ height: 400, width: '100%' }}>
+              <div style={{ height: 350, width: '100%' }}>
+                {myArray}
+              </div>
+            </div>
+          </Paper>
+        </Grid>
+        <Grid item xs={12}>
+          <TextField fullWidth label="Reply" id="fullWidth"
+            onChange={handleTextFieldChange}
+            onKeyPress={(e) => {
+              if (e.key === 'Enter' || e.keyCode === 13) {
+                handleChange()
+              }
+            }}
+            value={userReply} />
+        </Grid>
+      </Grid >
+    </>
 
   )
 }

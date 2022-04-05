@@ -6,11 +6,8 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
-import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import TopNavigationBar from '../../components/Navigation/TopNavigationBar';
-import NavigationButton from '../../components/Navigation/NavigationButton';
-import BottomNavigationBar from '../../components/Navigation/BottomNavigationBar';
 import MediaCard from '../../components/MediaCard';
 
 const useStyles = makeStyles({
@@ -67,39 +64,38 @@ export default function Dashboard() {
     }
 
     return (
-        <Container maxWidth="lg" className={classes.root}>
-            <Container maxWidth="lg" className={classes.root}>
-                <Box sx={{ flexGrow: 1 }}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <Typography variant="h5" display="block" gutterBottom>
-                                Our Services
-                            </Typography>
-                        </Grid>
-                        {indents}
-                        <Grid item xs={12} >
-                            <Autocomplete
-                                freeSolo
-                                id="free-solo-2-demo"
-                                disableClearable
-                                options={topQuestions.map((option) => option.title)}
-                                renderInput={(params) => (
-                                    <TextField className={classes.textbox}
-                                        {...params}
-                                        label="Your Query"
-                                        InputProps={{
-                                            ...params.InputProps,
-                                            type: 'search',
-                                        }}
-                                    />
-                                )}
-                            />
-                        </Grid>
-
+        <>
+           
+                <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                        <Typography variant="h5" display="block" gutterBottom>
+                            Our Services
+                        </Typography>
                     </Grid>
-                </Box>
-            </Container >
-            <BottomNavigationBar />
-        </Container >
+                    {indents}
+                    <Grid item xs={12} >
+                        <Autocomplete
+                            freeSolo
+                            id="free-solo-2-demo"
+                            disableClearable
+                            options={topQuestions.map((option) => option.title)}
+                            renderInput={(params) => (
+                                <TextField className={classes.textbox}
+                                    {...params}
+                                    label="Your Query"
+                                    InputProps={{
+                                        ...params.InputProps,
+                                        type: 'search',
+                                    }}
+                                />
+                            )}
+                        />
+                    </Grid>
+                </Grid>
+           
+
+
+        </>
+
     );
 }
