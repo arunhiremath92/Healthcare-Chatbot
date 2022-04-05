@@ -2,7 +2,10 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 // pages
 import PatientSignup from './Signup/PatientSignup';
 import Dashboard from './Dashboard/Dashboard';
@@ -11,13 +14,12 @@ import UserProfile from './Profile/UserProfile';
 import MedicalPrescription from './MedicalPrescription/MedicalPrescription';
 import ProvidersView from './ProviderView/ProvidersView';
 
-import Container from '@mui/material/Container';
+
 import Contact from './Contact/Contact';
-import Box from '@mui/material/Box';
+
 import About from './About/About';
 import Whoops404 from './Whoops404';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
+
 // components
 import ZohoSalesIQ from '../components/Chatbot/ZohoSalesIQ';
 import TopNavigationBar from '../components/Navigation/TopNavigationBar';
@@ -43,7 +45,7 @@ function Main() {
                 <Container maxWidth="lg" >
                     <Box sx={{ minHeight: '50vw' }} className={classes.root}>
                         <Routes>
-                            <Route path="/" element={<Dashboard />} />
+                            
                             <Route path="/dashboard" element={<Dashboard />} />
                             <Route path="/signup" element={<PatientSignup />} />
 
@@ -56,7 +58,9 @@ function Main() {
 
                             <Route path="/contact" element={<Contact />} />
                             <Route path="/about" element={<About />} />
+                            <Route path="/" element={<Dashboard />} />
                             <Route path="*" element={<Whoops404 />} />
+
                         </Routes>
                     </Box>
                 </Container>

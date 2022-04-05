@@ -32,7 +32,19 @@ const links_array = [
         title: "Tutorials",
         key: "video",
     },
+    {
+        link: "#",
+        title: "Become Partner",
+        key: "partner",
+    },
+    {
+        link: "#",
+        title: "Contatct Us",
+        key: "contact",
+    },
+
 ]
+
 
 const useStyles = makeStyles({
     root: {

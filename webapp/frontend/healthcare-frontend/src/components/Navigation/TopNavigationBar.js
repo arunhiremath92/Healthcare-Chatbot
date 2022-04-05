@@ -54,7 +54,14 @@ export default function TopNavigationBar() {
       password: data.get('password'),
     });
     localStorage.setItem('isloggedIn', 'true');
+    localStorage.setItem("email", "yi.hu@sjsu.edu")
     setIsLoggedIn(true)
+  };
+  const handleLogout = (event) => {
+    
+    localStorage.setItem('isloggedIn', 'false');
+    setIsLoggedIn(false)
+    navigate('/')
   };
 
   let navigate = useNavigate();
@@ -71,11 +78,11 @@ export default function TopNavigationBar() {
             <Button color="inherit" onClick={() => { navigate('/user-dashboard') }}>Digital Healthcare</Button>
           </Typography>
 
-          {!loggedIn && <Button color="inherit" onClick={() => { navigate('/doctor-signup') }}>Become a partner</Button>}
           {!loggedIn && <Button color="inherit" onClick={() => { setOpen(!open) }}>Login</Button>}
 
-          {loggedIn && <Button color="inherit" onClick={() => { navigate('/user-profile') }}>My Account</Button>}
 
+          {loggedIn && <Button color="inherit" onClick={() => { navigate('/user-profile') }}>My Account</Button>}
+          {loggedIn && <Button color="inherit" onClick={handleLogout}>Logout</Button>}
         </Toolbar>
         <Modal
           open={open}

@@ -2,28 +2,33 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
-import Typography from '@mui/material/Typography';
-import { useNavigate } from 'react-router-dom';
 
+import { useNavigate } from 'react-router-dom';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { CardActionArea } from '@mui/material';
 const images = [
     {
-        url: 'https://jamaicahospital.org/newsletter/wp-content/uploads/2015/04/RX-Symbol-177245590.jpg',
-        title: 'Prescription Refill',
+        url: '',
+        title: 'View Stastics',
         width: '33%',
-        section: "/prescription-refill",
+        section: "/statistics",
     },
     {
-        url: 'https://telehealth.hhs.gov/assets/img/hero.svg',
-        title: 'Telehealth',
+        url: '',
+        title: 'Manage Chat History',
         width: '33%',
-        section: "/telehealth",
+        section: "/admin-chathistory",
     },
     {
-        url: 'https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/alt-5ae892611bf1a-5168-68b2575aab38f2c97ce8846381d07044@1x.jpg',
-        title: 'Search Providers',
+        url: '',
+        title: 'Manage Users',
         width: '33%',
-        section: "/provider-search",
+        section: "/management",
     },
+
 ];
 
 const ImageButton = styled(ButtonBase)(({ theme }) => ({
@@ -36,13 +41,13 @@ const ImageButton = styled(ButtonBase)(({ theme }) => ({
     '&:hover, &.Mui-focusVisible': {
         zIndex: 1,
         '& .MuiImageBackdrop-root': {
-        opacity: 0.15,
+            opacity: 0.15,
         },
         '& .MuiImageMarked-root': {
-        opacity: 0,
+            opacity: 0,
         },
         '& .MuiTypography-root': {
-        border: '4px solid currentColor',
+            border: '4px solid currentColor',
         },
     },
 }));
@@ -94,35 +99,35 @@ export default function NavigationButton() {
     let navigate = useNavigate();
     return (
         <Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
-        {images.map((image) => (
-            <ImageButton
-            focusRipple
-            onClick={() => { navigate(image.section) }}
-            key={image.title}
-            style={{
-                width: image.width,
-            }}
-            >
-            <ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
-            <ImageBackdrop className="MuiImageBackdrop-root" />
-            <Image>
-                <Typography
-                component="span"
-                variant="subtitle1"
-                color="inherit"
-                sx={{
-                    position: 'relative',
-                    p: 4,
-                    pt: 2,
-                    pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
-                }}
+            {images.map((image) => (
+                <ImageButton
+                    focusRipple
+                    onClick={() => { navigate(image.section) }}
+                    key={image.title}
+                    style={{
+                        width: image.width,
+                    }}
                 >
-                {image.title}
-                <ImageMarked className="MuiImageMarked-root" />
-                </Typography>
-            </Image>
-            </ImageButton>
-        ))}
+                    <ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
+                    <ImageBackdrop className="MuiImageBackdrop-root" />
+                    <Image>
+                        <Typography
+                            component="span"
+                            variant="subtitle1"
+                            color="inherit"
+                            sx={{
+                                position: 'relative',
+                                p: 4,
+                                pt: 2,
+                                pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
+                            }}
+                        >
+                            {image.title}
+                            <ImageMarked className="MuiImageMarked-root" />
+                        </Typography>
+                    </Image>
+                </ImageButton>
+            ))}
         </Box>
     );
 }

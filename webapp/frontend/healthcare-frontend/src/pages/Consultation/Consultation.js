@@ -175,21 +175,22 @@ export default function Consultation() {
     () => {
 
       socket.on('message', message => {
+        let newArray = [...myArray]
         if (message.user == "doctor") {
-          let newArray = [...myArray]
+          
           newArray.push(<MessageLeft
             message={message.txt}
             displayName="Doctor"
           />)
-          setMyArray(newArray);
+         
         } else {
           let newArray = [...myArray]
           newArray.push(<MessageRight
             message={message.txt}
             displayName="Patient"
           />)
-          setMyArray(newArray);
         }
+        setMyArray(newArray);
       });
 
       return () => {

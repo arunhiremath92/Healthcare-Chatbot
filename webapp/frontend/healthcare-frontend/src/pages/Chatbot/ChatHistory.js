@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import {  createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
@@ -18,7 +18,7 @@ import Fade from '@mui/material/Fade';
 import Backdrop from '@mui/material/Backdrop';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-
+import Paper from '@mui/material/Paper';
 import { ACCESS_TOKEN_TRANSCRIPT, ACCESS_TOKEN_CHAT } from '../../configureApi';
 
 const useStyles = (theme) => ({
@@ -301,47 +301,69 @@ class ChatHistory extends Component {
                                             open={this.state.open}
                                             onClose={this.handleClose}
                                             closeAfterTransition
-                                            BackdropComponent={Backdrop}
+                                            // BackdropComponent={Backdrop}
                                             BackdropProps={{
                                                 timeout: 500,
                                             }}
                                         >
                                             <Fade in={this.state.open}>
-                                                <Box >
-                                                    <Typography id="transition-modal-title" variant="h4" component="h2"
-                                                        style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', color: '#1f396e', margin: 5 }}>
-                                                        Chat Transcript
-                                                    </Typography>
-                                                    <Typography id="transition-modal-description" sx={{ mt: 2 }} style={{ margin: 10 }}>
-                                                        <p style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                                            #{this.state.chatInfo.chat_id}  Start: {this.state.chatInfo.chatinitiated_time}  Duration: {this.state.chatInfo.chat_duration}
-                                                        </p>
-                                                        <p>Visitor Name: {this.state.chatInfo.visitor_name}</p>
-                                                        <p>Visitor Email: {this.state.chatInfo.visitor_email}</p>
-                                                        <p>Website: {this.state.chatInfo.chat_initiated_url}</p>
-                                                        <p>Attended By: {this.state.chatInfo.attender_name}</p>
-                                                        <p>Visitor Country: {this.state.chatInfo.country_code}</p>
-                                                        <p>Visitor IP Address: {this.state.chatInfo.visitor_ip}</p>
-                                                        <hr />
-                                                        <Table size="small">
-                                                            <TableHead>
-                                                                <TableRow>
-                                                                    <TableCell>{this.state.chatInfo.visitor_name}</TableCell>
-                                                                    <TableCell>{this.state.chatInfo.question}</TableCell>
-                                                                    <TableCell align="right">{this.state.chatInfo.chatinitiated_time}</TableCell>
-                                                                </TableRow>
-                                                            </TableHead>
-                                                            <TableBody>
-                                                                {this.state.transcript.map((row) => (
-                                                                    <TableRow key={row.id}>
-                                                                        <TableCell>{row.dname}</TableCell>
-                                                                        <TableCell>{row.msg}</TableCell>
-                                                                        <TableCell align="right">{row.time}</TableCell>
+                                                <Box sx={{
+                                                    position: 'absolute',
+                                                    top: '40%',
+                                                    left: '50%',
+                                                    transform: 'translate(-50%, -50%)',
+                                                    width: 400,
+                                                    bgcolor: 'background.paper',
+                                                    border: '1px solid #000',
+                                                    pt: 2,
+                                                    px: 4,
+                                                    pb: 3,
+                                                    marginTop: 8,
+                                                    display: 'flex',
+                                                    flexDirection: 'column',
+                                                    alignItems: 'center',
+                                                    overflowY: 'auto'
+                                                }}>
+                                                    <Paper elevation={0} >
+                                                        <Typography id="transition-modal-title" variant="h4" component="h2"
+                                                            style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', color: '#1f396e', margin: 5 }}>
+                                                            Chat Transcript
+                                                        </Typography>
+                                                        <Typography id="transition-modal-description" sx={{ mt: 2 }} style={{ margin: 10 }}>
+                                                            <p style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                                                #{this.state.chatInfo.chat_id}  Start: {this.state.chatInfo.chatinitiated_time}  Duration: {this.state.chatInfo.chat_duration}
+                                                            </p>
+                                                            <p>Visitor Name: {this.state.chatInfo.visitor_name}</p>
+                                                            <p>Visitor Email: {this.state.chatInfo.visitor_email}</p>
+                                                            <p>Website: {this.state.chatInfo.chat_initiated_url}</p>
+                                                            <p>Attended By: {this.state.chatInfo.attender_name}</p>
+                                                            <p>Visitor Country: {this.state.chatInfo.country_code}</p>
+                                                            <p>Visitor IP Address: {this.state.chatInfo.visitor_ip}</p>
+                                                            <hr />
+
+
+
+
+                                                            <Table size="small">
+                                                                <TableHead>
+                                                                    <TableRow>
+                                                                        <TableCell>{this.state.chatInfo.visitor_name}</TableCell>
+                                                                        <TableCell>{this.state.chatInfo.question}</TableCell>
+                                                                        <TableCell align="right">{this.state.chatInfo.chatinitiated_time}</TableCell>
                                                                     </TableRow>
-                                                                ))}
-                                                            </TableBody>
-                                                        </Table>
-                                                    </Typography>
+                                                                </TableHead>
+                                                                <TableBody>
+                                                                    {this.state.transcript.map((row) => (
+                                                                        <TableRow key={row.id}>
+                                                                            <TableCell>{row.dname}</TableCell>
+                                                                            <TableCell>{row.msg}</TableCell>
+                                                                            <TableCell align="right">{row.time}</TableCell>
+                                                                        </TableRow>
+                                                                    ))}
+                                                                </TableBody>
+                                                            </Table>
+                                                        </Typography>
+                                                    </Paper>
                                                 </Box>
                                             </Fade>
                                         </Modal>

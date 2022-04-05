@@ -2,8 +2,8 @@ export const API_BASE_URL = 'https://api.yelp.com/v3'
 export const BEARER_TOKEN = 'd2XtHxl5upksITGq6-Z-quIyBDQWAdMi1U0SH5QaZCDFDb3P1WA_Xp9ZsZXShsDib_W_EIiv6V6jN7XJaR1k-cHPsegN-sOOQlDC7lM0FWYeuC0cQqqfrgnZ7ysPYnYx'
 
 //zoho api config
-export const ACCESS_TOKEN_TRANSCRIPT = 'Zoho-oauthtoken 1000.40f1eb90c24ccef6f0108b04bb6759ba.9c816537bed666b6ad388f3414168806'
-export const ACCESS_TOKEN_CHAT = 'Zoho-oauthtoken 1000.b93b03c498b6e49e2f17c872a75e8783.76bf77413ce8b36b5559c1ae15a8694b'
-export const ACCESS_TOKEN_VISITOR = 'Zoho-oauthtoken 1000.0725c770d69904847f74e14551144715.03a038912b1550d03f40d2fd9ed81f11'
-export const ACCESS_TOKEN_OPERATOR = 'Zoho-oauthtoken 1000.8354b9b193e959ae5f1169d201feca9f.93accdacd05134953a2777e492f2c853'
-export const ACCESS_TOKEN_FEEDBACK = 'Zoho-oauthtoken 1000.99de4a388a7213be758bd1c65ac82b15.01a8d94d208f011471f5a8f235ce0a44'
+export const ACCESS_TOKEN_TRANSCRIPT = 'Zoho-oauthtoken 1000.adef8df7bf6a1ed3b1dafc2eda30a679.4d5e2312237e1ba580e74c399792c830'
+export const ACCESS_TOKEN_CHAT = 'Zoho-oauthtoken 1000.f151328268f4b7c44d376b831a910c37.6dcc2de60e959328c1e0b16cd7472417'
+export const ACCESS_TOKEN_VISITOR = 'Zoho-oauthtoken 1000.9f27e72f28698cb4945fc90a0e25ca7a.ce4740cbb926fa8a4a1c0077ced037f5'
+export const ACCESS_TOKEN_OPERATOR = 'Zoho-oauthtoken 1000.c00d6c370d622be164e1dca35931bee2.14178ef3192d98b733c55ca779197b67'
+export const ACCESS_TOKEN_FEEDBACK = 'Zoho-oauthtoken 1000.6d9ab41c3ae8773e3e66406d190eb08a.c040e8c4b56a14ea868534595478dd07'

@@ -25,10 +25,8 @@ export default function UserDashboard() {
 
     const classes = useStyles();
 
-    let redirectVar = null;
-    if (!localStorage.getItem("user")) {
-        redirectVar = <Navigate to="/" />
-    }
+
+
 
     return (
         <>

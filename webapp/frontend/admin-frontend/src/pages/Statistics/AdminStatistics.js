@@ -44,7 +44,7 @@ class AdminStatistics extends Component {
 
         return (
             <>
-            {redirectVar}
+           
             <ThemeProvider theme={mdTheme}>
             <Box>
                 <Container maxWidth="full" sx={{ mt: 3, mb: 4 }}>
