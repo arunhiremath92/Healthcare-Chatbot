@@ -22,34 +22,34 @@ import ResultList from './resultList';
 
 const names = [
 
-    'Addiction Medicine',
-    'Allergists',
-    'Anesthesiologists',
-    'Audiologist',
-    'Cardiologists',
-    'Cosmetic Surgeons',
-    'Dermatologists',
-    'Ear Nose & Throat',
-    'Emergency Medicine',
-    'Endocrinologists',
-    'Family Practice',
-    'Fertility',
-    'Gastroenterologist',
-    'Geneticists',
-    'Gerontologists',
-    'Hepatologists',
-    'Hospitalists',
-    'Immunodermatologists',
-    'Infectious Disease Specialists',
-    'Internal Medicine',
-    'Naturopathic/Holistic',
-    'Nephrologists',
-    'Neurologist',
-    'Neuropathologists',
-    'Neurotologists',
-    'Obstetricians & Gynecologists',
+    'Addiction Medicine ',
+    'Allergists ',
+    'Anesthesiologists ',
+    'Audiologist ',
+    'Cardiologists ',
+    'Cosmetic Surgeons ',
+    'Dermatologists ',
+    'Ear Nose & Throat ',
+    'Emergency Medicine ',
+    'Endocrinologists ',
+    'Family Practice ',
+    'Fertility ',
+    'Gastroenterologist ',
+    'Geneticists ',
+    'Gerontologists ',
+    'Hepatologists ',
+    'Hospitalists ',
+    'Immunodermatologists ',
+    'Infectious Disease Specialists ',
+    'Internal Medicine ',
+    'Naturopathic/Holistic ',
+    'Nephrologists ',
+    'Neurologist ',
+    'Neuropathologists ',
+    'Neurotologists ',
+    'Obstetricians & Gynecologists ',
     'Oncologist ',
-    'Ophthalmologists',
+    'Ophthalmologists ',
 ];
 
 const useStyles = makeStyles({
@@ -204,14 +204,17 @@ export default function ProvidersView() {
                     <Box sx={{ flexGrow: 1 }}>
 
 
-                        {
-                            search.length > 0 && <h3>There are {hasResult ? `${businessList.length}` : 'no'} results near: <b>{search}</b>. </h3>
-                        }
-                        &nbsp;
+                    {
+                    search.length > 0 && <h3 style={{color:'darkblue'}}>There are {hasResult ? `${businessList.length}` :'no'} results near: <b>{search}</b>. </h3>
+                    }
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        
+                        
                         {/* <h3>There are some results near: {search}</h3> */}
 
                         {
-                            profession.length > 0 && <h5>Categories: {profession}</h5>
+                        profession.length > 0 && <h5 style={{color:'darkblue'}}>Categories: {profession}</h5>
                         }
                         <ResultList {...businessList} />
                     </Box>
