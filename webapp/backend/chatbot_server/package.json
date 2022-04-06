@@ -2,5 +2,13 @@
   "dependencies": {
     "express": "^4.17.3",
     "socket.io": "^4.4.1"
+  },
+  "scripts": {
+    "start": "node Chatserver.js",
+    "react": "react-scripts start",
+    "server": "node Chatserver.js",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   }
 }
