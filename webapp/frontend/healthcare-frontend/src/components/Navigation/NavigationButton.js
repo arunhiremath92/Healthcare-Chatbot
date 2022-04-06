@@ -9,19 +9,19 @@ const images = [
     {
         url: 'https://jamaicahospital.org/newsletter/wp-content/uploads/2015/04/RX-Symbol-177245590.jpg',
         title: 'Prescription Refill',
-        width: '40%',
+        width: '33%',
         section: "/prescription-refill",
     },
     {
         url: 'https://telehealth.hhs.gov/assets/img/hero.svg',
         title: 'Telehealth',
-        width: '30%',
-        section: "/dashboard",
+        width: '33%',
+        section: "/telehealth",
     },
     {
         url: 'https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/alt-5ae892611bf1a-5168-68b2575aab38f2c97ce8846381d07044@1x.jpg',
         title: 'Search Providers',
-        width: '30%',
+        width: '33%',
         section: "/provider-search",
     },
 ];

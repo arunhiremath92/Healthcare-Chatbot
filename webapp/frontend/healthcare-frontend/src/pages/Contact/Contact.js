@@ -6,7 +6,6 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 
 import TopNavigationBar from '../../components/Navigation/TopNavigationBar';
-import TopNavigationBarLoggedIn from '../../components/Navigation/TopNavigationBarLoggedIn';
 
 const useStyles = makeStyles({
     root: {
@@ -41,26 +40,14 @@ function ContactMain(){
 export default function Contact() {
 
     return (
-        <>
-        {localStorage.getItem("user") ?
-            <>
                 <ThemeProvider theme={mdTheme}>
                 <Box>
                     <Container maxWidth="full" sx={{ mt: 3, mb: 4 }}>
                         <Grid container spacing={3}>
-                            <TopNavigationBarLoggedIn />
                             <ContactMain />
                         </Grid>
                     </Container>
                 </Box>
                 </ThemeProvider>
-            </>
-            :
-            <>
-                <TopNavigationBar />
-                <ContactMain />
-            </>
-        }
-        </>
     )
 }

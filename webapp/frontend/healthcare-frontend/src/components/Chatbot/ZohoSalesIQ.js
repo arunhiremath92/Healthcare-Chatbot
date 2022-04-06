@@ -1,5 +1,8 @@
 import React from "react";
 
+
+// Original Author: Harsha N Hegde
+// Link to the Source: https://stackoverflow.com/a/69450697
 // Zoho Sales IQ widget code
 export default function ZohoSalesIQ(props) {
     window.$zoho = window.$zoho || {};
