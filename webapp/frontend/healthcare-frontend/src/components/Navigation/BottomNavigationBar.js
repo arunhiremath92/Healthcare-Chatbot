@@ -52,13 +52,15 @@ const useStyles = makeStyles({
 
     },
     bootom: {
+        
         backgroundColor: "#32a1ce",
         borderTop: "1px solid #E7E7E7",
         textAlign: "left",
         padding: "20px",
         left: "0",
         bottom: "0",
-        width: "100%"
+        width: "100%",
+        
 
     }
 });

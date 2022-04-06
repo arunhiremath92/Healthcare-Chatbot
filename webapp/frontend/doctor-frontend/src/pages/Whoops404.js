@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import TopNavigationBar from '../components/Navigation/TopNavigationBar';
+
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -22,7 +22,7 @@ export default function Whoops404() {
 
     return (
         <>
-            <TopNavigationBar />
+         
             <Grid container component="main" className={classes.errorMsg}>
                 <CssBaseline />
                 <Typography component="h1" variant="h5">

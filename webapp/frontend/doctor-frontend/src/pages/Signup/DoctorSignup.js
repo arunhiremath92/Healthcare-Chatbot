@@ -100,8 +100,7 @@ export default function DoctorSignup() {
     };
 
     return (
-        <ThemeProvider theme={theme}>
-            <TopNavigationBar />
+        <>
             <Grid container component="main" sx={{ height: '100vh' }}>
                 <CssBaseline />
                 <Grid
@@ -235,6 +234,6 @@ export default function DoctorSignup() {
                     </Box>
                 </Grid>
             </Grid>
-        </ThemeProvider>
+        </>
     );
 }
