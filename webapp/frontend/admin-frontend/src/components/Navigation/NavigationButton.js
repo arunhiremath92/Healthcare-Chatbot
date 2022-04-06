@@ -13,19 +13,25 @@ const images = [
     {
         url: '',
         title: 'View Stastics',
-        width: '33%',
+        width: '25%',
         section: "/statistics",
     },
     {
         url: '',
+        title: 'View Feedbacks',
+        width: '25%',
+        section: "/feedback",
+    },
+    {
+        url: '',
         title: 'Manage Chat History',
-        width: '33%',
+        width: '25%',
         section: "/admin-chathistory",
     },
     {
         url: '',
         title: 'Manage Users',
-        width: '33%',
+        width: '25%',
         section: "/management",
     },
 

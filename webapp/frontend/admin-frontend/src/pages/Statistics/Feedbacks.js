@@ -19,76 +19,6 @@ import { PieChart, Pie, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Leg
 
 import { ACCESS_TOKEN_FEEDBACK, ACCESS_TOKEN_OPERATOR } from '../../configureApi';
 
-const data = [
-    {
-        name: 'Page A',
-        uv: 4000,
-        pv: 2400,
-        amt: 2400,
-    },
-    {
-        name: 'Page B',
-        uv: 3000,
-        pv: 1398,
-        amt: 2210,
-    },
-    {
-        name: 'Page C',
-        uv: 2000,
-        pv: 9800,
-        amt: 2290,
-    },
-    {
-        name: 'Page D',
-        uv: 2780,
-        pv: 3908,
-        amt: 2000,
-    },
-    {
-        name: 'Page E',
-        uv: 1890,
-        pv: 4800,
-        amt: 2181,
-    },
-    {
-        name: 'Page F',
-        uv: 2390,
-        pv: 3800,
-        amt: 2500,
-    },
-    {
-        name: 'Page G',
-        uv: 3490,
-        pv: 4300,
-        amt: 2100,
-    },
-];
-const data01 = [
-    {
-        "name": "Group A",
-        "value": 25
-    },
-    {
-        "name": "Group B",
-        "value": 10
-    },
-    {
-        "name": "Group C",
-        "value": 15
-    },
-
-];
-const data02 = [
-    {
-        "name": "Group D",
-        "value": 20
-    },
-    {
-        "name": "Group E",
-        "value": 30
-    },
-];
-
 const useStyles = (theme) => ({
     root: {
         flexGrow: 1,
@@ -263,49 +193,6 @@ class Feedbacks extends Component {
             { field: 'Suggestions for improvement', headerName: 'Suggestions', width: 250 }
         ];
         //console.log(this.state)
-        var options_column = {
-            animationEnabled: true,
-            exportFileName: "User Satisfaction Column Chart",
-            exportEnabled: true,
-            title: {
-                text: ""
-            },
-            data: [
-                {
-                    type: "column",
-                    dataPoints: [
-                        { label: "1", y: this.state.rating1 },
-                        { label: "2", y: this.state.rating2 },
-                        { label: "3", y: this.state.rating3 },
-                        { label: "4", y: this.state.rating4 },
-                        { label: "5", y: this.state.rating5 }
-                    ]
-                }
-            ]
-        }
-
-        var options_pie = {
-            animationEnabled: true,
-            exportFileName: "Feedback Type Pie Chart",
-            exportEnabled: true,
-            title: {
-                text: ""
-            },
-            data: [{
-                type: "pie",
-                showInLegend: true,
-                legendText: "{label}",
-                toolTipContent: "{label}: <strong>{y}%</strong>",
-                indexLabel: "{y}%",
-                indexLabelPlacement: "inside",
-                dataPoints: [
-                    { y: this.state.feedbackType1, label: "Comments" },
-                    { y: this.state.feedbackType2, label: "Questions" },
-                    { y: this.state.feedbackType3, label: "Bug Reports" },
-                    { y: this.state.feedbackType4, label: "Feature Request" }
-                ]
-            }]
-        }
 
         const columns_feedbackfromchatbot = [
             { field: 'reference_id', headerName: 'ID', width: 70 },
@@ -315,6 +202,54 @@ class Feedbacks extends Component {
             { field: 'visitor_name', headerName: 'Visitor', width: 110 },
             { field: 'start_time', headerName: 'Start Time', width: 160 },
             { field: 'end_time', headerName: 'End Time', width: 160 }
+        ];
+
+        const data = [
+            {
+                name: 'Rating for Website',
+                rating1: this.state.rating1,
+                rating2: this.state.rating2,
+                rating3: this.state.rating3,
+                rating4: this.state.rating4,
+                rating5: this.state.rating5
+            }
+        ];
+
+        const data01 = [
+            {
+                "name": "Comments",
+                "value": this.state.feedbackType1
+            },
+            {
+                "name": "Questions",
+                "value": this.state.feedbackType2
+            },
+            {
+                "name": "Bug Reports",
+                "value": this.state.feedbackType3
+            },
+            {
+                "name": "Feature Request",
+                "value": this.state.feedbackType4
+            }
+        ];
+        const data02 = [
+            {
+                "name": "Comments",
+                "value": this.state.feedbackType1
+            },
+            {
+                "name": "Questions",
+                "value": this.state.feedbackType2
+            },
+            {
+                "name": "Bug Reports",
+                "value": this.state.feedbackType3
+            },
+            {
+                "name": "Feature Request",
+                "value": this.state.feedbackType4
+            }
         ];
 
         let redirectVar = null;
@@ -344,12 +279,25 @@ class Feedbacks extends Component {
                                         />
                                         <br />
                                         <Grid container spacing={3}>
-                                            {/* column chart */}
-                                            <Grid item xs={12} md={4} lg={6}>
-                                                <ResponsiveContainer width="100%" height="100%">
+                                            <Grid item xs={12} md={4} lg={7}>
+                                                <Typography component="h1" variant="h6" color="primary" gutterBottom>
+                                                    Do you have a good experience using the website?
+                                                </Typography> 
+                                            </Grid>
+                                            <Grid item xs={12} md={4} lg={5}>
+                                                <Typography component="h1" variant="h6" color="primary" gutterBottom>
+                                                    Feedback Type
+                                                </Typography> 
+                                            </Grid>
+                                            <Grid item xs={12} md={4} lg={7} sx={{
+                                                justifyContent: "center",
+                                                alignItems: "center",
+                                                padding: 1
+                                            }}>
+                                                <ResponsiveContainer width="100%" height={240}>
                                                     <BarChart
                                                         width='100%'
-                                                        height={240}
+                                                        height={260}
                                                         data={data}
                                                         margin={{
                                                             top: 5,
@@ -363,19 +311,21 @@ class Feedbacks extends Component {
                                                         <YAxis />
                                                         <Tooltip />
                                                         <Legend />
-                                                        <Bar dataKey="pv" fill="#8884d8" />
-                                                        <Bar dataKey="uv" fill="#82ca9d" />
+                                                        <Bar dataKey="rating1" fill="#8884d8" />
+                                                        <Bar dataKey="rating2" fill="#82ca9d" />
+                                                        <Bar dataKey="rating3" fill="#44DAD6" />
+                                                        <Bar dataKey="rating4" fill="#937FD4" />
+                                                        <Bar dataKey="rating5" fill="#2EDF52" />
                                                     </BarChart>
                                                 </ResponsiveContainer>
                                             </Grid>
                                             {/* pie chart */}
-                                            <Grid item xs={12} md={4} lg={6}>
+                                            <Grid item xs={12} md={4} lg={5}>
                                                 <ResponsiveContainer width="100%" height="100%">
-                                                    <PieChart height={240}>
+                                                    <PieChart height={260}>
                                                         <Pie data={data01} dataKey="value" cx="50%" cy="50%" outerRadius={60} fill="#8884d8" />
                                                         <Pie data={data02} dataKey="value" cx="50%" cy="50%" innerRadius={70} outerRadius={90} fill="#82ca9d" label />
                                                     </PieChart>
-
                                                 </ResponsiveContainer>
                                             </Grid>
                                         </Grid>
@@ -386,7 +336,7 @@ class Feedbacks extends Component {
                                         </Typography>
                                         <Box sx={{ minWidth: 120 }}>
                                             <Grid container spacing={3}>
-                                                <Grid item xs={12} md={4} lg={3}>
+                                                <Grid item xs={12} md={4} lg={4}>
                                                     <FormControl fullWidth>
                                                         <InputLabel id="demo-simple-select-label">Latest #</InputLabel>
                                                         <Select
@@ -405,7 +355,7 @@ class Feedbacks extends Component {
                                                         </Select>
                                                     </FormControl>
                                                 </Grid>
-                                                <Grid item xs={12} md={4} lg={3}>
+                                                <Grid item xs={12} md={4} lg={4}>
                                                     <TextField
                                                         id="datetime-local"
                                                         label="From time"
@@ -417,7 +367,7 @@ class Feedbacks extends Component {
                                                         }}
                                                     />
                                                 </Grid>
-                                                <Grid item xs={12} md={4} lg={3}>
+                                                <Grid item xs={12} md={4} lg={4}>
                                                     <TextField
                                                         id="datetime-local"
                                                         label="To time"
@@ -429,7 +379,7 @@ class Feedbacks extends Component {
                                                         }}
                                                     />
                                                 </Grid>
-                                                <Grid item xs={12} md={4} lg={3}>
+                                                <Grid item xs={12} md={4} lg={4}>
                                                     <FormControl fullWidth>
                                                         <InputLabel id="demo-simple-select-label">Operator ID</InputLabel>
                                                         <Select
@@ -446,7 +396,7 @@ class Feedbacks extends Component {
                                                         </Select>
                                                     </FormControl>
                                                 </Grid>
-                                                <Grid item xs={12} md={4} lg={3}>
+                                                <Grid item xs={12} md={4} lg={4}>
                                                     <FormControl fullWidth>
                                                         <InputLabel id="demo-simple-select-label">Rating</InputLabel>
                                                         <Select
@@ -464,7 +414,7 @@ class Feedbacks extends Component {
                                                         </Select>
                                                     </FormControl>
                                                 </Grid>
-                                                <Grid item xs={12} md={4} lg={3}>
+                                                <Grid item xs={12} md={4} lg={4}>
                                                     <Button size="large" variant="outlined" onClick={this.filterFeedbacks}>Filter</Button>
                                                 </Grid>
                                             </Grid>

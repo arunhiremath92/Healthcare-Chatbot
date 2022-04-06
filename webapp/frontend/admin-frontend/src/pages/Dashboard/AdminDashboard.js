@@ -13,77 +13,6 @@ import { PieChart, Pie, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Leg
 import { ACCESS_TOKEN_TRANSCRIPT, ACCESS_TOKEN_CHAT } from '../../configureApi';
 import NavigationButton from '../../components/Navigation/NavigationButton';
 
-
-const data = [
-    {
-        name: 'Page A',
-        uv: 4000,
-        pv: 2400,
-        amt: 2400,
-    },
-    {
-        name: 'Page B',
-        uv: 3000,
-        pv: 1398,
-        amt: 2210,
-    },
-    {
-        name: 'Page C',
-        uv: 2000,
-        pv: 9800,
-        amt: 2290,
-    },
-    {
-        name: 'Page D',
-        uv: 2780,
-        pv: 3908,
-        amt: 2000,
-    },
-    {
-        name: 'Page E',
-        uv: 1890,
-        pv: 4800,
-        amt: 2181,
-    },
-    {
-        name: 'Page F',
-        uv: 2390,
-        pv: 3800,
-        amt: 2500,
-    },
-    {
-        name: 'Page G',
-        uv: 3490,
-        pv: 4300,
-        amt: 2100,
-    },
-];
-const data01 = [
-    {
-        "name": "Group A",
-        "value": 25
-    },
-    {
-        "name": "Group B",
-        "value": 10
-    },
-    {
-        "name": "Group C",
-        "value": 15
-    },
-
-];
-const data02 = [
-    {
-        "name": "Group D",
-        "value": 20
-    },
-    {
-        "name": "Group E",
-        "value": 30
-    },
-];
-
 const useStyles = (theme) => ({
     root: {
         flexGrow: 1,
@@ -101,7 +30,6 @@ class AdminDashboard extends Component {
             currentTime: '',
             chatNumber: 0,
             chatWithDoctorNumber: 20,//hardcoded
-            doctorChatNumber: 15,//hardcoded
             NumberOfUsers: 6,//hardcoded
             NumberOfDoctors: 7,//hardcoded
             NumberOfOnlineDoctors: 3,//hardcoded
@@ -138,59 +66,49 @@ class AdminDashboard extends Component {
 
         const { classes } = this.props;
 
-        var options_pie = {
-            animationEnabled: true,
-            exportFileName: "User Distribution Pie Chart",
-            exportEnabled: true,
-            title: {
-                text: ""
-            },
-            data: [{
-                type: "pie",
-                showInLegend: true,
-                legendText: "{label}",
-                toolTipContent: "{label}: <strong>{y}%</strong>",
-                indexLabel: "{y}%",
-                indexLabelPlacement: "inside",
-                dataPoints: [
-                    { y: this.state.NumberOfUsers, label: "User" },
-                    { y: this.state.NumberOfDoctors, label: "Doctor" },
-                    { y: this.state.NumberOfOperators, label: "Operator" }
-                ]
-            }]
-        }
+        const data = [
+            {
+                name: 'Number of Chats',
+                chatbot: this.state.chatNumber,
+                doctor: this.state.chatWithDoctorNumber
+            }
+        ];
 
-        var options_bar = {
-            animationEnabled: true,
-            exportFileName: "Messages Bar Chart",
-            exportEnabled: true,
-            theme: "light2",
-            title: {
-                text: ""
+        const data01 = [
+            {
+                "name": "User",
+                "value": this.state.NumberOfUsers
             },
-            axisX: {
-                title: "",
-                reversed: true,
+            {
+                "name": "Online Doctor",
+                "value": this.state.NumberOfOnlineDoctors
             },
-            axisY: {
-                title: "Number of Messages",
-                includeZero: true
+            {
+                "name": "Offline Doctor",
+                "value": this.state.NumberOfDoctors-this.state.NumberOfOnlineDoctors
             },
-            data: [{
-                type: "bar",
-                dataPoints: [
-                    { y: 60, label: "with Chatbot" },
-                    { y: this.state.chatWithDoctorNumber, label: "with Online Doctor" }
-                ]
-            }]
-        }
+            {
+                "name": "Operator",
+                "value": this.state.NumberOfOperators
+            }
+        ];
 
-
+        const data02 = [
+            {
+                "name": "Users",
+                "value": this.state.NumberOfUsers
+            },
+            {
+                "name": "Doctors",
+                "value": this.state.NumberOfDoctors
+            },
+            {
+                "name": "Operators",
+                "value": this.state.NumberOfOperators
+            }
+        ];
 
         return (
-
-
-
             <Grid container spacing={3}>
                 <Grid item xs={12} >
                     <Typography component="h1" variant="h4" color="primary" gutterBottom>
@@ -281,8 +199,8 @@ class AdminDashboard extends Component {
                             <YAxis />
                             <Tooltip />
                             <Legend />
-                            <Bar dataKey="pv" fill="#8884d8" />
-                            <Bar dataKey="uv" fill="#82ca9d" />
+                            <Bar dataKey="chatbot" fill="#8884d8" />
+                            <Bar dataKey="doctor" fill="#82ca9d" />
                         </BarChart>
                     </ResponsiveContainer>
                 </Grid>
@@ -367,10 +285,9 @@ class AdminDashboard extends Component {
                 <Grid item xs={12} md={4} lg={3}>
                     <ResponsiveContainer width="100%" height="100%">
                         <PieChart height={240}>
-                            <Pie data={data01} dataKey="value" cx="50%" cy="50%" outerRadius={60} fill="#8884d8" />
-                            <Pie data={data02} dataKey="value" cx="50%" cy="50%" innerRadius={70} outerRadius={90} fill="#82ca9d" label />
+                            <Pie data={data01} dataKey="value" cx="50%" cy="50%" outerRadius={50} fill="#8884d8" />
+                            <Pie data={data02} dataKey="value" cx="50%" cy="50%" innerRadius={75} outerRadius={100} fill="#82ca9d" label />
                         </PieChart>
-
                     </ResponsiveContainer>
                 </Grid>
                 <Grid item xs={12}>

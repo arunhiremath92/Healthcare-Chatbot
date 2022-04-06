@@ -320,13 +320,13 @@ class AdminChatHistory extends Component {
                                 <Box sx={{ minWidth: 120 }}>
                                     <FormControl fullWidth>
                                     <Grid container spacing={3}>
-                                        <Grid item xs={12} md={4} lg={3}>
+                                        <Grid item xs={12} md={4} lg={2}>
                                             <InputLabel id="demo-simple-select-label">Latest #</InputLabel>
                                             <Select
                                                 labelId="demo-simple-select-label"
                                                 id="demo-simple-select"
                                                 value={this.state.amount}
-                                                sx={{ width: 250 }}
+                                                sx={{ width: 160 }}
                                                 label="Amount"
                                                 onChange={this.handleAmountChange}
                                             >
@@ -338,7 +338,7 @@ class AdminChatHistory extends Component {
                                             <MenuItem value={this.state.totalAmount}>All chats</MenuItem>
                                             </Select>
                                         </Grid>
-                                        <Grid item xs={12} md={4} lg={3}>
+                                        <Grid item xs={12} md={4} lg={4}>
                                             <TextField
                                                 id="datetime-local"
                                                 label="From time"
@@ -350,7 +350,7 @@ class AdminChatHistory extends Component {
                                                 }}
                                             />
                                         </Grid>
-                                        <Grid item xs={12} md={4} lg={3}>
+                                        <Grid item xs={12} md={4} lg={4}>
                                             <TextField
                                                 id="datetime-local"
                                                 label="To time"
@@ -362,7 +362,7 @@ class AdminChatHistory extends Component {
                                                 }}
                                             />
                                         </Grid>
-                                        <Grid item xs={12} md={4} lg={3}>
+                                        <Grid item xs={12} md={4} lg={2}>
                                             <Button size="large" variant="outlined" onClick={this.filterChats}>Filter</Button>
                                         </Grid>
                                     </Grid>
