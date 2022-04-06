@@ -11,6 +11,6 @@
   },
   "scripts": {
     "start": "node Chatserver.js",
-    "server": "node Chatserver.js",
+    "server": "node Chatserver.js"
   }
 }
