@@ -32,7 +32,7 @@ app.use((req, res, next) => {
 
 
 http.listen(process.env.PORT || 5000, () => {
-    console.log(`listening on *:${PORT}`);
+    console.log(`listening on *:${process.env.PORT || 5000}`);
 });
 
 io.on('connection', (socket) => { // socket object may be used to send specific messages to the new connected client
