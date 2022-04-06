@@ -18,6 +18,8 @@ import Fab from '@mui/material/Fab';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Stack from '@mui/material/Stack';
 import { Paper } from '@material-ui/core';
+import io from "socket.io-client"
+
 const SERVER = "http://127.0.0.1:3004";
 function stringToColor(string) {
   let hash = 0;
@@ -147,7 +149,6 @@ export default function Consultation() {
 
 
   const [profession, setProfession] = React.useState([]);
-  const socket = socketClient(SERVER);
 
   const classes = useStyles();
 
@@ -157,7 +158,7 @@ export default function Consultation() {
   const [userReply, setUserReply] = React.useState("")
   const [show, setShow] = React.useState('hidden')
   const handleChange = (event) => {
-    socket.emit('send-message', { user: "patient", txt: userReply });
+    socket.emit('private-message', { type: 'user', message: 'test-message', from: 'Patient-1', to: 'arunhiremath' });
     setUserReply("")
 
   };
@@ -174,24 +175,8 @@ export default function Consultation() {
   React.useEffect(
     () => {
 
-      socket.on('message', message => {
-        let newArray = [...myArray]
-        if (message.user == "doctor") {
-          
-          newArray.push(<MessageLeft
-            message={message.txt}
-            displayName="Doctor"
-          />)
-         
-        } else {
-          let newArray = [...myArray]
-          newArray.push(<MessageRight
-            message={message.txt}
-            displayName="Patient"
-          />)
-        }
-        setMyArray(newArray);
-      });
+
+
 
       return () => {
         socket.disconnect();
@@ -205,19 +190,60 @@ export default function Consultation() {
     setSelectedProfession(e.target.value)
     let selected = e.target.value
     let availableList = []
-    for (var i = 0; i < Professionals.length; i++) {
-      if (Professionals[i].type == selected) {
-        availableList.push(
+    
+    // for (var i = 0; i < Professionals.length; i++) {
+    //   if (Professionals[i].type == selected) {
+    //     availableList.push(
 
-          <Fab color="primary" aria-label="add" onClick={handleFAB}>
-            <AccountCircleIcon />
-          </Fab>)
-      }
-    }
-    setProfessional(availableList)
+    //       <Fab color="primary" aria-label="add" onClick={handleFAB}>
+    //         <AccountCircleIcon />
+    //       </Fab>)
+    //   }
+    // }
+    // setProfessional(availableList)
 
   }
+  const [hello, setCount] = React.useState("0")
+  const [socket, setSocket] = React.useState(null)
 
+  React.useEffect(() => {
+    if (socket === null) {
+      setSocket(io(SERVER));
+    }
+    if (socket) {
+      socket.on('connect', (clientSocket) => {
+        // socket.emit('joined', { 'serverchannel': 120 })
+        console.log("Connected")
+
+        socket.on('active-doctors', message => {
+          let newArray = [...message]
+          console.log(newArray)
+          socket.emit('connect-to-doctor', { fullName: "Arun Hiremath", to: 'arunhiremath', from: 'Patient-1' });
+        })
+
+
+        socket.on('private-message', message => {
+          console.log(message)
+          // let newArray = [...myArray]
+          // if (message.type !== "user") {
+
+          //   newArray.push(<MessageLeft
+          //     message={message.message}
+          //     displayName={message.from}
+          //   />)
+
+          // } else {
+          //   let newArray = [...myArray]
+          //   newArray.push(<MessageRight
+          //     message={message.message}
+          //     displayName={message.from}
+          //   />)
+          // }
+          // setMyArray(newArray);
+        });
+      })
+    }
+  }, [socket])
 
   return (
     <>
