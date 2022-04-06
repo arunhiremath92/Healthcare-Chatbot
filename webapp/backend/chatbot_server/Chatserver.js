@@ -31,7 +31,7 @@ app.use((req, res, next) => {
 })
 
 
-http.listen(PORT, () => {
+http.listen(process.env.PORT || 5000, () => {
     console.log(`listening on *:${PORT}`);
 });
 
