@@ -4,6 +4,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
 import { Navigate } from 'react-router-dom';
 import { MessageLeft, MessageRight } from "./Message";
 import TextField from '@mui/material/TextField';
@@ -106,34 +107,7 @@ const names = [
   'Oncologist ',
   'Ophthalmologists',
 ];
-const Professionals = [
 
-  {
-    type: 'Allergists',
-    name: "Arun Hiremath",
-  },
-
-  {
-    type: 'Allergists',
-    name: "Karan Singh",
-  },
-  {
-    type: 'Fertility',
-    name: "Chyvan Phadke",
-  },
-  {
-    type: 'Fertility',
-    name: "Mohit Sharma",
-  },
-  {
-    type: 'Allergists',
-    name: "Alexu Vittle",
-  },
-  {
-    type: 'Endocrinologists',
-    name: "Maria Smith",
-  }
-];
 
 function getStyles(name, personName, theme) {
   return {
@@ -152,13 +126,18 @@ export default function Consultation() {
 
   const classes = useStyles();
 
-  const [myArray, setMyArray] = React.useState([]);
-  const [professionalsList, setProfessional] = React.useState([]);
-  const [selectedProfession, setSelectedProfession] = React.useState([]);
-  const [userReply, setUserReply] = React.useState("")
-  const [show, setShow] = React.useState('hidden')
+  let [doctorsList, setDoctorsList] = React.useState([]);
+  let [selectedProfession, setSelectedProfession] = React.useState("");
+  let [userReply, setUserReply] = React.useState("")
+  let [show, setShow] = React.useState('hidden')
+  let [socket, setSocket] = React.useState(null)
+  let [userMessages, setUserMessages] = React.useState([])
+  let [userInView, setUserInView] = React.useState("");
+
+
+
   const handleChange = (event) => {
-    socket.emit('private-message', { type: 'user', message: 'test-message', from: 'Patient-1', to: 'arunhiremath' });
+    socket.emit('private-message', { type: 'user', message: userReply, from: 'Patient-1', to: 'arunhiremath',messageid: userInView.messageid });
     setUserReply("")
 
   };
@@ -169,42 +148,24 @@ export default function Consultation() {
   let handleTextFieldChange = (e) => {
     setUserReply(e.target.value);
   }
-  let handleFAB = (e) => {
-    setShow('visible')
-  }
-  React.useEffect(
-    () => {
 
-
-
-
-      return () => {
-        socket.disconnect();
-      }
-    },
-    [myArray]
-  )
 
 
   const handleDoctorSelection = (e) => {
     setSelectedProfession(e.target.value)
-    let selected = e.target.value
-    let availableList = []
-    
-    // for (var i = 0; i < Professionals.length; i++) {
-    //   if (Professionals[i].type == selected) {
-    //     availableList.push(
-
-    //       <Fab color="primary" aria-label="add" onClick={handleFAB}>
-    //         <AccountCircleIcon />
-    //       </Fab>)
-    //   }
-    // }
-    // setProfessional(availableList)
-
+    console.log(e.target.value)
   }
-  const [hello, setCount] = React.useState("0")
-  const [socket, setSocket] = React.useState(null)
+  const handleDoctorChatSelection = (doctorSelected) => {
+    console.log(doctorSelected)
+    setUserInView(doctorSelected)
+    for (let i = 0; i < doctorsList.length; i++) {
+      if (doctorsList[i].username == userInView.username) {
+        socket.emit('connect-to-doctor', { fullName: "Arun Hiremath", to: doctorsList[i].username, from: 'Patient-1', messageid: userInView.messageid });
+        break
+      }
+    }
+  }
+
 
   React.useEffect(() => {
     if (socket === null) {
@@ -216,34 +177,35 @@ export default function Consultation() {
         console.log("Connected")
 
         socket.on('active-doctors', message => {
-          let newArray = [...message]
-          console.log(newArray)
-          socket.emit('connect-to-doctor', { fullName: "Arun Hiremath", to: 'arunhiremath', from: 'Patient-1' });
+
+          console.log(message)
+          let doctorList = [...message]
+
+          let finalDoctorList = []
+          for (let i = 0; i < doctorList.length; i++) {
+            let messageId = Date.now() + Math.random()
+            // socket.emit('connect-to-doctor', { fullName: "Arun Hiremath", to: doctorList[i].username, from: 'Patient-1', messageid: messageId });
+            let doctor = {
+              ...doctorList[i],
+              messageid: messageId
+            }
+            console.log(doctor)
+            finalDoctorList.push(doctor)
+
+          }
+
+
+          setDoctorsList(oldArray => [...oldArray, ...finalDoctorList]);
         })
 
 
         socket.on('private-message', message => {
           console.log(message)
-          // let newArray = [...myArray]
-          // if (message.type !== "user") {
-
-          //   newArray.push(<MessageLeft
-          //     message={message.message}
-          //     displayName={message.from}
-          //   />)
-
-          // } else {
-          //   let newArray = [...myArray]
-          //   newArray.push(<MessageRight
-          //     message={message.message}
-          //     displayName={message.from}
-          //   />)
-          // }
-          // setMyArray(newArray);
+          setUserMessages(oldArray => [...oldArray, message]);
         });
       })
     }
-  }, [socket])
+  }, [socket, doctorsList, userMessages])
 
   return (
     <>
@@ -275,10 +237,28 @@ export default function Consultation() {
           </FormControl>
         </Grid>
         <Grid item xs={12}>
+          {doctorsList.map((value, i) => (
+            value.type === selectedProfession ?
+              <Fab color="primary" aria-label="add" onClick={ () => { handleDoctorChatSelection(value)}}>
+                <Avatar {...stringAvatar(value.fullName)} />
+              </Fab> :
+              <></>
+          ))}
+        </Grid>
+
+        <Grid item xs={12}>
           <Paper style={{ maxHeight: 400, overflow: 'auto' }}>
             <div style={{ height: 400, width: '100%' }}>
               <div style={{ height: 350, width: '100%' }}>
-                {myArray}
+                {userMessages.map((value, i) => (
+                  value.messageid === userInView.messageid ? value.type === 'user' ? <MessageLeft
+                    message={value.message}
+                    displayName={"U"}
+                  /> : <MessageRight
+                    message={value.message}
+                    displayName={"D"}
+                  /> : <></>
+                ))}
               </div>
             </div>
           </Paper>

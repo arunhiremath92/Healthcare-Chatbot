@@ -53,7 +53,7 @@ export default function DoctorDashboard() {
     let [userMessages, setUserMessages] = React.useState([])
 
     const handleChange = (event) => {
-        let sendMessage = { type: 'Endocrinologists', message: userReply, from: 'arunhiremath', to: 'Patient-1' }
+        let sendMessage = { type: 'Endocrinologists', message: userReply, from: 'arunhiremath', to: 'Patient-1', messageid: userInView.messageid }
         socket.emit('private-message', sendMessage);
         setUserReply("")
         // setUserMessages(oldArray => [...oldArray,sendMessage] );
@@ -74,7 +74,7 @@ export default function DoctorDashboard() {
                 console.log("Connected")
 
                 socket.on('private-message', message => {
-                    setUserMessages(oldArray => [...oldArray,message] );
+                    setUserMessages(oldArray => [...oldArray, message]);
                     console.log(message)
                 });
 
@@ -88,7 +88,7 @@ export default function DoctorDashboard() {
                         }
                     }
                     if (!found) {
-                        newArray.push({ fullName: message.fullName, username: message.from })
+                        newArray.push({ fullName: message.fullName, username: message.from, messageid: message.messageid })
                     }
 
                     setActiveUsers(newArray)
@@ -109,7 +109,7 @@ export default function DoctorDashboard() {
         setSelectedIndex(index);
         let selectedUser = activeUsers[index]
         console.log(userMessages)
-        setUserInView(selectedUser.username)
+        setUserInView(selectedUser)
     };
     const classes = useStyles();
     return (
@@ -179,7 +179,7 @@ export default function DoctorDashboard() {
                                             <Grid item xs={12}>
 
                                                 {userMessages.map((value, i) => (
-                                                    value.to === userInView ? value.type === 'user' ? <MessageLeft
+                                                    value.messageid === userInView.messageid ? value.type === 'user' ? <MessageLeft
                                                         message={value.message}
                                                         displayName={"U"}
                                                     /> : <MessageRight

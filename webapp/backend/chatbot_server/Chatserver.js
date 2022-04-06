@@ -66,26 +66,26 @@ io.on('connection', (socket) => { // socket object may be used to send specific 
         socket.broadcast.emit('active-doctors', STATIC_CHANNELS);
     });
 
-    socket.on('connect-to-doctor', function ({ fullName, to, from }) {
+    socket.on('connect-to-doctor', function ({ fullName, to, from ,messageid }) {
         console.log("connecting to doctor")
         console.log(fullName)
         console.log(to)
         console.log(from)
-
+        console.log(messageid)
         socket.join(to);
-        io.to(to).emit('connect-to-doctor', { fullName, to, from  });
+        io.to(to).emit('connect-to-doctor', { fullName, to, from ,messageid });
     });
 
 
-    socket.on('private-message', function ({ type, message, from, to }) {
+    socket.on('private-message', function ({ type, message, from, to , messageid}) {
         console.log(type)
         console.log(message)
         console.log(from)
         console.log(to)
         if (type === 'user') {
-            io.to(to).emit('private-message', { type, message, from, to });
+            io.to(to).emit('private-message', { type, message, from, to, messageid });
         } else {
-            io.to(from).emit('private-message', { type, message, from, to });
+            io.to(from).emit('private-message', { type, message, from, to, messageid });
         }
 
     });
