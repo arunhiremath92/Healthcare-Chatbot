@@ -21,7 +21,7 @@ import Stack from '@mui/material/Stack';
 import { Paper } from '@material-ui/core';
 import io from "socket.io-client"
 
-const SERVER = "http://127.0.0.1:3004";
+const SERVER = "wss://healthapp-chat-server.herokuapp.com";
 function stringToColor(string) {
   let hash = 0;
   let i;
