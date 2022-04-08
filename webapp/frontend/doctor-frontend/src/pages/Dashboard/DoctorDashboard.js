@@ -19,7 +19,7 @@ import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import TextField from '@mui/material/TextField';
 import Switch from '@mui/material/Switch';
-const SERVER = "http://127.0.0.1:3004";
+const SERVER = "https://healthapp-chat-server.herokuapp.com:38887";
 const mdTheme = createTheme();
 const useStyles = makeStyles({
     root: {
@@ -67,7 +67,7 @@ export default function DoctorDashboard() {
 
     React.useEffect(() => {
         if (socket === null) {
-            setSocket(io(SERVER));
+            setSocket(io(SERVER, { transports: ["websocket"] }));
         }
         if (socket) {
             socket.on('connect', (clientSocket) => {
