@@ -19,7 +19,7 @@ import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import TextField from '@mui/material/TextField';
 import Switch from '@mui/material/Switch';
-const SERVER = "https://healthapp-chat-server.herokuapp.com:38887";
+const SERVER = "https://healthapp-chat-server.herokuapp.com:41698";
 const mdTheme = createTheme();
 const useStyles = makeStyles({
     root: {
