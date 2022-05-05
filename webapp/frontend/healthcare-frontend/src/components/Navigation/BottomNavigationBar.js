@@ -23,7 +23,7 @@ const links_array = [
         key: "dashboard",
     },
     {
-        link: "https://docs.google.com/forms/d/e/1FAIpQLScM1klqzc3jR_HJELDd5SFyqZNDFuDNLaqZ6h2oUGV6nwhaKw/viewform?embedded=true",
+        link: "/feedback",
         title: "Send Feedback",
         key: "",
     },

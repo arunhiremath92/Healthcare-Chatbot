@@ -173,7 +173,7 @@ export default function ProvidersView() {
                     {/* <TextField id="location" fullwidth label="City/Pincode/Area" variant="outlined" inputRef={myRef} /> */}
                     <TextField id="location" fullwidth label="City/Pincode/Area" variant="outlined" inputRef={myRef} />
                     &nbsp;
-                    <Button variant="contained" onClick={Show} >Click Me to Search</Button>
+                    <Button variant="contained" id="search-button" onClick={Show} >Click Me to Search</Button>
                 </Grid>
                 <Grid item xs={4}>
                     <FormControl fullWidth={true}>

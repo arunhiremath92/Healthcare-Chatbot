@@ -113,6 +113,7 @@ export default function NavigationButton() {
                     style={{
                         width: image.width,
                     }}
+                    id={image.title}
                 >
                     <ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
                     <ImageBackdrop className="MuiImageBackdrop-root" />

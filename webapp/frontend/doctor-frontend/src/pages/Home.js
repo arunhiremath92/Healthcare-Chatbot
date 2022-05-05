@@ -69,7 +69,8 @@ export default function Home() {
                             Welcome Doctor
                         </Typography>
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={3}></Grid>
+                    <Grid item xs={6}>
                         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                             <TextField
                                 margin="normal"

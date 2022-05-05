@@ -43,6 +43,7 @@ export default function TopNavigationBar() {
           <Typography variant="h6" className={classes.title}>
           <Button color="inherit" onClick={() => { navigate('/doctor-dashboard')}}>Digital Healthcare</Button>
           </Typography>
+          <Button color="inherit">Logout</Button>
         </Toolbar>
 
       </AppBar>

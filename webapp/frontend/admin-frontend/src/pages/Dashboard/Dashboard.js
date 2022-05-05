@@ -106,6 +106,7 @@ export default function Dashboard() {
                         onClick={handleSignin}
                         variant="contained"
                         sx={{ mt: 3, mb: 2 }}
+                        id="login-button"
                     >
                         Sign In
                     </Button>

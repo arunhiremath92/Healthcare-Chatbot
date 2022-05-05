@@ -56,7 +56,7 @@ function Main() {
                             <Route path="/prescription-refill" element={<MedicalPrescription />} />
                             <Route path="/provider-search" element={<ProvidersView />} />
 
-                            <Route path="/contact" element={<Contact />} />
+                            <Route path="/feedback" element={<Contact />} />
                             <Route path="/about" element={<About />} />
                             <Route path="/" element={<Dashboard />} />
                             <Route path="*" element={<Whoops404 />} />
