@@ -307,24 +307,7 @@ class ChatHistory extends Component {
                                             }}
                                         >
                                             <Fade in={this.state.open}>
-                                                <Box sx={{
-                                                    position: 'absolute',
-                                                    top: '40%',
-                                                    left: '50%',
-                                                    transform: 'translate(-50%, -50%)',
-                                                    width: 400,
-                                                    bgcolor: 'background.paper',
-                                                    border: '1px solid #000',
-                                                    pt: 2,
-                                                    px: 4,
-                                                    pb: 3,
-                                                    marginTop: 8,
-                                                    display: 'flex',
-                                                    flexDirection: 'column',
-                                                    alignItems: 'center',
-                                                    overflowY: 'auto'
-                                                }}>
-                                                    <Paper elevation={0} >
+                                                <Box className={classes.box}>
                                                         <Typography id="transition-modal-title" variant="h4" component="h2"
                                                             style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', color: '#1f396e', margin: 5 }}>
                                                             Chat Transcript
@@ -340,10 +323,6 @@ class ChatHistory extends Component {
                                                             <p>Visitor Country: {this.state.chatInfo.country_code}</p>
                                                             <p>Visitor IP Address: {this.state.chatInfo.visitor_ip}</p>
                                                             <hr />
-
-
-
-
                                                             <Table size="small">
                                                                 <TableHead>
                                                                     <TableRow>
@@ -363,7 +342,6 @@ class ChatHistory extends Component {
                                                                 </TableBody>
                                                             </Table>
                                                         </Typography>
-                                                    </Paper>
                                                 </Box>
                                             </Fade>
                                         </Modal>
