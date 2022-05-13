@@ -13,10 +13,10 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
   
   switch (action) {
     case 'handle-symptom-collection':
-      handleSequence(dfRequest, response);
+        handleSequence(dfRequest, response);
       break;
     case 'call-symptom-checker':
-      requestDiagnosis(dfRequest, response);
+        requestDiagnosis(dfRequest, response);
       break;
     case 'single-followup-question-response':
         single_followup_response(dfRequest, response);
@@ -39,74 +39,19 @@ function single_followup_response(request, response) {
   ctxtData  = getOutputContext(request, 'health-diagnosis-rrqy.single-followup-question')
   console.log(ctxtData)
   
-  // const data = {
-  //   "evidence": [
-  //     {
-  //       "id": queryParams.symptom_1,
-  //       "choice_id": "present",
-  //       "source": "initial"
-  //     },
-  //     {
-  //       "id": queryParams.symptom_2,
-  //       "choice_id": "present"
-  //     },
-  //   ]
-  // }
-  // axios.post('https://api.infermedica.com/v2/diagnosis', data, { headers })
-  //     .then((externalResponse) => {
-  
-  //       symptomResponse = externalResponse.data
-  //       console.log(symptomResponse)
-
-  //       if(symptomResponse.hasOwnProperty('conditions')){
-  //           let condition = symptomResponse.conditions[0]
-  //           response.json({
-  //             followupEventInput: {
-  //               name: 'symptom-diagnosis-completion',
-  //               parameters: {               
-  //                  "response" : "Our analysis says this could be" + condition.name + "We suggest book an appointment with us."
-  //               }
-  //             }
-  //           });  
-  
-  //       }
-
-  //       else if (symptomResponse.question.type != "group_single"){
-  //         response.json({
-  //           fulfillmentText: "currently this diagnosis is not supported, try again later"
-  //         });
-  
-  //       }else{
-          
-  //         response.json({
-  //           followupEventInput: {
-  //             name: 'single-followup-question',
-  //             parameters: {               
-  //                "followup_question" : symptomResponse.question.text,
-  //                "items": symptomResponse.question.items
-  //             }
-  //           }
-  //         });  
-  //       }
-  //     }).catch((e)=> {
-  //       console.log(e) 
-  //       response.json({
-  //         fulfillmentText: "Something went wrong with server, please try again"
-  //       });
-  //     });
 }
 
 
 function handleSequence(request, response) {
-console.log(request)
-response.json({
-  followupEventInput: {
-    name: 'collect-symptoms-data',
-    parameters: {
-      name: 'Arun',
+  console.log(request)
+  response.json({
+    followupEventInput: {
+      name: 'collect-symptoms-data',
+      parameters: {
+        name: 'Arun',
+      }
     }
-  }
-});
+  });
 
 }
 
@@ -133,7 +78,7 @@ function requestDiagnosis(request, response) {
       followupEventInput: {
         name: 'collect-symptoms-data',
         parameters: {
-          name: 'Arun',
+          name: person_details.parameters.personName[0],
         }
       }
     });
@@ -162,7 +107,7 @@ function requestDiagnosis(request, response) {
       .then((externalResponse) => {
         symptomResponse = externalResponse.data
         console.log(symptomResponse)
-        if(symptomResponse.hasOwnProperty('conditions')){
+        if(symptomResponse.hasOwnProperty('should_stop') == "true"){
           let condition = symptomResponse.conditions[0]
           response.json({
               followupEventInput: {
@@ -180,13 +125,17 @@ function requestDiagnosis(request, response) {
           });
   
         }else{
-          
+            // Its a single-followup-question, 
+           followupText = symptomResponse.question.text
+           symptomResponse.items.forEach(function(item) {
+             followupText = followupText + "\n" + item.name
+          });
+          console.log(followupText);
           response.json({
             followupEventInput: {
               name: 'single-followup-question',
               parameters: {               
-                 "followup_question" : symptomResponse.question.text,
-                 "items": symptomResponse.question.items
+                 "followup_question" : followupText,
               }
             }
           });  
