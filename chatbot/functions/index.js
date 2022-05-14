@@ -107,7 +107,7 @@ function requestDiagnosis(request, response) {
       .then((externalResponse) => {
         symptomResponse = externalResponse.data
         console.log(symptomResponse)
-        if(symptomResponse.hasOwnProperty('should_stop') == "true"){
+        if(symptomResponse.hasOwnProperty('conditions')){
           let condition = symptomResponse.conditions[0]
           response.json({
               followupEventInput: {
