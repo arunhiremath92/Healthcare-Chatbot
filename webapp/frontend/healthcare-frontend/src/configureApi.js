@@ -3,8 +3,8 @@ export const BEARER_TOKEN = 'd2XtHxl5upksITGq6-Z-quIyBDQWAdMi1U0SH5QaZCDFDb3P1WA
 
 //zoho api config
 
-export const ACCESS_TOKEN_TRANSCRIPT = 'Zoho-oauthtoken 1000.82344fc24887bc3f9c5fe994002bb146.ea7ca2479b430df8d179fce066bb99d9'
-export const ACCESS_TOKEN_CHAT = 'Zoho-oauthtoken 1000.d7089da808f05509b1fbbed0b3919a71.8a44e64d45ccdc2e6c0fe168dc0b9c20'
-export const ACCESS_TOKEN_VISITOR = 'Zoho-oauthtoken 1000.7b973e075dc69c18da89c75043931ecd.ee4cf04e53bf84291f784361c166eeed'
-export const ACCESS_TOKEN_OPERATOR = 'Zoho-oauthtoken 1000.12ac8088a2f87a824f0440d068cddd2d.184c857da9d9fcf3555a629888201fd9'
-export const ACCESS_TOKEN_FEEDBACK = 'Zoho-oauthtoken 1000.4d145ea59174b11377f45cbe58d73705.2d9f36b35b86234e2d0baca66eeda91a'
+export const ACCESS_TOKEN_TRANSCRIPT = 'Zoho-oauthtoken 1000.44ae5ee1a11dc450ec7fd4f1cdfd0cff.0e1f022686076304b1d27d58a3752ca1'
+export const ACCESS_TOKEN_CHAT = 'Zoho-oauthtoken 1000.1ccf3c158abe2aaa6ce901d077ac66fb.ae08e330ecfd2c7cfaca31ca1b12c128'
+export const ACCESS_TOKEN_VISITOR = 'Zoho-oauthtoken 1000.2c3be551db32e10677298f106c907d67.7e65c1125ac50369a75cc203557d5934'
+export const ACCESS_TOKEN_OPERATOR = 'Zoho-oauthtoken 1000.d851d26989878159c222163082b7170f.9789402c3a046949d9fdd8554d0cf3e2'
+export const ACCESS_TOKEN_FEEDBACK = 'Zoho-oauthtoken 1000.66398a75b42325cdff848f2cb32ca184.1f1466f08fd2104d09089508dd687cbd'
