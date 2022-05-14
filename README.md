@@ -1,8 +1,9 @@
 
 Credits: 
 All the FAQ used for building the knowledge base is sourced from the MedQuad repo. 
-	https://github.com/abachaa/MedQuAD
+	https://github.com/abachaa/MedQuAD  
 
+Due to Zoho subscription plans, some features related to the chatbot and the analyze page will stop being available after May, 2022.
 
 # NLP and Web-based Healthcare System
 ## Project Source Code: 
@@ -65,6 +66,5 @@ https://accounts.zoho.com/oauth/v2/auth?client_id=1000.Y56XI7KWMLJUE90D2SXME2ZKQ
 
 - To access the Zoho: our department name is sjsu
 	https://salesiq.zoho.com/sjsu/liveview. Signup and request access. Only users who are given permission can become the operators in Zoho
-
 
 

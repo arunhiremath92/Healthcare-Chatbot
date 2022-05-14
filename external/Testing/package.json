@@ -1,0 +1,27 @@
+{
+  "name": "cmpe280-test-automation",
+  "version": "1.0.0",
+  "description": "mocha and selenium",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "local1":  "k6 run stressTest.js",
+    "local2":  "k6 run stressTest.js -e ENDPOINT=/admin-dashboard",
+    "local3":  "k6 run stressTest.js -e ENDPOINT=/feedback",
+    "local4":  "k6 run stressTest.js -e ENDPOINT=/admin-chathistory",
+    "remote1": "k6 run stressTest.js -e API_BASE=remote",
+    "remote2": "k6 run stressTest.js -e API_BASE=remote -e ENDPOINT=/admin-dashboard",
+    "remote3": "k6 run stressTest.js -e API_BASE=remote -e ENDPOINT=/feedback",
+    "remote4": "k6 run stressTest.js -e API_BASE=remote -e ENDPOINT=/admin-chathistory",
+    "all-local": "run-s local1 local2 local3 local4",
+    "all-remote": "run-s remote1 remote2 remote3 remote4"
+  },
+  "author": "yihu",
+  "license": "ISC",
+  "dependencies": {
+    "selenium-webdriver": "^4.1.1"
+  },
+  "devDependencies": {
+    "chromedriver": "^100.0.0"
+  }
+}
